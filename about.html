@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Oriflame Cosmetics Abuja Branch</title>
+  <meta name="description" content="Meet the leadership, certified beauty specialists, and story behind Oriflame Cosmetics in Abuja, Nigeria. Discover our Maitama studio, expert aesthetic team, and Swedish beauty philosophy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════ PRELOADER ═══════ -->
+  <div id="preloader" class="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo">O</div>
+      <div class="preloader__text">ORIFLAME ABUJA</div>
+      <div class="preloader__bar"><div class="preloader__fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══════ TOAST ═══════ -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- ═══════ CART DRAWER ═══════ -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">Your Beauty Cart</h2>
+      <button id="cart-close-btn" class="cart-drawer__close" aria-label="Close cart">&#x2715;</button>
+    </div>
+    <div id="cart-items" class="cart-drawer__items"></div>
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <span id="cart-total">₦0</span>
+      </div>
+      <button id="whatsapp-checkout-btn" class="btn btn--whatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Order via WhatsApp
+      </button>
+      <p class="cart-drawer__note">Free delivery within Abuja on orders above ₦15,000</p>
+    </div>
+  </aside>
+
+  <!-- ═══════ HEADER ═══════ -->
+  <header id="site-header" class="header is-scrolled">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="Oriflame Abuja Home">
+        <span class="header__logo-icon">O</span>
+        <div class="header__logo-text">
+          <span class="header__brand">ORIFLAME</span>
+          <span class="header__sub">ABUJA · NG</span>
+        </div>
+      </a>
+      <nav class="header__nav" id="main-nav" aria-label="Main navigation">
+        <a href="about.html" class="header__nav-link is-active-link">About Us</a>
+        <a href="index.html#catalog" class="header__nav-link">Catalog</a>
+        <a href="index.html#quiz" class="header__nav-link">Beauty Quiz</a>
+        <a href="index.html#booking" class="header__nav-link">VIP Booking</a>
+        <a href="index.html#partners" class="header__nav-link">Become a Partner</a>
+        <a href="index.html#contact" class="header__nav-link">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <span class="header__location">📍 Abuja, NG</span>
+        <button id="cart-btn" class="header__cart-btn" aria-label="Open cart">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span id="cart-count" class="header__cart-count">0</span>
+        </button>
+        <button class="header__menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-main">
+
+    <!-- ═══════ ABOUT PAGE HERO ═══════ -->
+    <section class="about-hero">
+      <div class="container about-hero__inner">
+        <p class="section-eyebrow">The Abuja Flagship Story</p>
+        <h1 class="about-hero__title">
+          Where Swedish <em>Beauty Science</em><br />Meets Abuja's <span class="gold-text">Excellence</span>
+        </h1>
+        <p class="about-hero__subtitle">
+          Established to bring world-class Scandinavian skincare, bespoke fragrance consultations, and premier cosmetics directly to discerning clients and beauty entrepreneurs across the Federal Capital Territory.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════ THE BUSINESS IN ABUJA ═══════ -->
+    <section class="about-business section">
+      <div class="container about-business__inner">
+        <div class="about-business__content">
+          <p class="section-eyebrow">Our Presence in Abuja</p>
+          <h2 class="section-title">A Sanctuary of<br /><em>Luxury & Care</em> in<br /><span class="gold-text">the Capital</span></h2>
+          <p class="about-business__para">
+            Oriflame Abuja operates as the crown jewel of Swedish beauty in Northern Nigeria. Headquartered in our Maitama beauty studio, with active consultation lounges across <strong>Wuse II, Gwarinpa, Asokoro, and the Central Business District (CBD)</strong>, our mission is twofold:
+          </p>
+          <p class="about-business__para">
+            First, providing Abuja clients with tailored beauty regimens formulated for our unique tropical climate and rich melanin-rich complexions. Second, building a formidable community of over <strong>500+ independent beauty entrepreneurs</strong> who have built sustainable businesses through Oriflame’s global network.
+          </p>
+          <div class="about-business__pillars">
+            <div class="pillar-item">
+              <span class="pillar-icon">🌿</span>
+              <div>
+                <strong>Eco-Ethical Formulas</strong>
+                <p>100% natural extracts, non-GMO, microplastic-free, and cruelty-free Swedish standards.</p>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-icon">🔬</span>
+              <div>
+                <strong>Clinical Diagnostics</strong>
+                <p>Advanced digital skin analysis and bespoke undertone matching tailored for Nigerian skin.</p>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <span class="pillar-icon">🚚</span>
+              <div>
+                <strong>Abuja Express Concierge</strong>
+                <p>Same-day and next-day door-to-door delivery across all districts in Abuja FCT.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-business__visual">
+          <div class="about-card-banner">
+            <img src="assets/images/hero_cosmetics.jpg" alt="Oriflame luxury cosmetics in Abuja studio" class="about-card-banner__img" />
+            <div class="about-card-banner__overlay">
+              <div class="about-card-banner__stat">
+                <span class="about-stat-number">12+</span>
+                <span class="about-stat-label">Years of Direct Impact in Abuja</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ FOUNDER & DIRECTOR SPOTLIGHT ═══════ -->
+    <section class="founder-spotlight section">
+      <div class="container founder-spotlight__inner">
+        <div class="founder-spotlight__visual">
+          <div class="founder-card">
+            <div class="founder-card__avatar-wrap">
+              <img src="assets/images/avatar_aisha.svg" alt="Amb. Aisha Bello" class="founder-card__avatar" />
+              <div class="founder-card__gold-ring"></div>
+            </div>
+            <div class="founder-card__info">
+              <h3 class="founder-card__name">Amb. Aisha Bello</h3>
+              <p class="founder-card__role">Senior Gold Director & Branch Founder</p>
+              <div class="founder-card__contact">
+                <a href="tel:+2348035550199" class="founder-contact-link">
+                  <span>📞 +234 803 555 0199</span>
+                </a>
+                <a href="https://wa.me/2348035550199?text=Hello%20Amb.%20Aisha%20Bello,%20I%20would%20like%20to%20connect%20regarding%20Oriflame%20Abuja." target="_blank" rel="noopener" class="founder-whatsapp-btn">
+                  <span>Message on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="founder-spotlight__content">
+          <p class="section-eyebrow">The Visionary Behind the Brand</p>
+          <h2 class="section-title">Meet Amb. <em>Aisha Bello</em></h2>
+          <p class="founder-quote">
+            "True elegance begins when nature and science work in harmony with your authentic self. My mission is to ensure every woman in Abuja feels radiant, confident, and economically empowered."
+          </p>
+          <p class="founder-bio">
+            Amb. Aisha Bello is an award-winning cosmetic consultant, skin health advocate, and Oriflame Senior Gold Director. With over a decade of hands-on experience in dermatological aesthetics and direct sales leadership, she has personally trained more than 2,000 beauty consultants across Nigeria.
+          </p>
+          <p class="founder-bio">
+            Under her leadership, the Oriflame Abuja branch has grown into the premier beauty sanctuary in the Federal Capital Territory, recognized nationally for clinical excellence in NovAge skincare consultations and Giordani Gold shade artistry.
+          </p>
+          <div class="founder-highlights">
+            <div class="highlight-badge">✦ Oriflame Global Diamond Achiever</div>
+            <div class="highlight-badge">✦ Certified Aesthetic Skin Specialist</div>
+            <div class="highlight-badge">✦ Mentor to 500+ Abuja Entrepreneurs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ STAFF & SPECIALISTS DIRECTORY ═══════ -->
+    <section class="staff-section section">
+      <div class="container">
+        <div class="staff-section__header text-center">
+          <p class="section-eyebrow">Our Expert Team</p>
+          <h2 class="section-title">Meet Our Abuja<br /><em>Beauty Specialists</em></h2>
+          <p class="staff-section__desc">
+            Our certified beauty advisors, clinical aestheticians, and master colorists are dedicated to delivering bespoke consultations tailored to your unique skin and style.
+          </p>
+        </div>
+
+        <div class="staff-grid">
+
+          <!-- Staff 1 -->
+          <div class="staff-card">
+            <div class="staff-card__img-wrap">
+              <img src="assets/images/avatar_amina.svg" alt="Amina Danjuma" class="staff-card__img" />
+              <span class="staff-card__tag">Skincare</span>
+            </div>
+            <div class="staff-card__body">
+              <h3 class="staff-card__name">Amina Danjuma</h3>
+              <p class="staff-card__title">Lead Aesthetician &amp; NovAge Specialist</p>
+              <p class="staff-card__spec">
+                <strong>Specialization:</strong> Clinical anti-aging protocols, barrier recovery, digital skin diagnosis, and hyperpigmentation therapy.
+              </p>
+              <div class="staff-card__actions">
+                <a href="tel:+2348031112233" class="staff-phone">📞 +234 803 111 2233</a>
+                <a href="https://wa.me/2348031112233?text=Hello%20Amina,%20I%20would%20like%20to%20book%20a%20skincare%20consultation%20with%20you." target="_blank" rel="noopener" class="staff-wa-btn">WhatsApp Amina</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff 2 -->
+          <div class="staff-card">
+            <div class="staff-card__img-wrap">
+              <img src="assets/images/avatar_chioma.svg" alt="Chioma Eze" class="staff-card__img" />
+              <span class="staff-card__tag">Makeup</span>
+            </div>
+            <div class="staff-card__body">
+              <h3 class="staff-card__name">Chioma Eze</h3>
+              <p class="staff-card__title">Chief Makeup Artist &amp; Colorist</p>
+              <p class="staff-card__spec">
+                <strong>Specialization:</strong> Giordani Gold foundation shade matching, bridal glam, editorial makeup, and high-temperature longwear artistry.
+              </p>
+              <div class="staff-card__actions">
+                <a href="tel:+2348024445566" class="staff-phone">📞 +234 802 444 5566</a>
+                <a href="https://wa.me/2348024445566?text=Hello%20Chioma,%20I%20would%20like%20to%20book%20a%20makeup%20session%20with%20you." target="_blank" rel="noopener" class="staff-wa-btn">WhatsApp Chioma</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff 3 -->
+          <div class="staff-card">
+            <div class="staff-card__img-wrap">
+              <img src="assets/images/avatar_zainab.svg" alt="Zainab Usman" class="staff-card__img" />
+              <span class="staff-card__tag">Fragrance</span>
+            </div>
+            <div class="staff-card__body">
+              <h3 class="staff-card__name">Zainab Usman</h3>
+              <p class="staff-card__title">Master Fragrance Sommelier &amp; Stylist</p>
+              <p class="staff-card__spec">
+                <strong>Specialization:</strong> Luxury perfume layering, signature scent profiling (Possess &amp; Essenza), and VIP corporate gift curation.
+              </p>
+              <div class="staff-card__actions">
+                <a href="tel:+2348147778899" class="staff-phone">📞 +234 814 777 8899</a>
+                <a href="https://wa.me/2348147778899?text=Hello%20Zainab,%20I%20would%20like%20to%20consult%20with%20you%20on%20luxury%20fragrances." target="_blank" rel="noopener" class="staff-wa-btn">WhatsApp Zainab</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff 4 -->
+          <div class="staff-card">
+            <div class="staff-card__img-wrap">
+              <img src="assets/images/avatar_grace.svg" alt="Grace Olatunji" class="staff-card__img" />
+              <span class="staff-card__tag">Partnerships</span>
+            </div>
+            <div class="staff-card__body">
+              <h3 class="staff-card__name">Grace Olatunji</h3>
+              <p class="staff-card__title">Partner Development &amp; Client Lead</p>
+              <p class="staff-card__spec">
+                <strong>Specialization:</strong> Beauty partner onboarding, business mentorship, retail distributor logistics, and Abuja corporate accounts.
+              </p>
+              <div class="staff-card__actions">
+                <a href="tel:+2348093334455" class="staff-phone">📞 +234 809 333 4455</a>
+                <a href="https://wa.me/2348093334455?text=Hello%20Grace,%20I%20want%20to%20inquire%20about%20joining%20Oriflame%20Abuja%20as%20a%20partner." target="_blank" rel="noopener" class="staff-wa-btn">WhatsApp Grace</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff 5 -->
+          <div class="staff-card">
+            <div class="staff-card__img-wrap">
+              <img src="assets/images/avatar_hauwa.svg" alt="Hauwa Ibrahim" class="staff-card__img" />
+              <span class="staff-card__tag">Wellness</span>
+            </div>
+            <div class="staff-card__body">
+              <h3 class="staff-card__name">Hauwa Ibrahim</h3>
+              <p class="staff-card__title">Certified Wellness &amp; Body Care Advisor</p>
+              <p class="staff-card__spec">
+                <strong>Specialization:</strong> Love Nature organic body rituals, sensitive skin therapies, and holistic Swedish wellness routines.
+              </p>
+              <div class="staff-card__actions">
+                <a href="tel:+2348168887722" class="staff-phone">📞 +234 816 888 7722</a>
+                <a href="https://wa.me/2348168887722?text=Hello%20Hauwa,%20I%20would%20like%20to%20consult%20on%20wellness%20and%20bodycare." target="_blank" rel="noopener" class="staff-wa-btn">WhatsApp Hauwa</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ MILESTONES STATS ═══════ -->
+    <section class="stats-bar">
+      <div class="container stats-bar__grid">
+        <div class="stats-bar__item">
+          <span class="stats-bar__num">15+</span>
+          <span class="stats-bar__label">Certified Beauty Specialists</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__num">5,000+</span>
+          <span class="stats-bar__label">Abuja Consultations</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__num">4</span>
+          <span class="stats-bar__label">Studio Lounges in FCT</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__num">99.4%</span>
+          <span class="stats-bar__label">Client Satisfaction Rate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ VISIT US CTA ═══════ -->
+    <section class="about-cta section">
+      <div class="container text-center">
+        <p class="section-eyebrow" style="color:var(--clr-gold)">Experience the Luxury</p>
+        <h2 class="section-title">Ready for Your<br /><em>Personal Beauty</em><br /><span class="gold-text">Transformation?</span></h2>
+        <p style="color:var(--clr-muted); max-width:550px; margin: 1rem auto 2rem;">
+          Visit our flagship studio in Maitama or book a personal session with one of our certified specialists today.
+        </p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <a href="index.html#booking" class="btn btn--primary">Book VIP Consultation</a>
+          <a href="index.html#catalog" class="btn btn--ghost" style="color:var(--clr-dark); border-color:var(--clr-dark);">Browse Catalog</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">O</span>
+        <span class="footer__brand-name">ORIFLAME ABUJA</span>
+        <p class="footer__brand-tagline">Swedish Beauty Science × Nigerian Elegance</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <a href="about.html">About Us</a>
+        <a href="index.html#catalog">Products</a>
+        <a href="index.html#quiz">Beauty Quiz</a>
+        <a href="index.html#booking">VIP Booking</a>
+        <a href="index.html#partners">Partners</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <p class="footer__legal">© 2025 Oriflame Cosmetics Nigeria — Abuja Branch. All rights reserved.<br/>
+      Oriflame® is a registered trademark of Oriflame Holding AG, Sweden.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

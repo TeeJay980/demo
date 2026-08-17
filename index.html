@@ -56,6 +56,7 @@
         </div>
       </a>
       <nav class="header__nav" id="main-nav" aria-label="Main navigation">
+        <a href="about.html" class="header__nav-link">About Us</a>
         <a href="#catalog" class="header__nav-link">Catalog</a>
         <a href="#quiz" class="header__nav-link">Beauty Quiz</a>
         <a href="#booking" class="header__nav-link">VIP Booking</a>
@@ -80,21 +81,33 @@
     <!-- ═══════ HERO ═══════ -->
     <section class="hero" id="hero">
       <div class="hero__slides">
-        <div class="hero__slide hero__slide--1 is-active">
+        <div class="hero__slide hero__slide--1 is-active" data-caption="Giordani Gold MasterCreation">
           <img src="assets/images/hero_cosmetics.jpg" alt="Giordani Gold luxury cosmetics collection" class="hero__img" />
           <div class="hero__gradient"></div>
         </div>
-        <div class="hero__slide hero__slide--2">
+        <div class="hero__slide hero__slide--2" data-caption="Possess Absolute Eau de Parfum">
           <img src="assets/images/perfume_possess.jpg" alt="Possess Eau de Parfum luxury fragrance" class="hero__img" />
           <div class="hero__gradient"></div>
         </div>
-        <div class="hero__slide hero__slide--3">
-          <img src="assets/images/skincare_novage.jpg" alt="NovAge Advanced Skincare" class="hero__img" />
+        <div class="hero__slide hero__slide--3" data-caption="NovAge Ultimate Lift Skincare">
+          <img src="assets/images/novage_ultimate_lift.jpg" alt="NovAge Advanced Skincare" class="hero__img" />
+          <div class="hero__gradient"></div>
+        </div>
+        <div class="hero__slide hero__slide--4" data-caption="Love Nature Organic Body Care">
+          <img src="assets/images/wellness_bodycare.jpg" alt="Love Nature Honey and Almond Body Care" class="hero__img" />
+          <div class="hero__gradient"></div>
+        </div>
+        <div class="hero__slide hero__slide--5" data-caption="THE ONE Tremendous Mascara">
+          <img src="assets/images/the_one_mascara.jpg" alt="THE ONE Tremendous Volume Mascara" class="hero__img" />
+          <div class="hero__gradient"></div>
+        </div>
+        <div class="hero__slide hero__slide--6" data-caption="Giordani Gold Essenza EDP">
+          <img src="assets/images/giordani_essenza_edp.jpg" alt="Giordani Gold Essenza Italian Luxury Fragrance" class="hero__img" />
           <div class="hero__gradient"></div>
         </div>
       </div>
+
       <div class="hero__content container">
-        <div class="hero__badge">✦ Swedish Beauty Science × Abuja Elegance ✦</div>
         <h1 class="hero__headline">
           <span class="hero__headline-line">Beauty Born</span>
           <em class="hero__headline-italic">in Nature,</em>
@@ -107,11 +120,28 @@
           <a href="#booking" class="btn btn--ghost">Book VIP Consultation</a>
         </div>
       </div>
-      <div class="hero__nav">
-        <button class="hero__dot is-active" data-slide="0" aria-label="Slide 1"></button>
-        <button class="hero__dot" data-slide="1" aria-label="Slide 2"></button>
-        <button class="hero__dot" data-slide="2" aria-label="Slide 3"></button>
+
+      <!-- Dedicated Luxury Slide Controls (Positioned bottom-right away from buttons) -->
+      <div class="hero__controls">
+        <div class="hero__counter">
+          <span id="hero-current-num">01</span>
+          <span class="hero__counter-divider">/</span>
+          <span id="hero-total-num">06</span>
+        </div>
+        <div class="hero__nav" id="hero-nav">
+          <button class="hero__dot is-active" data-slide="0" aria-label="Slide 1: Giordani Gold"></button>
+          <button class="hero__dot" data-slide="1" aria-label="Slide 2: Possess EDP"></button>
+          <button class="hero__dot" data-slide="2" aria-label="Slide 3: NovAge Skincare"></button>
+          <button class="hero__dot" data-slide="3" aria-label="Slide 4: Love Nature"></button>
+          <button class="hero__dot" data-slide="4" aria-label="Slide 5: THE ONE"></button>
+          <button class="hero__dot" data-slide="5" aria-label="Slide 6: Essenza EDP"></button>
+        </div>
+        <div class="hero__arrows">
+          <button id="hero-prev" class="hero__arrow-btn" aria-label="Previous slide">←</button>
+          <button id="hero-next" class="hero__arrow-btn" aria-label="Next slide">→</button>
+        </div>
       </div>
+
       <div class="hero__scroll-hint">
         <span>Scroll</span>
         <div class="hero__scroll-line"></div>
@@ -515,6 +545,7 @@
         <p class="footer__brand-tagline">Swedish Beauty Science × Nigerian Elegance</p>
       </div>
       <nav class="footer__links" aria-label="Footer navigation">
+        <a href="about.html">About Us</a>
         <a href="#catalog">Products</a>
         <a href="#quiz">Beauty Quiz</a>
         <a href="#booking">VIP Booking</a>

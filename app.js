@@ -206,28 +206,56 @@ mainNav.querySelectorAll('.header__nav-link').forEach(link => {
 (function initHero() {
   const slides = document.querySelectorAll('.hero__slide');
   const dots   = document.querySelectorAll('.hero__dot');
-  let current  = 0;
+  const prevBtn = document.getElementById('hero-prev');
+  const nextBtn = document.getElementById('hero-next');
+  const curNum  = document.getElementById('hero-current-num');
+  const totNum  = document.getElementById('hero-total-num');
+
+  if (slides.length === 0) return;
+
+  let current = 0;
   let timer;
 
+  if (totNum) {
+    totNum.textContent = String(slides.length).padStart(2, '0');
+  }
+
   function goTo(n) {
-    slides[current].classList.remove('is-active');
-    dots[current].classList.remove('is-active');
+    if (slides[current]) slides[current].classList.remove('is-active');
+    if (dots[current])   dots[current].classList.remove('is-active');
+
     current = (n + slides.length) % slides.length;
-    slides[current].classList.add('is-active');
-    dots[current].classList.add('is-active');
+
+    if (slides[current]) slides[current].classList.add('is-active');
+    if (dots[current])   dots[current].classList.add('is-active');
+    if (curNum) curNum.textContent = String(current + 1).padStart(2, '0');
   }
 
   function startAuto() {
-    timer = setInterval(() => goTo(current + 1), 5500);
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 6000);
   }
 
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
-      clearInterval(timer);
       goTo(i);
       startAuto();
     });
   });
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      goTo(current - 1);
+      startAuto();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      goTo(current + 1);
+      startAuto();
+    });
+  }
 
   startAuto();
 })();
@@ -457,19 +485,24 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 // Search
 const searchInput = document.getElementById('catalog-search');
 let searchTimer;
-searchInput.addEventListener('input', (e) => {
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => {
-    state.search = e.target.value;
-    renderProducts();
-  }, 300);
-});
+if (searchInput) {
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      state.search = e.target.value;
+      renderProducts();
+    }, 300);
+  });
+}
 
 // Sort
-document.getElementById('catalog-sort').addEventListener('change', (e) => {
-  state.sort = e.target.value;
-  renderProducts();
-});
+const sortSelect = document.getElementById('catalog-sort');
+if (sortSelect) {
+  sortSelect.addEventListener('change', (e) => {
+    state.sort = e.target.value;
+    renderProducts();
+  });
+}
 
 // ── BEAUTY QUIZ ───────────────────────────────────────────────────────────
 const quizIntro    = document.getElementById('quiz-intro');
@@ -481,6 +514,7 @@ const quizBackBtn  = document.getElementById('quiz-back-btn');
 const startQuizBtn = document.getElementById('start-quiz-btn');
 
 function renderQuizStep() {
+  if (!quizStep || !quizProgress) return;
   const step = QUIZ_STEPS[state.quizStep];
   const pct  = Math.round((state.quizStep / QUIZ_STEPS.length) * 100);
   quizProgress.style.width = pct + '%';
@@ -494,7 +528,9 @@ function renderQuizStep() {
     </div>
   `;
 
-  quizBackBtn.style.display = state.quizStep > 0 ? 'inline-flex' : 'none';
+  if (quizBackBtn) {
+    quizBackBtn.style.display = state.quizStep > 0 ? 'inline-flex' : 'none';
+  }
 
   quizStep.querySelectorAll('.quiz__option').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -510,6 +546,7 @@ function renderQuizStep() {
 }
 
 function showQuizResult() {
+  if (!quizWidget || !quizResult || !quizProgress) return;
   quizProgress.style.width = '100%';
   const primaryAnswer = state.quizAnswers[0] || 'glow';
   const result = QUIZ_RESULTS[primaryAnswer] || QUIZ_RESULTS['glow'];
@@ -528,61 +565,71 @@ function showQuizResult() {
   quizResult.classList.add('is-active');
   quizResult.removeAttribute('aria-hidden');
 
-  document.getElementById('quiz-restart-btn').addEventListener('click', () => {
+  const restartBtn = document.getElementById('quiz-restart-btn');
+  if (restartBtn) {
+    restartBtn.addEventListener('click', () => {
+      state.quizStep = 0;
+      state.quizAnswers = [];
+      quizResult.classList.remove('is-active');
+      quizResult.setAttribute('aria-hidden', 'true');
+      quizWidget.style.display = 'block';
+      renderQuizStep();
+    });
+  }
+}
+
+if (startQuizBtn) {
+  startQuizBtn.addEventListener('click', () => {
+    if (quizIntro) quizIntro.style.display = 'none';
+    if (quizWidget) {
+      quizWidget.style.display = 'block';
+      quizWidget.setAttribute('aria-hidden', 'false');
+    }
     state.quizStep = 0;
     state.quizAnswers = [];
-    quizResult.classList.remove('is-active');
-    quizResult.setAttribute('aria-hidden', 'true');
-    quizWidget.style.display = 'block';
     renderQuizStep();
   });
 }
 
-startQuizBtn.addEventListener('click', () => {
-  quizIntro.style.display = 'none';
-  quizWidget.style.display = 'block';
-  quizWidget.setAttribute('aria-hidden', 'false');
-  state.quizStep = 0;
-  state.quizAnswers = [];
-  renderQuizStep();
-});
-
-quizBackBtn.addEventListener('click', () => {
-  if (state.quizStep > 0) {
-    state.quizStep--;
-    renderQuizStep();
-  }
-});
+if (quizBackBtn) {
+  quizBackBtn.addEventListener('click', () => {
+    if (state.quizStep > 0) {
+      state.quizStep--;
+      renderQuizStep();
+    }
+  });
+}
 
 // ── BOOKING FORM ──────────────────────────────────────────────────────────
-document.getElementById('booking-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const name     = form['name'].value.trim();
-  const phone    = form['phone'].value.trim();
-  const location = form['location'].value;
-  const date     = form['date'].value;
-  const time     = form['time'].value;
-  const service  = form['service'].value;
+const bookingForm = document.getElementById('booking-form');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name     = form['name'].value.trim();
+    const phone    = form['phone'].value.trim();
+    const location = form['location'].value;
+    const date     = form['date'].value;
+    const time     = form['time'].value;
+    const service  = form['service'].value;
 
-  if (!name || !phone || !location || !date || !time || !service) {
-    showToast('Please complete all booking fields.');
-    return;
-  }
+    if (!name || !phone || !location || !date || !time || !service) {
+      showToast('Please complete all booking fields.');
+      return;
+    }
 
-  // Format WhatsApp booking message
-  const timeLabel = form['time'].options[form['time'].selectedIndex].text;
-  const serviceLabel = form['service'].options[form['service'].selectedIndex].text;
-  const locationLabel = form['location'].options[form['location'].selectedIndex].text;
-  const msg = encodeURIComponent(
-    `Hello Oriflame Abuja! 💄\n\nI'd like to book a beauty consultation:\n\n• Name: ${name}\n• Phone: ${phone}\n• Service: ${serviceLabel}\n• Location: ${locationLabel}\n• Date: ${date}\n• Time: ${timeLabel}\n\nPlease confirm my appointment. Thank you!`
-  );
+    const timeLabel = form['time'].options[form['time'].selectedIndex].text;
+    const serviceLabel = form['service'].options[form['service'].selectedIndex].text;
+    const locationLabel = form['location'].options[form['location'].selectedIndex].text;
+    const msg = encodeURIComponent(
+      `Hello Oriflame Abuja! 💄\n\nI'd like to book a beauty consultation:\n\n• Name: ${name}\n• Phone: ${phone}\n• Service: ${serviceLabel}\n• Location: ${locationLabel}\n• Date: ${date}\n• Time: ${timeLabel}\n\nPlease confirm my appointment. Thank you!`
+    );
 
-  // Open WhatsApp with booking details
-  window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
-  showToast('✦ Booking request sent via WhatsApp!');
-  form.reset();
-});
+    window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+    showToast('✦ Booking request sent via WhatsApp!');
+    form.reset();
+  });
+}
 
 // ── PARTNER CALCULATOR ────────────────────────────────────────────────────
 const salesSlider  = document.getElementById('calc-sales');
@@ -592,72 +639,88 @@ const teamVal      = document.getElementById('calc-team-val');
 const calcResult   = document.getElementById('calc-result');
 
 function calcEarnings() {
+  if (!salesSlider || !teamSlider || !calcResult) return;
   const sales   = parseInt(salesSlider.value, 10);
   const team    = parseInt(teamSlider.value, 10);
-  const comm    = sales * 0.28;          // 28% direct commission
-  const teamBon = team * sales * 0.04;  // 4% team override
+  const comm    = sales * 0.28;
+  const teamBon = team * sales * 0.04;
   const total   = comm + teamBon;
   calcResult.textContent = fmt(Math.round(total));
-  salesVal.textContent = sales.toLocaleString('en-NG');
-  teamVal.textContent  = team;
+  if (salesVal) salesVal.textContent = sales.toLocaleString('en-NG');
+  if (teamVal)  teamVal.textContent  = team;
 }
 
-salesSlider.addEventListener('input', calcEarnings);
-teamSlider.addEventListener('input', calcEarnings);
-calcEarnings(); // init
+if (salesSlider && teamSlider) {
+  salesSlider.addEventListener('input', calcEarnings);
+  teamSlider.addEventListener('input', calcEarnings);
+  calcEarnings();
+}
 
 // Partner modal
 const partnerSignupBtn   = document.getElementById('partner-signup-btn');
 const partnerModalOverlay = document.getElementById('partner-modal-overlay');
 const partnerModalClose  = document.getElementById('partner-modal-close');
 
-partnerSignupBtn.addEventListener('click', () => {
-  partnerModalOverlay.classList.add('is-open');
-  partnerModalOverlay.removeAttribute('aria-hidden');
-  document.body.style.overflow = 'hidden';
-});
-partnerModalClose.addEventListener('click', closePartnerModal);
-partnerModalOverlay.addEventListener('click', (e) => {
-  if (e.target === partnerModalOverlay) closePartnerModal();
-});
+if (partnerSignupBtn && partnerModalOverlay) {
+  partnerSignupBtn.addEventListener('click', () => {
+    partnerModalOverlay.classList.add('is-open');
+    partnerModalOverlay.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  });
+}
+
+if (partnerModalClose && partnerModalOverlay) {
+  partnerModalClose.addEventListener('click', closePartnerModal);
+  partnerModalOverlay.addEventListener('click', (e) => {
+    if (e.target === partnerModalOverlay) closePartnerModal();
+  });
+}
+
 function closePartnerModal() {
+  if (!partnerModalOverlay) return;
   partnerModalOverlay.classList.remove('is-open');
   partnerModalOverlay.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 
-document.getElementById('partner-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const name  = form['p-name'].value.trim();
-  const phone = form['p-phone'].value.trim();
-  const area  = form['p-area'].value.trim();
+const partnerForm = document.getElementById('partner-form');
+if (partnerForm) {
+  partnerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name  = form['p-name'].value.trim();
+    const phone = form['p-phone'].value.trim();
+    const area  = form['p-area'].value.trim();
 
-  if (!name || !phone || !area) {
-    showToast('Please fill in all partner fields.');
-    return;
-  }
+    if (!name || !phone || !area) {
+      showToast('Please fill in all partner fields.');
+      return;
+    }
 
-  const msg = encodeURIComponent(
-    `Hello Oriflame Abuja! ✦\n\nI'm interested in becoming a Beauty Partner:\n\n• Name: ${name}\n• Phone: ${phone}\n• Area: ${area}\n\nPlease contact me with more information. Thank you!`
-  );
-  window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
-  showToast('✦ Application sent! We\'ll contact you within 24hrs');
-  form.reset();
-  closePartnerModal();
-});
+    const msg = encodeURIComponent(
+      `Hello Oriflame Abuja! ✦\n\nI'm interested in becoming a Beauty Partner:\n\n• Name: ${name}\n• Phone: ${phone}\n• Area: ${area}\n\nPlease contact me with more information. Thank you!`
+    );
+    window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+    showToast('✦ Application sent! We\'ll contact you within 24hrs');
+    form.reset();
+    closePartnerModal();
+  });
+}
 
 // ── NEWSLETTER ────────────────────────────────────────────────────────────
-document.getElementById('newsletter-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = document.getElementById('newsletter-email').value.trim();
-  if (!email || !email.includes('@')) {
-    showToast('Please enter a valid email address.');
-    return;
-  }
-  showToast('✦ Thank you! You\'re subscribed to Oriflame Abuja updates.');
-  e.target.reset();
-});
+const newsletterForm = document.getElementById('newsletter-form');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('newsletter-email').value.trim();
+    if (!email || !email.includes('@')) {
+      showToast('Please enter a valid email address.');
+      return;
+    }
+    showToast('✦ Thank you! You\'re subscribed to Oriflame Abuja updates.');
+    e.target.reset();
+  });
+}
 
 // ── SCROLL ANIMATIONS ─────────────────────────────────────────────────────
 function observeAnimations() {
@@ -675,12 +738,11 @@ function observeAnimations() {
   });
 }
 
-// Apply animation class to static sections — only safe top-level containers
 function initAnimations() {
-  // Animate whole block containers only, not individual text nodes inside grids
   const targets = document.querySelectorAll(
     '.brand-strip__item, .testimonial-card, ' +
-    '.partners__benefit-card, .contact__info, .contact__newsletter'
+    '.partners__benefit-card, .contact__info, .contact__newsletter, ' +
+    '.staff-card, .pillar-item, .founder-card'
   );
   targets.forEach((el, i) => {
     el.classList.add('animate-on-scroll');
@@ -692,14 +754,17 @@ function initAnimations() {
 // ── SET MIN DATE FOR BOOKING ───────────────────────────────────────────────
 function setMinDate() {
   const dateInput = document.getElementById('booking-date');
-  const today     = new Date();
-  today.setDate(today.getDate() + 1); // Min tomorrow
+  if (!dateInput) return;
+  const today = new Date();
+  today.setDate(today.getDate() + 1);
   dateInput.min = today.toISOString().split('T')[0];
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────
 (function init() {
-  renderProducts();
+  if (document.getElementById('product-grid')) {
+    renderProducts();
+  }
   updateCartUI();
   initAnimations();
   setMinDate();

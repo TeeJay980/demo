@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="50" fill="#FCE7F3"/>
+  <rect x="42" y="64" width="16" height="15" rx="3" fill="#6B3A1E"/>
+  <ellipse cx="50" cy="92" rx="28" ry="18" fill="#18181B"/>
+  <ellipse cx="50" cy="46" rx="19" ry="21" fill="#6B3A1E"/>
+  <!-- Glam curly top ponytail -->
+  <circle cx="50" cy="18" r="13" fill="#0A0604"/>
+  <ellipse cx="50" cy="32" rx="22" ry="14" fill="#0A0604"/>
+  <circle cx="38" cy="16" r="8" fill="#0A0604"/>
+  <circle cx="62" cy="16" r="8" fill="#0A0604"/>
+  <!-- Gold hoop earrings -->
+  <circle cx="29" cy="50" r="5" fill="none" stroke="#C9A84C" stroke-width="2"/>
+  <circle cx="71" cy="50" r="5" fill="none" stroke="#C9A84C" stroke-width="2"/>
+  <!-- Glam Makeup - Cat Eye & Gold shadow -->
+  <ellipse cx="42" cy="44" rx="4" ry="3.5" fill="#fff"/>
+  <ellipse cx="58" cy="44" rx="4" ry="3.5" fill="#fff"/>
+  <circle cx="43" cy="44.5" r="2.4" fill="#180C04"/>
+  <circle cx="59" cy="44.5" r="2.4" fill="#180C04"/>
+  <!-- Winged eyeliner -->
+  <path d="M37 43 L46 42 L48 45" stroke="#000" stroke-width="1.6" fill="none"/>
+  <path d="M63 43 L54 42 L52 45" stroke="#000" stroke-width="1.6" fill="none"/>
+  <path d="M37 41 Q42 38 46 41" stroke="#C9A84C" stroke-width="1.4" fill="none"/>
+  <path d="M54 41 Q58 38 63 41" stroke="#C9A84C" stroke-width="1.4" fill="none"/>
+  <!-- Bold Red Lips -->
+  <path d="M43 56 Q50 63 57 56" fill="#BE123C"/>
+  <path d="M44 56 Q50 53 56 56" fill="#BE123C"/>
+</svg>

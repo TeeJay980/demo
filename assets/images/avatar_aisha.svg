@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <circle cx="60" cy="60" r="60" fill="#E8D08A"/>
+  <!-- Neck -->
+  <rect x="49" y="74" width="22" height="20" rx="4" fill="#8C532B"/>
+  <ellipse cx="60" cy="80" rx="14" ry="4" fill="#C9A84C"/>
+  <!-- Blouse -->
+  <ellipse cx="60" cy="112" rx="36" ry="24" fill="#0F0F0F"/>
+  <path d="M46 92 L60 108 L74 92 Z" fill="#C9A84C"/>
+  <!-- Head -->
+  <ellipse cx="60" cy="54" rx="24" ry="26" fill="#8C532B"/>
+  <!-- Elegant Gele / Headwrap with Gold Pin -->
+  <path d="M28 50 C24 24, 96 24, 92 50 C88 20, 32 20, 28 50 Z" fill="#1A1A1A"/>
+  <ellipse cx="60" cy="32" rx="28" ry="16" fill="#262626"/>
+  <path d="M34 38 C44 26, 76 26, 86 38" stroke="#C9A84C" stroke-width="2.5" fill="none"/>
+  <circle cx="60" cy="30" r="4" fill="#C9A84C"/>
+  <!-- Ears & Gold Earrings -->
+  <ellipse cx="35" cy="58" rx="4" ry="6" fill="#8C532B"/>
+  <ellipse cx="85" cy="58" rx="4" ry="6" fill="#8C532B"/>
+  <circle cx="33" cy="64" r="3.5" fill="#C9A84C"/>
+  <circle cx="87" cy="64" r="3.5" fill="#C9A84C"/>
+  <!-- Eyes -->
+  <ellipse cx="50" cy="52" rx="4.5" ry="4" fill="#fff"/>
+  <ellipse cx="70" cy="52" rx="4.5" ry="4" fill="#fff"/>
+  <circle cx="51" cy="52.5" r="2.8" fill="#1C1008"/>
+  <circle cx="71" cy="52.5" r="2.8" fill="#1C1008"/>
+  <circle cx="52" cy="51.5" r="1" fill="#fff"/>
+  <circle cx="72" cy="51.5" r="1" fill="#fff"/>
+  <!-- Eyebrows -->
+  <path d="M44 46 Q49 43 55 46" stroke="#1C1008" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M65 46 Q71 43 76 46" stroke="#1C1008" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Nose -->
+  <path d="M58 57 Q60 62 62 57" stroke="#683A1B" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Lips -->
+  <path d="M50 67 Q60 76 70 67" fill="#8B1E3F"/>
+  <path d="M51 67 Q60 63 69 67" fill="#8B1E3F"/>
+  <path d="M54 68 Q60 71 66 68" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>
