@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oriflame Abuja | Swedish Beauty Science × Nigerian Elegance</title>
+  <meta name="description" content="Oriflame Cosmetics Abuja Branch — Discover luxury Swedish skincare, Giordani Gold makeup, iconic fragrances, and wellness products. Book a VIP beauty consultation in Maitama, Wuse II or Gwarinpa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════ PRELOADER ═══════ -->
+  <div id="preloader" class="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo">O</div>
+      <div class="preloader__text">ORIFLAME</div>
+      <div class="preloader__bar"><div class="preloader__fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══════ TOAST ═══════ -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- ═══════ CART DRAWER ═══════ -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer" aria-label="Shopping cart">
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">Your Beauty Cart</h2>
+      <button id="cart-close-btn" class="cart-drawer__close" aria-label="Close cart">&#x2715;</button>
+    </div>
+    <div id="cart-items" class="cart-drawer__items"></div>
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <span id="cart-total">₦0</span>
+      </div>
+      <button id="whatsapp-checkout-btn" class="btn btn--whatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Order via WhatsApp
+      </button>
+      <p class="cart-drawer__note">Free delivery within Abuja on orders above ₦15,000</p>
+    </div>
+  </aside>
+
+  <!-- ═══════ HEADER ═══════ -->
+  <header id="site-header" class="header">
+    <div class="header__inner container">
+      <a href="#" class="header__logo" aria-label="Oriflame Abuja Home">
+        <span class="header__logo-icon">O</span>
+        <div class="header__logo-text">
+          <span class="header__brand">ORIFLAME</span>
+          <span class="header__sub">ABUJA · NG</span>
+        </div>
+      </a>
+      <nav class="header__nav" id="main-nav" aria-label="Main navigation">
+        <a href="#catalog" class="header__nav-link">Catalog</a>
+        <a href="#quiz" class="header__nav-link">Beauty Quiz</a>
+        <a href="#booking" class="header__nav-link">VIP Booking</a>
+        <a href="#partners" class="header__nav-link">Become a Partner</a>
+        <a href="#contact" class="header__nav-link">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <span class="header__location">📍 Abuja, NG</span>
+        <button id="cart-btn" class="header__cart-btn" aria-label="Open cart">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span id="cart-count" class="header__cart-count">0</span>
+        </button>
+        <button class="header__menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero" id="hero">
+      <div class="hero__slides">
+        <div class="hero__slide hero__slide--1 is-active">
+          <img src="assets/images/hero_cosmetics.jpg" alt="Giordani Gold luxury cosmetics collection" class="hero__img" />
+          <div class="hero__gradient"></div>
+        </div>
+        <div class="hero__slide hero__slide--2">
+          <img src="assets/images/perfume_possess.jpg" alt="Possess Eau de Parfum luxury fragrance" class="hero__img" />
+          <div class="hero__gradient"></div>
+        </div>
+        <div class="hero__slide hero__slide--3">
+          <img src="assets/images/skincare_novage.jpg" alt="NovAge Advanced Skincare" class="hero__img" />
+          <div class="hero__gradient"></div>
+        </div>
+      </div>
+      <div class="hero__content container">
+        <div class="hero__badge">✦ Swedish Beauty Science × Abuja Elegance ✦</div>
+        <h1 class="hero__headline">
+          <span class="hero__headline-line">Beauty Born</span>
+          <em class="hero__headline-italic">in Nature,</em>
+          <span class="hero__headline-line">Perfected by</span>
+          <span class="hero__headline-gold">Science.</span>
+        </h1>
+        <p class="hero__sub">Luxury cosmetics. Expert consultations. Delivered across Abuja.</p>
+        <div class="hero__ctas">
+          <a href="#catalog" class="btn btn--primary">Explore Collection</a>
+          <a href="#booking" class="btn btn--ghost">Book VIP Consultation</a>
+        </div>
+      </div>
+      <div class="hero__nav">
+        <button class="hero__dot is-active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="hero__dot" data-slide="1" aria-label="Slide 2"></button>
+        <button class="hero__dot" data-slide="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="hero__scroll-hint">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══════ BRAND STRIP ═══════ -->
+    <section class="brand-strip">
+      <div class="container">
+        <div class="brand-strip__grid">
+          <div class="brand-strip__item">
+            <span class="brand-strip__icon">🌿</span>
+            <span class="brand-strip__label">100% Natural Ingredients</span>
+          </div>
+          <div class="brand-strip__divider"></div>
+          <div class="brand-strip__item">
+            <span class="brand-strip__icon">🔬</span>
+            <span class="brand-strip__label">Swedish Science-Backed</span>
+          </div>
+          <div class="brand-strip__divider"></div>
+          <div class="brand-strip__item">
+            <span class="brand-strip__icon">✦</span>
+            <span class="brand-strip__label">50+ Years of Beauty Excellence</span>
+          </div>
+          <div class="brand-strip__divider"></div>
+          <div class="brand-strip__item">
+            <span class="brand-strip__icon">🚚</span>
+            <span class="brand-strip__label">Abuja-Wide Delivery</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ BRAND STORY ═══════ -->
+    <section class="story section" id="story">
+      <div class="container story__inner">
+        <div class="story__text">
+          <p class="section-eyebrow">Our Heritage</p>
+          <h2 class="section-title">Where Swedish<br /><em>Purity</em> Meets<br />Abuja's <span class="gold-text">Glamour</span></h2>
+          <p class="story__para">Since 1967, Oriflame has fused the purity of Scandinavian nature with breakthrough science to create cosmetics that celebrate every skin tone and story. Our Abuja branch brings that world-class beauty directly to you — with products curated for Nigeria's tropical climate, warm complexions, and vibrant spirit.</p>
+          <p class="story__para">From the high-fashion streets of Maitama to the boutiques of Wuse II, we believe luxury beauty should be accessible, personal, and unforgettable.</p>
+          <a href="#catalog" class="btn btn--primary" style="margin-top:1.5rem">Discover Products</a>
+        </div>
+        <div class="story__visual">
+          <div class="story__img-frame">
+            <img src="assets/images/hero_cosmetics.jpg" alt="Oriflame luxury cosmetics" class="story__img" />
+            <div class="story__img-badge">
+              <span class="story__badge-num">50+</span>
+              <span class="story__badge-text">Years of<br/>Excellence</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ STATS ═══════ -->
+    <section class="stats-bar">
+      <div class="container stats-bar__grid">
+        <div class="stats-bar__item">
+          <span class="stats-bar__num">3M+</span>
+          <span class="stats-bar__label">Happy Customers Across Africa</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__num">900+</span>
+          <span class="stats-bar__label">Science-Backed Products</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__num">60+</span>
+          <span class="stats-bar__label">Countries Worldwide</span>
+        </div>
+        <div class="stats-bar__divider"></div>
+        <div class="stats-bar__item">
+          <span class="stats-bar__num">₦0</span>
+          <span class="stats-bar__label">Consultation Fee for VIP Clients</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ CATALOG ═══════ -->
+    <section class="catalog section" id="catalog">
+      <div class="container">
+        <div class="catalog__header">
+          <p class="section-eyebrow">Product Collection</p>
+          <h2 class="section-title">The <em>Finest</em> in<br /><span class="gold-text">Beauty</span></h2>
+        </div>
+
+        <!-- Filters -->
+        <div class="catalog__filters" role="tablist" aria-label="Product categories">
+          <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true" id="filter-all">All</button>
+          <button class="filter-btn" data-filter="skincare" role="tab" aria-selected="false" id="filter-skincare">Skincare</button>
+          <button class="filter-btn" data-filter="makeup" role="tab" aria-selected="false" id="filter-makeup">Makeup</button>
+          <button class="filter-btn" data-filter="fragrance" role="tab" aria-selected="false" id="filter-fragrance">Fragrances</button>
+          <button class="filter-btn" data-filter="body" role="tab" aria-selected="false" id="filter-body">Body &amp; Wellness</button>
+        </div>
+
+        <!-- Search & Sort -->
+        <div class="catalog__toolbar">
+          <div class="catalog__search-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" id="catalog-search" class="catalog__search" placeholder="Search products…" aria-label="Search products" />
+          </div>
+          <select id="catalog-sort" class="catalog__sort" aria-label="Sort products">
+            <option value="default">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">A – Z</option>
+          </select>
+        </div>
+
+        <!-- Grid -->
+        <div class="catalog__grid" id="product-grid"></div>
+      </div>
+    </section>
+
+    <!-- ═══════ BEAUTY QUIZ ═══════ -->
+    <section class="quiz section" id="quiz">
+      <div class="quiz__bg"></div>
+      <div class="container quiz__inner">
+        <div class="quiz__intro" id="quiz-intro">
+          <p class="section-eyebrow" style="color:#D4AF37">Personalized Routine</p>
+          <h2 class="section-title" style="color:#fff">Find Your <em>Perfect</em><br /><span class="gold-text">Beauty Match</span></h2>
+          <p class="quiz__desc" style="color:rgba(255,255,255,0.75)">Answer 3 quick questions and we'll recommend your ideal Oriflame routine tailored for your skin.</p>
+          <button id="start-quiz-btn" class="btn btn--primary">Start Beauty Quiz</button>
+        </div>
+        <div class="quiz__widget" id="quiz-widget" aria-hidden="true">
+          <div class="quiz__progress">
+            <div class="quiz__progress-bar" id="quiz-progress-bar"></div>
+          </div>
+          <div id="quiz-step" class="quiz__step"></div>
+          <div class="quiz__controls">
+            <button id="quiz-back-btn" class="btn btn--ghost quiz__back-btn" style="display:none">← Back</button>
+          </div>
+        </div>
+        <div class="quiz__result" id="quiz-result" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ═══════ VIP BOOKING ═══════ -->
+    <section class="booking section" id="booking">
+      <div class="container booking__inner">
+        <div class="booking__text">
+          <p class="section-eyebrow">Exclusive Experience</p>
+          <h2 class="section-title">Book Your<br /><em>VIP Beauty</em><br /><span class="gold-text">Consultation</span></h2>
+          <p class="booking__para">Our certified beauty consultants are ready to create your personalised skincare and makeup regimen. Available across Abuja at your convenience.</p>
+          <ul class="booking__locations">
+            <li>📍 Maitama Studio — Plot 5 Dulcie Street</li>
+            <li>📍 Wuse II Lounge — Suite 12, Aminu Kano Crescent</li>
+            <li>📍 Gwarinpa Boutique — 3rd Avenue, EFAB Estate</li>
+            <li>📍 CBD Office — Aso Drive, Central Business District</li>
+          </ul>
+        </div>
+        <form class="booking__form" id="booking-form" novalidate>
+          <div class="form-group">
+            <label for="booking-name" class="form-label">Full Name</label>
+            <input type="text" id="booking-name" name="name" class="form-input" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="booking-phone" class="form-label">Phone Number</label>
+            <input type="tel" id="booking-phone" name="phone" class="form-input" placeholder="+234 800 000 0000" required />
+          </div>
+          <div class="form-group">
+            <label for="booking-location" class="form-label">Preferred Location</label>
+            <select id="booking-location" name="location" class="form-input form-select" required>
+              <option value="">Select a location</option>
+              <option value="maitama">Maitama Studio</option>
+              <option value="wuse">Wuse II Lounge</option>
+              <option value="gwarinpa">Gwarinpa Boutique</option>
+              <option value="cbd">CBD Office</option>
+              <option value="home">Home Visit (Abuja)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="booking-date" class="form-label">Date</label>
+              <input type="date" id="booking-date" name="date" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="booking-time" class="form-label">Time</label>
+              <select id="booking-time" name="time" class="form-input form-select" required>
+                <option value="">Select time</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="booking-service" class="form-label">Service Type</label>
+            <select id="booking-service" name="service" class="form-input form-select" required>
+              <option value="">Select service</option>
+              <option value="skincare-consult">Skincare Consultation</option>
+              <option value="makeup-consult">Makeup & Foundation Matching</option>
+              <option value="fragrance-consult">Fragrance Discovery</option>
+              <option value="full-beauty">Full Beauty Regimen Session</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn--primary booking__submit">Confirm Booking</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ═══════ BRAND PARTNER ═══════ -->
+    <section class="partners section" id="partners">
+      <div class="partners__bg"></div>
+      <div class="container partners__inner">
+        <div class="partners__header">
+          <p class="section-eyebrow" style="color:#D4AF37">Business Opportunity</p>
+          <h2 class="section-title" style="color:#fff">Become an<br /><em>Oriflame</em> Beauty<br /><span class="gold-text">Partner</span></h2>
+          <p class="partners__desc">Turn your passion for beauty into a rewarding career. Join thousands of successful beauty entrepreneurs across Nigeria.</p>
+        </div>
+        <div class="partners__benefits">
+          <div class="partners__benefit-card">
+            <span class="partners__benefit-icon">💰</span>
+            <h3>Competitive Commission</h3>
+            <p>Earn 23–33% commission on every product you sell, plus bonuses and incentives.</p>
+          </div>
+          <div class="partners__benefit-card">
+            <span class="partners__benefit-icon">📦</span>
+            <h3>Zero Stock Risk</h3>
+            <p>Order what you sell. No warehouse, no large upfront inventory costs required.</p>
+          </div>
+          <div class="partners__benefit-card">
+            <span class="partners__benefit-icon">🎓</span>
+            <h3>Free Beauty Training</h3>
+            <p>Access world-class product training, digital tools, and a supportive community.</p>
+          </div>
+          <div class="partners__benefit-card">
+            <span class="partners__benefit-icon">✈️</span>
+            <h3>Travel Rewards</h3>
+            <p>Top performers earn fully-paid international trips and exclusive luxury rewards.</p>
+          </div>
+        </div>
+        <!-- Calculator -->
+        <div class="partners__calculator">
+          <h3 class="partners__calc-title">Estimate Your Monthly Earnings</h3>
+          <div class="partners__calc-inner">
+            <div class="calc-group">
+              <label class="calc-label" for="calc-sales">Monthly Sales Volume (₦)</label>
+              <input type="range" id="calc-sales" class="calc-slider" min="50000" max="2000000" step="50000" value="300000" />
+              <div class="calc-value-display">₦<span id="calc-sales-val">300,000</span></div>
+            </div>
+            <div class="calc-group">
+              <label class="calc-label" for="calc-team">Team Members</label>
+              <input type="range" id="calc-team" class="calc-slider" min="0" max="50" step="1" value="5" />
+              <div class="calc-value-display"><span id="calc-team-val">5</span> consultants</div>
+            </div>
+            <div class="partners__calc-result">
+              <span class="calc-result-label">Estimated Monthly Earnings</span>
+              <span class="calc-result-value" id="calc-result">₦0</span>
+            </div>
+          </div>
+          <button id="partner-signup-btn" class="btn btn--primary partners__join-btn">Join as a Beauty Partner</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner Signup Modal -->
+    <div id="partner-modal-overlay" class="modal-overlay" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="partner-modal-title">
+        <button class="modal__close" id="partner-modal-close" aria-label="Close modal">&#x2715;</button>
+        <div class="modal__icon">✦</div>
+        <h3 id="partner-modal-title" class="modal__title">Join Oriflame Abuja</h3>
+        <p class="modal__desc">Fill in your details and our team will reach out within 24 hours to get you started.</p>
+        <form id="partner-form" class="modal__form" novalidate>
+          <div class="form-group">
+            <label for="p-name" class="form-label">Full Name</label>
+            <input type="text" id="p-name" name="p-name" class="form-input" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="p-phone" class="form-label">WhatsApp Number</label>
+            <input type="tel" id="p-phone" name="p-phone" class="form-input" placeholder="+234 800 000 0000" required />
+          </div>
+          <div class="form-group">
+            <label for="p-area" class="form-label">Area in Abuja</label>
+            <input type="text" id="p-area" name="p-area" class="form-input" placeholder="e.g. Maitama, Wuse, Garki" required />
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%">Send Application</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ═══════ TESTIMONIALS ═══════ -->
+    <section class="testimonials section" id="testimonials">
+      <div class="container">
+        <p class="section-eyebrow text-center">Client Stories</p>
+        <h2 class="section-title text-center">What Our Clients<br /><em>Are Saying</em></h2>
+        <div class="testimonials__grid">
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">"The NovAge serum has completely transformed my skin. I noticed results within two weeks! The Abuja team was incredibly knowledgeable and so warm."</p>
+            <div class="testimonial-card__author">
+              <img src="assets/images/avatar_adaeze.svg" alt="Adaeze" class="testimonial-card__avatar testimonial-card__avatar--img" />
+              <div>
+                <strong>Adaeze O.</strong>
+                <span>Maitama, Abuja</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card testimonial-card--featured">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">"I booked the VIP foundation matching session and it was pure luxury. They found my perfect shade on the first try — something no store had ever managed. Giordani Gold is flawless!"</p>
+            <div class="testimonial-card__author">
+              <img src="assets/images/avatar_fatima.svg" alt="Fatima" class="testimonial-card__avatar testimonial-card__avatar--img" />
+              <div>
+                <strong>Fatima A.</strong>
+                <span>Wuse II, Abuja</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">"The Possess fragrance is my signature scent now. It lasted all day at my corporate event. Fast delivery to Gwarinpa too — same day! Highly recommend."</p>
+            <div class="testimonial-card__author">
+              <img src="assets/images/avatar_chiamaka.svg" alt="Chiamaka" class="testimonial-card__avatar testimonial-card__avatar--img" />
+              <div>
+                <strong>Chiamaka B.</strong>
+                <span>Gwarinpa, Abuja</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ CONTACT ═══════ -->
+    <section class="contact section" id="contact">
+      <div class="container contact__inner">
+        <div class="contact__info">
+          <p class="section-eyebrow">Get in Touch</p>
+          <h2 class="section-title">We're Here<br />for Your <span class="gold-text"><em>Beauty</em></span><br />Journey</h2>
+          <ul class="contact__details">
+            <li>
+              <span class="contact__icon">📍</span>
+              <div>
+                <strong>Main Studio</strong>
+                <p>Plot 5 Dulcie Street, Maitama, Abuja FCT</p>
+              </div>
+            </li>
+            <li>
+              <span class="contact__icon">📞</span>
+              <div>
+                <strong>Call / WhatsApp</strong>
+                <p><a href="tel:+2348001234567">+234 800 123 4567</a></p>
+              </div>
+            </li>
+            <li>
+              <span class="contact__icon">🕐</span>
+              <div>
+                <strong>Opening Hours</strong>
+                <p>Mon – Fri: 9:00 AM – 7:00 PM<br/>Sat: 10:00 AM – 6:00 PM</p>
+              </div>
+            </li>
+            <li>
+              <span class="contact__icon">✉️</span>
+              <div>
+                <strong>Email</strong>
+                <p><a href="mailto:abuja@oriflame.ng">abuja@oriflame.ng</a></p>
+              </div>
+            </li>
+          </ul>
+          <div class="contact__socials">
+            <a href="#" class="contact__social-link" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="contact__social-link" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" class="contact__social-link" aria-label="TikTok">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="contact__newsletter">
+          <div class="newsletter-card">
+            <div class="newsletter-card__icon">💌</div>
+            <h3 class="newsletter-card__title">Stay in the Loop</h3>
+            <p class="newsletter-card__desc">Get exclusive Abuja beauty offers, new arrivals, and VIP early access straight to your inbox.</p>
+            <form id="newsletter-form" class="newsletter-card__form" novalidate>
+              <input type="email" id="newsletter-email" class="form-input newsletter-card__input" placeholder="Your email address" required aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn--primary newsletter-card__btn">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo">O</span>
+        <span class="footer__brand-name">ORIFLAME ABUJA</span>
+        <p class="footer__brand-tagline">Swedish Beauty Science × Nigerian Elegance</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <a href="#catalog">Products</a>
+        <a href="#quiz">Beauty Quiz</a>
+        <a href="#booking">VIP Booking</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="footer__legal">© 2025 Oriflame Cosmetics Nigeria — Abuja Branch. All rights reserved.<br/>
+      Oriflame® is a registered trademark of Oriflame Holding AG, Sweden.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

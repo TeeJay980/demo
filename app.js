@@ -1,0 +1,706 @@
+/* ═══════════════════════════════════════════════════════════════════
+   ORIFLAME ABUJA — APPLICATION LOGIC
+   ═══════════════════════════════════════════════════════════════════ */
+
+'use strict';
+
+// ── PRODUCT DATABASE ─────────────────────────────────────────────────────
+const PRODUCTS = [
+  {
+    id: 'p001',
+    name: 'NovAge Ecollagen Wrinkle Power Serum',
+    category: 'skincare',
+    price: 28500,
+    badge: 'Best Seller',
+    image: 'assets/images/novage_ecollagen_serum.jpg',
+    desc: 'Marine ecollagen + ProRetinol complex. Clinically proven to reduce the appearance of deep wrinkles by up to 30% in 4 weeks. 30ml.',
+    shades: [],
+  },
+  {
+    id: 'p002',
+    name: 'NovAge Ultimate Lift 4-Piece Set',
+    category: 'skincare',
+    price: 54000,
+    badge: 'New',
+    image: 'assets/images/novage_ultimate_lift.jpg',
+    desc: 'Complete anti-ageing system: Ultimate Lift Day Cream SPF 15, Lifting Eye Cream, Lifting Concentrate Serum & Night Cream. Visibly lifts & firms in 4 weeks.',
+    shades: [],
+  },
+  {
+    id: 'p003',
+    name: 'Giordani Gold MasterCreation Foundation',
+    category: 'makeup',
+    price: 19800,
+    badge: 'VIP Pick',
+    image: 'assets/images/giordani_foundation.jpg',
+    desc: 'Liquid foundation with SPF 25 and 24-hour wear. Enriched with 24K gold and vitamin E for a flawless, skin-enhancing finish. 30ml. Available in 10 shades.',
+    shades: ['#F5DEB3','#E8C99A','#D2A679','#C8956C','#A0724A','#7B4F2E','#6B3A20','#4E2C14'],
+  },
+  {
+    id: 'p004',
+    name: 'Giordani Gold Iconic Lipstick',
+    category: 'makeup',
+    price: 12500,
+    badge: null,
+    image: 'assets/images/giordani_lipstick.jpg',
+    desc: 'Luxuriously creamy formula enriched with 24K gold and vitamin E. Up to 12 hours of rich, comfortable colour in 30 iconic shades. Iconic embossed gold case.',
+    shades: ['#8B0000','#C0392B','#A0522D','#C47C5A','#F4A7B9'],
+  },
+  {
+    id: 'p005',
+    name: 'Possess Absolute Eau de Parfum',
+    category: 'fragrance',
+    price: 38000,
+    badge: 'Exclusive',
+    image: 'assets/images/perfume_possess.jpg',
+    desc: 'A bold oriental fragrance. Top notes: saffron & bergamot. Heart: rose absolute & jasmine sambac. Base: oud wood, amber & musk. Lasts 8–10 hours. 50ml EDP.',
+    shades: [],
+  },
+  {
+    id: 'p006',
+    name: 'Giordani Gold Essenza Eau de Parfum',
+    category: 'fragrance',
+    price: 32000,
+    badge: null,
+    image: 'assets/images/giordani_essenza_edp.jpg',
+    desc: 'Timeless Italian luxury. Notes: bergamot & mandarin top; rose centifolia & peony heart; sandalwood & warm musk base. 50ml. Long-lasting elegance.',
+    shades: [],
+  },
+  {
+    id: 'p007',
+    name: 'Love Nature Body Cream — Honey & Almond',
+    category: 'body',
+    price: 8900,
+    badge: 'Organic',
+    image: 'assets/images/wellness_bodycare.jpg',
+    desc: 'Certified organic honey and sweet almond oil blend. Provides 72-hour intense moisturisation, leaving skin soft, nourished, and delicately scented. 250ml.',
+    shades: [],
+  },
+  {
+    id: 'p008',
+    name: 'Tender Care Protecting Balm',
+    category: 'body',
+    price: 4500,
+    badge: null,
+    image: 'assets/images/tender_care_balm.jpg',
+    desc: 'Oriflame\u2019s iconic multi-purpose balm. Enriched with Panthenol (Pro-Vitamin B5) and Jojoba Oil. Use on lips, cuticles, dry elbows, and rough skin. 15ml tin.',
+    shades: [],
+  },
+  {
+    id: 'p009',
+    name: 'THE ONE Tremendous Volume Mascara',
+    category: 'makeup',
+    price: 11500,
+    badge: null,
+    image: 'assets/images/the_one_mascara.jpg',
+    desc: 'Multifaceted hourglass brush delivers 8× more volume and length in a single stroke. Long-wear, clump-free formula in Deep Black. 8ml.',
+    shades: [],
+  },
+  {
+    id: 'p010',
+    name: 'NovAge Bright Sublime Advanced Brightening Serum',
+    category: 'skincare',
+    price: 24000,
+    badge: 'New',
+    image: 'assets/images/novage_bright_sublime.jpg',
+    desc: 'Powered by stable Vitamin C (Ascorbyl Glucoside) and niacinamide. Fades dark spots and evens skin tone visibly in 4 weeks. Suitable for all skin tones. 30ml.',
+    shades: [],
+  },
+];
+
+// ── QUIZ DATA ─────────────────────────────────────────────────────────────
+const QUIZ_STEPS = [
+  {
+    question: 'What is your main skin concern?',
+    options: [
+      { label: 'Wrinkles & Fine Lines', value: 'antiage' },
+      { label: 'Uneven Skin Tone & Dark Spots', value: 'brightening' },
+      { label: 'Dryness & Dehydration', value: 'hydration' },
+      { label: 'Dullness & Lack of Glow', value: 'glow' },
+    ],
+  },
+  {
+    question: 'How would you describe your skin type?',
+    options: [
+      { label: 'Dry & Tight', value: 'dry' },
+      { label: 'Oily & Shiny', value: 'oily' },
+      { label: 'Combination (T-zone oily)', value: 'combo' },
+      { label: 'Sensitive & Reactive', value: 'sensitive' },
+    ],
+  },
+  {
+    question: 'What best describes your daily lifestyle?',
+    options: [
+      { label: 'Corporate / Office Professional', value: 'professional' },
+      { label: 'Active & Outdoors', value: 'active' },
+      { label: 'Social & Beauty Enthusiast', value: 'social' },
+      { label: 'Minimal, Low-Maintenance', value: 'minimal' },
+    ],
+  },
+];
+
+const QUIZ_RESULTS = {
+  antiage:     { icon: '✨', title: 'NovAge Anti-Ageing Regimen', text: 'Your personalised routine focuses on collagen renewal and deep firming.', products: ['NovAge Ecollagen Serum', 'NovAge Ultimate Lift Set', 'Giordani Gold Lipstick'] },
+  brightening: { icon: '🌟', title: 'Bright Sublime Routine', text: 'Your ideal regimen targets pigmentation and delivers luminous, even-toned skin.', products: ['NovAge Bright Sublime Essence', 'Giordani Gold Master Creation Foundation', 'Tender Care Balm'] },
+  hydration:   { icon: '💧', title: 'Deep Hydration System', text: 'Your routine delivers intense moisture replenishment and a plumped, dewy finish.', products: ['NovAge Ecollagen Serum', 'Love Nature Body Cream', 'Tender Care Balm'] },
+  glow:        { icon: '💛', title: 'Radiance Glow Collection', text: 'Your regimen illuminates from within, combining skincare science and effortless makeup.', products: ['NovAge Bright Sublime Essence', 'Giordani Gold Foundation', 'THE ONE Tremendous Mascara'] },
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────
+const state = {
+  cart: JSON.parse(localStorage.getItem('oriflame_cart') || '[]'),
+  filter: 'all',
+  search: '',
+  sort: 'default',
+  quizStep: 0,
+  quizAnswers: [],
+  wishlist: new Set(),
+};
+
+// ── HELPERS ───────────────────────────────────────────────────────────────
+const fmt = (n) => new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN', minimumFractionDigits: 0 }).format(n);
+
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('is-visible');
+  setTimeout(() => el.classList.remove('is-visible'), 3000);
+}
+
+function saveCart() {
+  localStorage.setItem('oriflame_cart', JSON.stringify(state.cart));
+}
+
+// ── PRELOADER ─────────────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('preloader').classList.add('is-hidden');
+  }, 1800);
+});
+
+// ── HEADER SCROLL ─────────────────────────────────────────────────────────
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('is-scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ── MOBILE MENU ───────────────────────────────────────────────────────────
+const menuBtn = document.getElementById('menu-btn');
+const mainNav = document.getElementById('main-nav');
+menuBtn.addEventListener('click', () => {
+  const isOpen = mainNav.classList.toggle('is-open');
+  menuBtn.classList.toggle('is-open', isOpen);
+  menuBtn.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+mainNav.querySelectorAll('.header__nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mainNav.classList.remove('is-open');
+    menuBtn.classList.remove('is-open');
+    menuBtn.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  });
+});
+
+// ── HERO SLIDER ───────────────────────────────────────────────────────────
+(function initHero() {
+  const slides = document.querySelectorAll('.hero__slide');
+  const dots   = document.querySelectorAll('.hero__dot');
+  let current  = 0;
+  let timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+  }
+
+  function startAuto() {
+    timer = setInterval(() => goTo(current + 1), 5500);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(i);
+      startAuto();
+    });
+  });
+
+  startAuto();
+})();
+
+// ── CART ──────────────────────────────────────────────────────────────────
+const cartBtn     = document.getElementById('cart-btn');
+const cartClose   = document.getElementById('cart-close-btn');
+const cartOverlay = document.getElementById('cart-overlay');
+const cartDrawer  = document.getElementById('cart-drawer');
+const cartCount   = document.getElementById('cart-count');
+const cartTotal   = document.getElementById('cart-total');
+const cartItems   = document.getElementById('cart-items');
+
+function openCart() {
+  cartDrawer.classList.add('is-open');
+  cartOverlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  cartDrawer.classList.remove('is-open');
+  cartOverlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+cartBtn.addEventListener('click', openCart);
+cartClose.addEventListener('click', closeCart);
+cartOverlay.addEventListener('click', closeCart);
+
+function updateCartUI() {
+  const total = state.cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const count = state.cart.reduce((s, i) => s + i.qty, 0);
+
+  cartCount.textContent = count;
+  cartCount.classList.toggle('is-visible', count > 0);
+  cartTotal.textContent = fmt(total);
+
+  if (state.cart.length === 0) {
+    cartItems.innerHTML = `
+      <div class="cart-empty">
+        <div class="cart-empty__icon">🛍️</div>
+        <p>Your cart is empty.<br/>Add something beautiful!</p>
+      </div>`;
+    return;
+  }
+
+  cartItems.innerHTML = state.cart.map(item => `
+    <div class="cart-item" data-id="${item.id}">
+      <img src="${item.image}" alt="${item.name}" class="cart-item__img" loading="lazy" />
+      <div>
+        <div class="cart-item__name">${item.name}</div>
+        <div class="cart-item__cat">${item.category}</div>
+        <div class="cart-item__price">${fmt(item.price)}</div>
+        <div class="cart-item__qty">
+          <button class="cart-qty-btn" data-action="dec" data-id="${item.id}" aria-label="Decrease quantity">−</button>
+          <span>${item.qty}</span>
+          <button class="cart-qty-btn" data-action="inc" data-id="${item.id}" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+      <button class="cart-item__remove" data-remove="${item.id}" aria-label="Remove ${item.name}">✕</button>
+    </div>
+  `).join('');
+
+  // Qty & remove events
+  cartItems.querySelectorAll('.cart-qty-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id  = btn.dataset.id;
+      const act = btn.dataset.action;
+      const idx = state.cart.findIndex(i => i.id === id);
+      if (idx === -1) return;
+      act === 'inc' ? state.cart[idx].qty++ : state.cart[idx].qty--;
+      if (state.cart[idx].qty < 1) state.cart.splice(idx, 1);
+      saveCart();
+      updateCartUI();
+    });
+  });
+  cartItems.querySelectorAll('.cart-item__remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id  = btn.dataset.remove;
+      state.cart = state.cart.filter(i => i.id !== id);
+      saveCart();
+      updateCartUI();
+      showToast('Item removed from cart');
+    });
+  });
+}
+
+function addToCart(product) {
+  const existing = state.cart.find(i => i.id === product.id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    state.cart.push({ ...product, qty: 1 });
+  }
+  saveCart();
+  updateCartUI();
+  showToast(`✦ ${product.name} added to cart`);
+}
+
+// WhatsApp Checkout
+document.getElementById('whatsapp-checkout-btn').addEventListener('click', () => {
+  if (state.cart.length === 0) {
+    showToast('Your cart is empty!');
+    return;
+  }
+  const total = state.cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const lines = state.cart.map(i => `• ${i.name} ×${i.qty} — ${fmt(i.price * i.qty)}`).join('%0A');
+  const msg = encodeURIComponent(`Hello Oriflame Abuja! 🌿✨\n\nI'd like to order:\n`) + lines +
+    `%0A%0A*Total: ${encodeURIComponent(fmt(total))}*%0A%0APlease confirm availability and delivery to my Abuja address. Thank you!`;
+  window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+});
+
+// ── PRODUCT CATALOG ───────────────────────────────────────────────────────
+const productGrid = document.getElementById('product-grid');
+
+function filterAndSort() {
+  let items = [...PRODUCTS];
+
+  // Filter by category
+  if (state.filter !== 'all') {
+    items = items.filter(p => p.category === state.filter);
+  }
+  // Filter by search
+  if (state.search.trim()) {
+    const q = state.search.toLowerCase();
+    items = items.filter(p =>
+      p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q)
+    );
+  }
+  // Sort
+  switch (state.sort) {
+    case 'price-asc':  items.sort((a,b) => a.price - b.price); break;
+    case 'price-desc': items.sort((a,b) => b.price - a.price); break;
+    case 'name-asc':   items.sort((a,b) => a.name.localeCompare(b.name)); break;
+  }
+  return items;
+}
+
+function renderProducts() {
+  const items = filterAndSort();
+
+  if (items.length === 0) {
+    productGrid.innerHTML = `<div class="no-products"><p>No products found. Try a different search or filter.</p></div>`;
+    return;
+  }
+
+  productGrid.innerHTML = items.map(p => `
+    <article class="product-card animate-on-scroll" data-id="${p.id}">
+      <div class="product-card__img-wrap">
+        <img src="${p.image}" alt="${p.name}" class="product-card__img" loading="lazy" />
+        ${p.badge ? `<div class="product-card__badge">${p.badge}</div>` : ''}
+        <button class="product-card__wishlist ${state.wishlist.has(p.id) ? 'is-active' : ''}"
+          data-wishlist="${p.id}" aria-label="Add ${p.name} to wishlist" aria-pressed="${state.wishlist.has(p.id)}">
+          ${state.wishlist.has(p.id) ? '♥' : '♡'}
+        </button>
+      </div>
+      <div class="product-card__body">
+        <div class="product-card__cat">${p.category}</div>
+        <h3 class="product-card__name">${p.name}</h3>
+        <p class="product-card__desc">${p.desc}</p>
+        ${p.shades.length > 0 ? `
+          <div class="product-card__shades" aria-label="Available shades">
+            ${p.shades.map((s, i) => `<button class="shade-dot" style="background:${s}" aria-label="Shade ${i+1}" data-shade="${s}"></button>`).join('')}
+          </div>` : ''}
+        <div class="product-card__footer">
+          <div class="product-card__price">${fmt(p.price)}</div>
+          <button class="product-card__add" data-add="${p.id}" aria-label="Add ${p.name} to cart">Add to Cart</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  // Add to cart
+  productGrid.querySelectorAll('[data-add]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const product = PRODUCTS.find(p => p.id === btn.dataset.add);
+      if (product) addToCart(product);
+    });
+  });
+
+  // Wishlist
+  productGrid.querySelectorAll('[data-wishlist]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.wishlist;
+      if (state.wishlist.has(id)) {
+        state.wishlist.delete(id);
+        btn.innerHTML = '♡';
+        btn.classList.remove('is-active');
+        btn.setAttribute('aria-pressed', 'false');
+        showToast('Removed from wishlist');
+      } else {
+        state.wishlist.add(id);
+        btn.innerHTML = '♥';
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+        showToast('✦ Added to wishlist');
+      }
+    });
+  });
+
+  // Shade picker
+  productGrid.querySelectorAll('.shade-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const parent = dot.closest('.product-card__shades');
+      parent.querySelectorAll('.shade-dot').forEach(d => d.classList.remove('is-active'));
+      dot.classList.add('is-active');
+    });
+  });
+
+  // Scroll animations
+  observeAnimations();
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-selected', 'true');
+    state.filter = btn.dataset.filter;
+    renderProducts();
+  });
+});
+
+// Search
+const searchInput = document.getElementById('catalog-search');
+let searchTimer;
+searchInput.addEventListener('input', (e) => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    state.search = e.target.value;
+    renderProducts();
+  }, 300);
+});
+
+// Sort
+document.getElementById('catalog-sort').addEventListener('change', (e) => {
+  state.sort = e.target.value;
+  renderProducts();
+});
+
+// ── BEAUTY QUIZ ───────────────────────────────────────────────────────────
+const quizIntro    = document.getElementById('quiz-intro');
+const quizWidget   = document.getElementById('quiz-widget');
+const quizStep     = document.getElementById('quiz-step');
+const quizResult   = document.getElementById('quiz-result');
+const quizProgress = document.getElementById('quiz-progress-bar');
+const quizBackBtn  = document.getElementById('quiz-back-btn');
+const startQuizBtn = document.getElementById('start-quiz-btn');
+
+function renderQuizStep() {
+  const step = QUIZ_STEPS[state.quizStep];
+  const pct  = Math.round((state.quizStep / QUIZ_STEPS.length) * 100);
+  quizProgress.style.width = pct + '%';
+
+  quizStep.innerHTML = `
+    <h3 class="quiz__question">${step.question}</h3>
+    <div class="quiz__options">
+      ${step.options.map(opt => `
+        <button class="quiz__option" data-value="${opt.value}">${opt.label}</button>
+      `).join('')}
+    </div>
+  `;
+
+  quizBackBtn.style.display = state.quizStep > 0 ? 'inline-flex' : 'none';
+
+  quizStep.querySelectorAll('.quiz__option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.quizAnswers[state.quizStep] = btn.dataset.value;
+      if (state.quizStep < QUIZ_STEPS.length - 1) {
+        state.quizStep++;
+        renderQuizStep();
+      } else {
+        showQuizResult();
+      }
+    });
+  });
+}
+
+function showQuizResult() {
+  quizProgress.style.width = '100%';
+  const primaryAnswer = state.quizAnswers[0] || 'glow';
+  const result = QUIZ_RESULTS[primaryAnswer] || QUIZ_RESULTS['glow'];
+
+  quizWidget.style.display = 'none';
+  quizResult.innerHTML = `
+    <div class="quiz__result-icon">${result.icon}</div>
+    <h3 class="quiz__result-title">${result.title}</h3>
+    <p class="quiz__result-text">${result.text}</p>
+    <div class="quiz__result-products">
+      ${result.products.map(name => `<div class="quiz__result-product">✦ ${name}</div>`).join('')}
+    </div>
+    <button class="btn btn--primary" id="quiz-restart-btn" style="margin-top:2rem">Retake Quiz</button>
+    <a href="#catalog" class="btn btn--ghost" style="margin-top:2rem">Shop Now</a>
+  `;
+  quizResult.classList.add('is-active');
+  quizResult.removeAttribute('aria-hidden');
+
+  document.getElementById('quiz-restart-btn').addEventListener('click', () => {
+    state.quizStep = 0;
+    state.quizAnswers = [];
+    quizResult.classList.remove('is-active');
+    quizResult.setAttribute('aria-hidden', 'true');
+    quizWidget.style.display = 'block';
+    renderQuizStep();
+  });
+}
+
+startQuizBtn.addEventListener('click', () => {
+  quizIntro.style.display = 'none';
+  quizWidget.style.display = 'block';
+  quizWidget.setAttribute('aria-hidden', 'false');
+  state.quizStep = 0;
+  state.quizAnswers = [];
+  renderQuizStep();
+});
+
+quizBackBtn.addEventListener('click', () => {
+  if (state.quizStep > 0) {
+    state.quizStep--;
+    renderQuizStep();
+  }
+});
+
+// ── BOOKING FORM ──────────────────────────────────────────────────────────
+document.getElementById('booking-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const name     = form['name'].value.trim();
+  const phone    = form['phone'].value.trim();
+  const location = form['location'].value;
+  const date     = form['date'].value;
+  const time     = form['time'].value;
+  const service  = form['service'].value;
+
+  if (!name || !phone || !location || !date || !time || !service) {
+    showToast('Please complete all booking fields.');
+    return;
+  }
+
+  // Format WhatsApp booking message
+  const timeLabel = form['time'].options[form['time'].selectedIndex].text;
+  const serviceLabel = form['service'].options[form['service'].selectedIndex].text;
+  const locationLabel = form['location'].options[form['location'].selectedIndex].text;
+  const msg = encodeURIComponent(
+    `Hello Oriflame Abuja! 💄\n\nI'd like to book a beauty consultation:\n\n• Name: ${name}\n• Phone: ${phone}\n• Service: ${serviceLabel}\n• Location: ${locationLabel}\n• Date: ${date}\n• Time: ${timeLabel}\n\nPlease confirm my appointment. Thank you!`
+  );
+
+  // Open WhatsApp with booking details
+  window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+  showToast('✦ Booking request sent via WhatsApp!');
+  form.reset();
+});
+
+// ── PARTNER CALCULATOR ────────────────────────────────────────────────────
+const salesSlider  = document.getElementById('calc-sales');
+const teamSlider   = document.getElementById('calc-team');
+const salesVal     = document.getElementById('calc-sales-val');
+const teamVal      = document.getElementById('calc-team-val');
+const calcResult   = document.getElementById('calc-result');
+
+function calcEarnings() {
+  const sales   = parseInt(salesSlider.value, 10);
+  const team    = parseInt(teamSlider.value, 10);
+  const comm    = sales * 0.28;          // 28% direct commission
+  const teamBon = team * sales * 0.04;  // 4% team override
+  const total   = comm + teamBon;
+  calcResult.textContent = fmt(Math.round(total));
+  salesVal.textContent = sales.toLocaleString('en-NG');
+  teamVal.textContent  = team;
+}
+
+salesSlider.addEventListener('input', calcEarnings);
+teamSlider.addEventListener('input', calcEarnings);
+calcEarnings(); // init
+
+// Partner modal
+const partnerSignupBtn   = document.getElementById('partner-signup-btn');
+const partnerModalOverlay = document.getElementById('partner-modal-overlay');
+const partnerModalClose  = document.getElementById('partner-modal-close');
+
+partnerSignupBtn.addEventListener('click', () => {
+  partnerModalOverlay.classList.add('is-open');
+  partnerModalOverlay.removeAttribute('aria-hidden');
+  document.body.style.overflow = 'hidden';
+});
+partnerModalClose.addEventListener('click', closePartnerModal);
+partnerModalOverlay.addEventListener('click', (e) => {
+  if (e.target === partnerModalOverlay) closePartnerModal();
+});
+function closePartnerModal() {
+  partnerModalOverlay.classList.remove('is-open');
+  partnerModalOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('partner-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const name  = form['p-name'].value.trim();
+  const phone = form['p-phone'].value.trim();
+  const area  = form['p-area'].value.trim();
+
+  if (!name || !phone || !area) {
+    showToast('Please fill in all partner fields.');
+    return;
+  }
+
+  const msg = encodeURIComponent(
+    `Hello Oriflame Abuja! ✦\n\nI'm interested in becoming a Beauty Partner:\n\n• Name: ${name}\n• Phone: ${phone}\n• Area: ${area}\n\nPlease contact me with more information. Thank you!`
+  );
+  window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+  showToast('✦ Application sent! We\'ll contact you within 24hrs');
+  form.reset();
+  closePartnerModal();
+});
+
+// ── NEWSLETTER ────────────────────────────────────────────────────────────
+document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = document.getElementById('newsletter-email').value.trim();
+  if (!email || !email.includes('@')) {
+    showToast('Please enter a valid email address.');
+    return;
+  }
+  showToast('✦ Thank you! You\'re subscribed to Oriflame Abuja updates.');
+  e.target.reset();
+});
+
+// ── SCROLL ANIMATIONS ─────────────────────────────────────────────────────
+function observeAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// Apply animation class to static sections — only safe top-level containers
+function initAnimations() {
+  // Animate whole block containers only, not individual text nodes inside grids
+  const targets = document.querySelectorAll(
+    '.brand-strip__item, .testimonial-card, ' +
+    '.partners__benefit-card, .contact__info, .contact__newsletter'
+  );
+  targets.forEach((el, i) => {
+    el.classList.add('animate-on-scroll');
+    el.dataset.delay = (i % 4) + 1;
+  });
+  observeAnimations();
+}
+
+// ── SET MIN DATE FOR BOOKING ───────────────────────────────────────────────
+function setMinDate() {
+  const dateInput = document.getElementById('booking-date');
+  const today     = new Date();
+  today.setDate(today.getDate() + 1); // Min tomorrow
+  dateInput.min = today.toISOString().split('T')[0];
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+(function init() {
+  renderProducts();
+  updateCartUI();
+  initAnimations();
+  setMinDate();
+})();
