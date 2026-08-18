@@ -642,8 +642,7 @@ function showQuizResult() {
   const primaryAnswer = state.quizAnswers[0] || 'glow';
   const result = QUIZ_RESULTS[primaryAnswer] || QUIZ_RESULTS['glow'];
 
-  const waText = encodeURIComponent('Hi, please tell me more about this product.');
-  const waUrl = `https://wa.me/p/26125030660454970/51814619713641?text=${waText}`;
+  const waUrl = 'https://wa.me/p/26125030660454970/51814619713641';
 
   quizWidget.style.display = 'none';
   quizResult.innerHTML = `
