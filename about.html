@@ -53,196 +53,160 @@
   <!-- ═══════ CATALOGUE DRAWER (SIDEBAR ON DESKTOP, FULL PAGE ON MOBILE) ═══════ -->
   <div id="catalogue-overlay" class="catalogue-overlay"></div>
   <aside id="catalogue-drawer" class="catalogue-drawer" aria-label="Oriflame Product Catalogue">
-    <div class="catalogue-drawer__header">
-      <div class="catalogue-drawer__title-wrap">
-        <span class="catalogue-drawer__eyebrow">Abuja Store</span>
-        <h2 class="catalogue-drawer__title">Product Catalogue</h2>
+    
+    <!-- ── VIEW 1: CATALOGUE LIST VIEW ── -->
+    <div id="catalogue-list-view" class="catalogue-view">
+      <div class="catalogue-drawer__header">
+        <div class="catalogue-drawer__title-wrap">
+          <span class="catalogue-drawer__eyebrow">Abuja Store</span>
+          <h2 class="catalogue-drawer__title">Product Catalogue</h2>
+        </div>
+        <button id="catalogue-close-btn" class="catalogue-drawer__close" aria-label="Close catalogue">&#x2715;</button>
       </div>
-      <button id="catalogue-close-btn" class="catalogue-drawer__close" aria-label="Close catalogue">&#x2715;</button>
-    </div>
 
-    <div class="catalogue-drawer__body">
-      <div class="catalogue-list">
-        <!-- Item 1: Optimals set -->
-        <div class="catalog-list-item" data-id="cat-01">
-          <div class="catalog-list-item__head" role="button" tabindex="0" aria-expanded="false">
-            <div class="catalog-list-item__thumb">
-              <img src="assets/images/cat_optimals.png" alt="Optimals set" />
-            </div>
-            <div class="catalog-list-item__meta">
-              <h3 class="catalog-list-item__title">Optimals set</h3>
-              <p class="catalog-list-item__preview">When your skin tone evens o...</p>
-            </div>
-            <div class="catalog-list-item__toggle" aria-hidden="true">
-              <svg class="toggle-icon-plus" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </div>
-          </div>
-          <div class="catalog-list-item__expandable">
-            <div class="catalog-list-item__expandable-inner">
-              <p class="catalog-list-item__full-text">When your skin tone evens out naturally. Achieve a radiant, balanced complexion with Oriflame Optimals Swedish botanical science.</p>
-              <div class="catalog-list-item__actions">
-                <a href="https://wa.me/p/26125030660454970/51814619713641?text=Hi%2C%20I%20would%20like%20to%20inquire%20about%20the%20Optimals%20set." target="_blank" rel="noopener noreferrer" class="btn-msg-business">
-                  <span>Message business</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" class="btn-msg-business__wa">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-                  </svg>
-                </a>
-                <div class="catalogue-card__cart-wrap" data-item-id="cat-01">
-                  <button class="btn-add-cart" data-id="cat-01">
-                    <span>Add to cart</span>
-                  </button>
-                  <div class="cart-stepper" style="display:none">
-                    <button class="cart-stepper__btn cart-stepper__btn--dec" data-action="dec" data-id="cat-01" aria-label="Decrease quantity">−</button>
-                    <span class="cart-stepper__qty">1</span>
-                    <button class="cart-stepper__btn cart-stepper__btn--inc" data-action="inc" data-id="cat-01" aria-label="Increase quantity">+</button>
-                  </div>
-                </div>
+      <div class="catalogue-drawer__body">
+        <div class="catalogue-list">
+          <!-- Item 1: Optimals set -->
+          <div class="catalog-list-item" data-id="cat-01">
+            <div class="catalog-list-item__head" role="button" tabindex="0">
+              <div class="catalog-list-item__thumb">
+                <img src="assets/images/cat_optimals.png" alt="Optimals set" />
+              </div>
+              <div class="catalog-list-item__meta">
+                <h3 class="catalog-list-item__title">Optimals set</h3>
+                <p class="catalog-list-item__preview">When your skin tone evens o...</p>
+              </div>
+              <div class="catalog-list-item__toggle" aria-hidden="true">
+                <svg class="toggle-icon-plus" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Item 2: Weightloss mistakes -->
-        <div class="catalog-list-item" data-id="cat-02">
-          <div class="catalog-list-item__head" role="button" tabindex="0" aria-expanded="false">
-            <div class="catalog-list-item__thumb">
-              <img src="assets/images/cat_weightloss.png" alt="Weightloss mistakes" />
-            </div>
-            <div class="catalog-list-item__meta">
-              <h3 class="catalog-list-item__title">Weightloss mistakes</h3>
-              <p class="catalog-list-item__preview">Weightloss doesn't have to b...</p>
-            </div>
-            <div class="catalog-list-item__toggle" aria-hidden="true">
-              <svg class="toggle-icon-plus" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </div>
-          </div>
-          <div class="catalog-list-item__expandable">
-            <div class="catalog-list-item__expandable-inner">
-              <p class="catalog-list-item__full-text">Weightloss doesn't have to be hard. The Oriflame Wellosophy Meal Replacement Shake is designed to help you stay satisfied while supporting your nutrition goals.</p>
-              <div class="catalog-list-item__actions">
-                <a href="https://wa.me/p/26125030660454970/51814619713641?text=Hi%2C%20I%20would%20like%20to%20inquire%20about%20the%20Weightloss%20solutions." target="_blank" rel="noopener noreferrer" class="btn-msg-business">
-                  <span>Message business</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" class="btn-msg-business__wa">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-                  </svg>
-                </a>
-                <div class="catalogue-card__cart-wrap" data-item-id="cat-02">
-                  <button class="btn-add-cart" data-id="cat-02">
-                    <span>Add to cart</span>
-                  </button>
-                  <div class="cart-stepper" style="display:none">
-                    <button class="cart-stepper__btn cart-stepper__btn--dec" data-action="dec" data-id="cat-02" aria-label="Decrease quantity">−</button>
-                    <span class="cart-stepper__qty">1</span>
-                    <button class="cart-stepper__btn cart-stepper__btn--inc" data-action="inc" data-id="cat-02" aria-label="Increase quantity">+</button>
-                  </div>
-                </div>
+          <!-- Item 2: Weightloss mistakes -->
+          <div class="catalog-list-item" data-id="cat-02">
+            <div class="catalog-list-item__head" role="button" tabindex="0">
+              <div class="catalog-list-item__thumb">
+                <img src="assets/images/cat_weightloss.png" alt="Weightloss mistakes" />
+              </div>
+              <div class="catalog-list-item__meta">
+                <h3 class="catalog-list-item__title">Weightloss mistakes</h3>
+                <p class="catalog-list-item__preview">Weightloss doesn't have to b...</p>
+              </div>
+              <div class="catalog-list-item__toggle" aria-hidden="true">
+                <svg class="toggle-icon-plus" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Item 3: Personal hygiene -->
-        <div class="catalog-list-item" data-id="cat-03">
-          <div class="catalog-list-item__head" role="button" tabindex="0" aria-expanded="false">
-            <div class="catalog-list-item__thumb">
-              <img src="assets/images/cat_hygiene.png" alt="Personal hygiene (oral, intimate & body)" />
-            </div>
-            <div class="catalog-list-item__meta">
-              <h3 class="catalog-list-item__title">Personal hygiene (oral, in...</h3>
-              <p class="catalog-list-item__preview">Personal Hygiene takes anot...</p>
-            </div>
-            <div class="catalog-list-item__toggle" aria-hidden="true">
-              <svg class="toggle-icon-plus" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </div>
-          </div>
-          <div class="catalog-list-item__expandable">
-            <div class="catalog-list-item__expandable-inner">
-              <p class="catalog-list-item__full-text">Personal Hygiene takes another level of Swedish care. Gentle organic oral, intimate, and daily body care products crafted for whole-family comfort.</p>
-              <div class="catalog-list-item__actions">
-                <a href="https://wa.me/p/26125030660454970/51814619713641?text=Hi%2C%20I%20would%20like%20to%20inquire%20about%20the%20Personal%20Hygiene%20range." target="_blank" rel="noopener noreferrer" class="btn-msg-business">
-                  <span>Message business</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" class="btn-msg-business__wa">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-                  </svg>
-                </a>
-                <div class="catalogue-card__cart-wrap" data-item-id="cat-03">
-                  <button class="btn-add-cart" data-id="cat-03">
-                    <span>Add to cart</span>
-                  </button>
-                  <div class="cart-stepper" style="display:none">
-                    <button class="cart-stepper__btn cart-stepper__btn--dec" data-action="dec" data-id="cat-03" aria-label="Decrease quantity">−</button>
-                    <span class="cart-stepper__qty">1</span>
-                    <button class="cart-stepper__btn cart-stepper__btn--inc" data-action="inc" data-id="cat-03" aria-label="Increase quantity">+</button>
-                  </div>
-                </div>
+          <!-- Item 3: Personal hygiene -->
+          <div class="catalog-list-item" data-id="cat-03">
+            <div class="catalog-list-item__head" role="button" tabindex="0">
+              <div class="catalog-list-item__thumb">
+                <img src="assets/images/cat_hygiene.png" alt="Personal hygiene (oral, intimate & body)" />
+              </div>
+              <div class="catalog-list-item__meta">
+                <h3 class="catalog-list-item__title">Personal hygiene (oral, in...</h3>
+                <p class="catalog-list-item__preview">Personal Hygiene takes anot...</p>
+              </div>
+              <div class="catalog-list-item__toggle" aria-hidden="true">
+                <svg class="toggle-icon-plus" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Item 4: FRAGRANCES -->
-        <div class="catalog-list-item" data-id="cat-04">
-          <div class="catalog-list-item__head" role="button" tabindex="0" aria-expanded="false">
-            <div class="catalog-list-item__thumb">
-              <img src="assets/images/cat_fragrances.png" alt="FRAGRANCES" />
-            </div>
-            <div class="catalog-list-item__meta">
-              <h3 class="catalog-list-item__title">FRAGRANCES</h3>
-              <p class="catalog-list-item__preview">Celebrate Life and Smell fab...</p>
-            </div>
-            <div class="catalog-list-item__toggle" aria-hidden="true">
-              <svg class="toggle-icon-plus" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-            </div>
-          </div>
-          <div class="catalog-list-item__expandable">
-            <div class="catalog-list-item__expandable-inner">
-              <p class="catalog-list-item__full-text">Celebrate Life and Smell fabulous with exclusive Swedish luxury perfumes and long-lasting fragrances.</p>
-              <div class="catalog-list-item__actions">
-                <a href="https://wa.me/p/26125030660454970/51814619713641?text=Hi%2C%20I%20would%20like%20to%20inquire%20about%20the%20Fragrances%20collection." target="_blank" rel="noopener noreferrer" class="btn-msg-business">
-                  <span>Message business</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" class="btn-msg-business__wa">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-                  </svg>
-                </a>
-                <div class="catalogue-card__cart-wrap" data-item-id="cat-04">
-                  <button class="btn-add-cart" data-id="cat-04">
-                    <span>Add to cart</span>
-                  </button>
-                  <div class="cart-stepper" style="display:none">
-                    <button class="cart-stepper__btn cart-stepper__btn--dec" data-action="dec" data-id="cat-04" aria-label="Decrease quantity">−</button>
-                    <span class="cart-stepper__qty">1</span>
-                    <button class="cart-stepper__btn cart-stepper__btn--inc" data-action="inc" data-id="cat-04" aria-label="Increase quantity">+</button>
-                  </div>
-                </div>
+          <!-- Item 4: FRAGRANCES -->
+          <div class="catalog-list-item" data-id="cat-04">
+            <div class="catalog-list-item__head" role="button" tabindex="0">
+              <div class="catalog-list-item__thumb">
+                <img src="assets/images/cat_fragrances.png" alt="FRAGRANCES" />
+              </div>
+              <div class="catalog-list-item__meta">
+                <h3 class="catalog-list-item__title">FRAGRANCES</h3>
+                <p class="catalog-list-item__preview">Celebrate Life and Smell fab...</p>
+              </div>
+              <div class="catalog-list-item__toggle" aria-hidden="true">
+                <svg class="toggle-icon-plus" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Mobile / Bottom close button -->
+      <div class="catalogue-drawer__footer">
+        <button id="catalogue-bottom-close-btn" class="btn-catalogue-close">
+          <span class="btn-catalogue-close__icon">✕</span>
+          <span>Close Catalogue</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Mobile / Bottom close button with an x button on the button -->
-    <div class="catalogue-drawer__footer">
-      <button id="catalogue-bottom-close-btn" class="btn-catalogue-close">
-        <span class="btn-catalogue-close__icon">✕</span>
-        <span>Close Catalogue</span>
-      </button>
+    <!-- ── VIEW 2: PRODUCT DETAIL VIEW (SHOWN WHEN PICTURE IS CLICKED) ── -->
+    <div id="catalogue-detail-view" class="catalogue-view" style="display: none;">
+      <div class="catalogue-drawer__header catalogue-drawer__header--detail">
+        <button id="catalogue-back-btn" class="catalogue-drawer__back-btn" aria-label="Go back to catalogue">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back</span>
+        </button>
+        <button id="catalogue-detail-close-btn" class="catalogue-drawer__close" aria-label="Close catalogue">&#x2715;</button>
+      </div>
+
+      <div class="catalogue-drawer__body catalogue-detail__body">
+        <!-- Picture fills up the side panel -->
+        <div class="catalogue-detail__img-container">
+          <img id="catalogue-detail-img" src="assets/images/cat_optimals.png" alt="Optimals set" class="catalogue-detail__img" />
+        </div>
+
+        <div class="catalogue-detail__content">
+          <div class="catalogue-detail__badge-wrap">
+            <span class="catalogue-detail__badge">Official Oriflame Abuja</span>
+          </div>
+          <h2 class="catalogue-detail__title" id="catalogue-detail-title">Optimals set</h2>
+          <p class="catalogue-detail__desc" id="catalogue-detail-desc">When your skin tone evens out naturally.</p>
+
+          <div class="catalogue-detail__actions">
+            <a id="catalogue-detail-wa-btn" href="https://wa.me/2348160756002" target="_blank" rel="noopener noreferrer" class="btn-msg-business">
+              <span>Message business</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" class="btn-msg-business__wa">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+              </svg>
+            </a>
+            <div class="catalogue-card__cart-wrap" id="catalogue-detail-cart-wrap" data-item-id="cat-01">
+              <button class="btn-add-cart" id="catalogue-detail-add-btn" data-id="cat-01">
+                <span>Add to cart</span>
+              </button>
+              <div class="cart-stepper" id="catalogue-detail-stepper" style="display:none">
+                <button class="cart-stepper__btn cart-stepper__btn--dec" data-action="dec" data-id="cat-01" aria-label="Decrease quantity">−</button>
+                <span class="cart-stepper__qty">1</span>
+                <button class="cart-stepper__btn cart-stepper__btn--inc" data-action="inc" data-id="cat-01" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalogue-drawer__footer">
+        <button id="catalogue-detail-bottom-back-btn" class="btn-catalogue-close">
+          <span class="btn-catalogue-close__icon">←</span>
+          <span>Back to Catalogue</span>
+        </button>
+      </div>
     </div>
   </aside>
 

@@ -457,7 +457,7 @@ document.getElementById('whatsapp-checkout-btn').addEventListener('click', () =>
   const lines = state.cart.map(i => `• ${i.name} ×${i.qty} — ${fmt(i.price * i.qty)}`).join('%0A');
   const msg = encodeURIComponent(`Hello Oriflame Abuja! 🌿✨\n\nI'd like to order:\n`) + lines +
     `%0A%0A*Total: ${encodeURIComponent(fmt(total))}*%0A%0APlease confirm availability and delivery to my Abuja address. Thank you!`;
-  window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+  window.open(`https://wa.me/2348160756002?text=${msg}`, '_blank');
 });
 
 // ── PRODUCT CATALOG ───────────────────────────────────────────────────────
@@ -725,7 +725,7 @@ if (bookingForm) {
       `Hello Oriflame Abuja! 💄\n\nI'd like to book a beauty consultation:\n\n• Name: ${name}\n• Phone: ${phone}\n• Service: ${serviceLabel}\n• Location: ${locationLabel}\n• Date: ${date}\n• Time: ${timeLabel}\n\nPlease confirm my appointment. Thank you!`
     );
 
-    window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+    window.open(`https://wa.me/2348160756002?text=${msg}`, '_blank');
     showToast('✦ Booking request sent via WhatsApp!');
     form.reset();
   });
@@ -800,7 +800,7 @@ if (partnerForm) {
     const msg = encodeURIComponent(
       `Hello Oriflame Abuja! ✦\n\nI'm interested in becoming a Beauty Partner:\n\n• Name: ${name}\n• Phone: ${phone}\n• Area: ${area}\n\nPlease contact me with more information. Thank you!`
     );
-    window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+    window.open(`https://wa.me/2348160756002?text=${msg}`, '_blank');
     showToast('✦ Application sent! We\'ll contact you within 24hrs');
     form.reset();
     closePartnerModal();
@@ -881,35 +881,47 @@ function initParallax() {
   updateParallax();
 }
 
-// ── CATALOGUE INTERACTIVITY & STEPPER LOGIC ─────────────────────────────
+// ── CATALOGUE INTERACTIVITY & DETAIL VIEW LOGIC ─────────────────────────
 const CATALOG_ITEMS = [
   {
     id: 'cat-01',
     name: 'Optimals set',
+    preview: 'When your skin tone evens o...',
+    desc: 'When your skin tone evens out naturally. Achieve a radiant, balanced complexion with Oriflame Optimals Swedish botanical science formulated with natural Swedish plant extracts.',
     category: 'Skincare',
     price: 38500,
-    image: 'assets/images/cat_optimals.png'
+    image: 'assets/images/cat_optimals.png',
+    waText: 'Hi, I would like to order the Optimals set from Oriflame Central Store Abuja.'
   },
   {
     id: 'cat-02',
     name: 'Weightloss mistakes',
+    preview: "Weightloss doesn't have to b...",
+    desc: "Weightloss doesn't have to be hard. The Oriflame Wellosophy Meal Replacement Shake is designed to help you stay satisfied while supporting your nutrition and weight management goals.",
     category: 'Wellness',
     price: 42000,
-    image: 'assets/images/cat_weightloss.png'
+    image: 'assets/images/cat_weightloss.png',
+    waText: 'Hi, I would like to order the Wellosophy Meal Replacement Shake from Oriflame Central Store Abuja.'
   },
   {
     id: 'cat-03',
     name: 'Personal hygiene (oral, intimate & body)',
+    preview: 'Personal Hygiene takes anot...',
+    desc: 'Personal Hygiene takes another level of Swedish care. Gentle organic oral, intimate, and daily body care essentials crafted for whole-family comfort and long-lasting freshness.',
     category: 'Personal Care',
     price: 18500,
-    image: 'assets/images/cat_hygiene.png'
+    image: 'assets/images/cat_hygiene.png',
+    waText: 'Hi, I would like to order the Personal Hygiene products from Oriflame Central Store Abuja.'
   },
   {
     id: 'cat-04',
     name: 'FRAGRANCES',
+    preview: 'Celebrate Life and Smell fab...',
+    desc: 'Celebrate Life and Smell fabulous with exclusive Swedish perfumes and luxury artisan fragrances crafted for elegance and unforgettable presence.',
     category: 'Fragrance',
     price: 35000,
-    image: 'assets/images/cat_fragrances.png'
+    image: 'assets/images/cat_fragrances.png',
+    waText: 'Hi, I would like to order from the Fragrances collection from Oriflame Central Store Abuja.'
   }
 ];
 
@@ -932,14 +944,20 @@ function syncCatalogueSteppers() {
   });
 }
 
-// ── CATALOGUE DRAWER CONTROLS ───────────────────────────────────────────
+// ── CATALOGUE DRAWER & DETAIL VIEW CONTROLS ─────────────────────────────
 const catalogueDrawer = document.getElementById('catalogue-drawer');
 const catalogueOverlay = document.getElementById('catalogue-overlay');
+const catalogueListView = document.getElementById('catalogue-list-view');
+const catalogueDetailView = document.getElementById('catalogue-detail-view');
 const catalogueCloseBtn = document.getElementById('catalogue-close-btn');
+const catalogueDetailCloseBtn = document.getElementById('catalogue-detail-close-btn');
 const catalogueBottomCloseBtn = document.getElementById('catalogue-bottom-close-btn');
+const catalogueBackBtn = document.getElementById('catalogue-back-btn');
+const catalogueDetailBottomBackBtn = document.getElementById('catalogue-detail-bottom-back-btn');
 
 function openCatalogue() {
   if (!catalogueDrawer) return;
+  showCatalogueList();
   catalogueDrawer.classList.add('is-open');
   if (catalogueOverlay) catalogueOverlay.classList.add('is-open');
   document.body.style.overflow = 'hidden';
@@ -951,10 +969,51 @@ function closeCatalogue() {
   catalogueDrawer.classList.remove('is-open');
   if (catalogueOverlay) catalogueOverlay.classList.remove('is-open');
   document.body.style.overflow = '';
+  setTimeout(showCatalogueList, 300);
+}
+
+function showCatalogueList() {
+  if (catalogueDetailView) catalogueDetailView.style.display = 'none';
+  if (catalogueListView) catalogueListView.style.display = 'flex';
+  syncCatalogueSteppers();
+}
+
+function showCatalogueDetail(productId) {
+  const product = CATALOG_ITEMS.find(p => p.id === productId);
+  if (!product) return;
+
+  const detailImg = document.getElementById('catalogue-detail-img');
+  const detailTitle = document.getElementById('catalogue-detail-title');
+  const detailDesc = document.getElementById('catalogue-detail-desc');
+  const detailWaBtn = document.getElementById('catalogue-detail-wa-btn');
+  const detailCartWrap = document.getElementById('catalogue-detail-cart-wrap');
+  const detailAddBtn = document.getElementById('catalogue-detail-add-btn');
+  const detailStepperBtns = document.querySelectorAll('#catalogue-detail-stepper .cart-stepper__btn');
+
+  if (detailImg) {
+    detailImg.src = product.image;
+    detailImg.alt = product.name;
+  }
+  if (detailTitle) detailTitle.textContent = product.name;
+  if (detailDesc) detailDesc.textContent = product.desc;
+  if (detailWaBtn) {
+    detailWaBtn.href = `https://wa.me/2348160756002?text=${encodeURIComponent(product.waText)}`;
+  }
+  if (detailCartWrap) detailCartWrap.dataset.itemId = product.id;
+  if (detailAddBtn) detailAddBtn.dataset.id = product.id;
+  detailStepperBtns.forEach(btn => btn.dataset.id = product.id);
+
+  if (catalogueListView) catalogueListView.style.display = 'none';
+  if (catalogueDetailView) catalogueDetailView.style.display = 'flex';
+  
+  syncCatalogueSteppers();
 }
 
 if (catalogueCloseBtn) catalogueCloseBtn.addEventListener('click', closeCatalogue);
+if (catalogueDetailCloseBtn) catalogueDetailCloseBtn.addEventListener('click', closeCatalogue);
 if (catalogueBottomCloseBtn) catalogueBottomCloseBtn.addEventListener('click', closeCatalogue);
+if (catalogueBackBtn) catalogueBackBtn.addEventListener('click', showCatalogueList);
+if (catalogueDetailBottomBackBtn) catalogueDetailBottomBackBtn.addEventListener('click', showCatalogueList);
 if (catalogueOverlay) catalogueOverlay.addEventListener('click', closeCatalogue);
 
 // Open Catalogue whenever Catalogue nav link is clicked
@@ -966,35 +1025,17 @@ document.querySelectorAll('a[href="#catalog"], a[href="index.html#catalog"]').fo
 });
 
 function initCatalogue() {
-  // Accordion item click toggle: click item to reveal text and action buttons
-  document.querySelectorAll('.catalog-list-item__head').forEach(head => {
-    head.addEventListener('click', () => {
-      const item = head.closest('.catalog-list-item');
-      if (!item) return;
-      const isExpanded = item.classList.contains('is-expanded');
-
-      // Close other accordion items
-      document.querySelectorAll('.catalog-list-item').forEach(other => {
-        if (other !== item) {
-          other.classList.remove('is-expanded');
-          const otherHead = other.querySelector('.catalog-list-item__head');
-          if (otherHead) otherHead.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      if (isExpanded) {
-        item.classList.remove('is-expanded');
-        head.setAttribute('aria-expanded', 'false');
-      } else {
-        item.classList.add('is-expanded');
-        head.setAttribute('aria-expanded', 'true');
-      }
+  // Clicking an item or picture in the catalogue list opens the full detail view
+  document.querySelectorAll('.catalog-list-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const id = item.dataset.id;
+      showCatalogueDetail(id);
     });
 
-    head.addEventListener('keydown', (e) => {
+    item.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        head.click();
+        showCatalogueDetail(item.dataset.id);
       }
     });
   });
