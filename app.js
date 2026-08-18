@@ -966,9 +966,43 @@ document.querySelectorAll('a[href="#catalog"], a[href="index.html#catalog"]').fo
 });
 
 function initCatalogue() {
+  // Accordion item click toggle: click item to reveal text and action buttons
+  document.querySelectorAll('.catalog-list-item__head').forEach(head => {
+    head.addEventListener('click', () => {
+      const item = head.closest('.catalog-list-item');
+      if (!item) return;
+      const isExpanded = item.classList.contains('is-expanded');
+
+      // Close other accordion items
+      document.querySelectorAll('.catalog-list-item').forEach(other => {
+        if (other !== item) {
+          other.classList.remove('is-expanded');
+          const otherHead = other.querySelector('.catalog-list-item__head');
+          if (otherHead) otherHead.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      if (isExpanded) {
+        item.classList.remove('is-expanded');
+        head.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('is-expanded');
+        head.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    head.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        head.click();
+      }
+    });
+  });
+
   document.querySelectorAll('.btn-add-cart').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const id = btn.dataset.id;
       const product = CATALOG_ITEMS.find(p => p.id === id);
       if (product) {
@@ -980,6 +1014,7 @@ function initCatalogue() {
   document.querySelectorAll('.cart-stepper__btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const id = btn.dataset.id;
       const action = btn.dataset.action;
       const product = CATALOG_ITEMS.find(p => p.id === id);
