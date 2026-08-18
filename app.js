@@ -932,6 +932,39 @@ function syncCatalogueSteppers() {
   });
 }
 
+// ── CATALOGUE DRAWER CONTROLS ───────────────────────────────────────────
+const catalogueDrawer = document.getElementById('catalogue-drawer');
+const catalogueOverlay = document.getElementById('catalogue-overlay');
+const catalogueCloseBtn = document.getElementById('catalogue-close-btn');
+const catalogueBottomCloseBtn = document.getElementById('catalogue-bottom-close-btn');
+
+function openCatalogue() {
+  if (!catalogueDrawer) return;
+  catalogueDrawer.classList.add('is-open');
+  if (catalogueOverlay) catalogueOverlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  closeMobileMenu();
+}
+
+function closeCatalogue() {
+  if (!catalogueDrawer) return;
+  catalogueDrawer.classList.remove('is-open');
+  if (catalogueOverlay) catalogueOverlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+if (catalogueCloseBtn) catalogueCloseBtn.addEventListener('click', closeCatalogue);
+if (catalogueBottomCloseBtn) catalogueBottomCloseBtn.addEventListener('click', closeCatalogue);
+if (catalogueOverlay) catalogueOverlay.addEventListener('click', closeCatalogue);
+
+// Open Catalogue whenever Catalogue nav link is clicked
+document.querySelectorAll('a[href="#catalog"], a[href="index.html#catalog"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    openCatalogue();
+  });
+});
+
 function initCatalogue() {
   document.querySelectorAll('.btn-add-cart').forEach(btn => {
     btn.addEventListener('click', (e) => {
