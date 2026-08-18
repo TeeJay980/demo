@@ -204,17 +204,20 @@ mainNav.querySelectorAll('.header__nav-link').forEach(link => {
 
 // ── HERO SLIDER ───────────────────────────────────────────────────────────
 (function initHero() {
-  const slides = document.querySelectorAll('.hero__slide');
-  const dots   = document.querySelectorAll('.hero__dot');
-  const prevBtn = document.getElementById('hero-prev');
-  const nextBtn = document.getElementById('hero-next');
-  const curNum  = document.getElementById('hero-current-num');
-  const totNum  = document.getElementById('hero-total-num');
+  const slides   = document.querySelectorAll('.hero__slide');
+  const dots     = document.querySelectorAll('.hero__dot');
+  const prevBtn  = document.getElementById('hero-prev');
+  const nextBtn  = document.getElementById('hero-next');
+  const curNum   = document.getElementById('hero-current-num');
+  const totNum   = document.getElementById('hero-total-num');
+  const capPill  = document.getElementById('hero-slide-caption');
+  const heroElem = document.getElementById('hero');
 
   if (slides.length === 0) return;
 
   let current = 0;
   let timer;
+  const AUTOPLAY_DELAY = 4500;
 
   if (totNum) {
     totNum.textContent = String(slides.length).padStart(2, '0');
@@ -226,14 +229,33 @@ mainNav.querySelectorAll('.header__nav-link').forEach(link => {
 
     current = (n + slides.length) % slides.length;
 
-    if (slides[current]) slides[current].classList.add('is-active');
-    if (dots[current])   dots[current].classList.add('is-active');
+    if (slides[current]) {
+      slides[current].classList.add('is-active');
+      const caption = slides[current].dataset.caption || 'Oriflame Luxury Collection';
+      if (capPill) {
+        capPill.style.opacity = '0';
+        setTimeout(() => {
+          capPill.textContent = caption;
+          capPill.style.opacity = '1';
+        }, 150);
+      }
+    }
+
+    if (dots[current]) {
+      // Force animation restart on active dot
+      dots[current].classList.remove('is-active');
+      void dots[current].offsetWidth; // trigger reflow
+      dots[current].classList.add('is-active');
+    }
+
     if (curNum) curNum.textContent = String(current + 1).padStart(2, '0');
   }
 
   function startAuto() {
     clearInterval(timer);
-    timer = setInterval(() => goTo(current + 1), 6000);
+    timer = setInterval(() => {
+      goTo(current + 1);
+    }, AUTOPLAY_DELAY);
   }
 
   dots.forEach((dot, i) => {
@@ -255,6 +277,29 @@ mainNav.querySelectorAll('.header__nav-link').forEach(link => {
       goTo(current + 1);
       startAuto();
     });
+  }
+
+  // Touch Swipe Support for mobile devices
+  let touchStartX = 0;
+  let touchEndX   = 0;
+
+  if (heroElem) {
+    heroElem.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    heroElem.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 45) {
+        // Swiped Left -> Next
+        goTo(current + 1);
+        startAuto();
+      } else if (touchEndX - touchStartX > 45) {
+        // Swiped Right -> Prev
+        goTo(current - 1);
+        startAuto();
+      }
+    }, { passive: true });
   }
 
   startAuto();
