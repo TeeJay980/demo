@@ -55,7 +55,7 @@
       <nav class="header__nav" id="main-nav" aria-label="Main navigation">
         <button class="header__nav-close" id="nav-close-btn" aria-label="Close navigation">✕ Close</button>
         <a href="about.html" class="header__nav-link">About Us</a>
-        <a href="#catalog" class="header__nav-link">Catalog</a>
+        <a href="#featured-reviews" class="header__nav-link">Featured Reviews</a>
         <a href="#quiz" class="header__nav-link">Beauty Quiz</a>
         <a href="#testimonials" class="header__nav-link">Client Stories</a>
         <a href="#partners" class="header__nav-link">Become a Partner</a>
@@ -119,7 +119,7 @@
         </h1>
         <p class="hero__sub">Luxury cosmetics. Expert consultations. Delivered across Abuja.</p>
         <div class="hero__ctas">
-          <a href="#catalog" class="btn btn--primary">Explore Collection</a>
+          <a href="#featured-reviews" class="btn btn--primary">Featured Reviews</a>
           <a href="#contact" class="btn btn--ghost">Get in Touch</a>
         </div>
       </div>
@@ -225,39 +225,75 @@
       </div>
     </section>
 
-    <!-- ═══════ CATALOG ═══════ -->
-    <section class="catalog section" id="catalog">
+    <!-- ═══════ FEATURED REVIEWS ═══════ -->
+    <section class="featured-reviews section" id="featured-reviews">
       <div class="container">
-        <div class="catalog__header">
-          <p class="section-eyebrow">Product Collection</p>
-          <h2 class="section-title">The <em>Finest</em> in<br /><span class="gold-text">Beauty</span></h2>
+        <div class="featured-reviews__header text-center">
+          <p class="section-eyebrow">Real Stories &amp; Customer Care</p>
+          <h2 class="section-title">Featured<br /><em>Reviews &amp;</em><br /><span class="gold-text">Abuja Experiences</span></h2>
         </div>
 
-        <!-- Filters -->
-        <div class="catalog__filters" role="tablist" aria-label="Product categories">
-          <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true" id="filter-all">All</button>
-          <button class="filter-btn" data-filter="skincare" role="tab" aria-selected="false" id="filter-skincare">Skincare</button>
-          <button class="filter-btn" data-filter="makeup" role="tab" aria-selected="false" id="filter-makeup">Makeup</button>
-          <button class="filter-btn" data-filter="fragrance" role="tab" aria-selected="false" id="filter-fragrance">Fragrances</button>
-          <button class="filter-btn" data-filter="body" role="tab" aria-selected="false" id="filter-body">Body &amp; Wellness</button>
-        </div>
+        <div class="featured-reviews__grid">
+          <!-- Featured Review 1 -->
+          <article class="featured-review-item animate-on-scroll" data-delay="1">
+            <div class="featured-review-item__visual">
+              <img src="assets/images/review_1.png" alt="Oriflame Abuja Customer Care and Authentic Products" class="featured-review-item__img" />
+            </div>
+            <div class="featured-review-item__content">
+              <div class="featured-review-item__quote-mark">“</div>
+              <h3 class="featured-review-item__heading">Behind Every Order Is a Real Person Who Cares 😊</h3>
+              <div class="featured-review-item__text">
+                <p>At Oriflame Central Store Abuja, we're committed to providing authentic beauty, skincare and wellness products with excellent customer support and delivery service.</p>
+                <p>Thank you to everyone who continues to trust and support our business. We look forward to serving you.</p>
+              </div>
+              <a href="https://wa.me/p/26125030660454970/51814619713641" target="_blank" rel="noopener noreferrer" class="btn btn--primary featured-review-item__btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+                Chat on WhatsApp
+              </a>
+            </div>
+          </article>
 
-        <!-- Search & Sort -->
-        <div class="catalog__toolbar">
-          <div class="catalog__search-wrap">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="search" id="catalog-search" class="catalog__search" placeholder="Search products…" aria-label="Search products" />
-          </div>
-          <select id="catalog-sort" class="catalog__sort" aria-label="Sort products">
-            <option value="default">Featured</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="name-asc">A – Z</option>
-          </select>
-        </div>
+          <!-- Featured Review 2 -->
+          <article class="featured-review-item featured-review-item--reverse animate-on-scroll" data-delay="2">
+            <div class="featured-review-item__visual">
+              <img src="assets/images/review_2.png" alt="Oriflame Wellness and Beauty Routine in Abuja" class="featured-review-item__img" />
+            </div>
+            <div class="featured-review-item__content">
+              <div class="featured-review-item__quote-mark">“</div>
+              <h3 class="featured-review-item__heading">Taking Care of Your Wellness Is a Journey</h3>
+              <div class="featured-review-item__text">
+                <p>Taking care of your wellness is a journey, and choosing quality products is part of the process.</p>
+                <p>We're proud to offer authentic Oriflame wellness and beauty products with delivery available in Abuja.</p>
+                <p>Send us a message if you'd like help choosing the right products for your needs.</p>
+              </div>
+              <a href="https://wa.me/p/26125030660454970/51814619713641" target="_blank" rel="noopener noreferrer" class="btn btn--primary featured-review-item__btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+                Ask Questions
+              </a>
+            </div>
+          </article>
 
-        <!-- Grid -->
-        <div class="catalog__grid" id="product-grid"></div>
+          <!-- Featured Review 3 -->
+          <article class="featured-review-item animate-on-scroll" data-delay="3">
+            <div class="featured-review-item__visual">
+              <img src="assets/images/review_3.png" alt="Oriflame Wellosophy Meal Replacement Shake in Abuja" class="featured-review-item__img" />
+            </div>
+            <div class="featured-review-item__content">
+              <div class="featured-review-item__quote-mark">“</div>
+              <h3 class="featured-review-item__heading">Support Your Weight Management Journey</h3>
+              <div class="featured-review-item__text">
+                <p>Looking for a simple way to support your weight management journey?</p>
+                <p>The Oriflame Wellosophy Meal Replacement Shake is designed to help you stay satisfied while enjoying balanced nutrition.</p>
+                <p style="color:var(--clr-gold); font-weight:600">Available in Abuja</p>
+                <p>Send us a WhatsApp message to order or ask questions.</p>
+              </div>
+              <a href="https://wa.me/p/26125030660454970/51814619713641" target="_blank" rel="noopener noreferrer" class="btn btn--primary featured-review-item__btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.134.558 4.133 1.535 5.865L.057 23.998l6.305-1.655A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.794 9.794 0 01-4.99-1.368l-.358-.213-3.742.981.999-3.645-.234-.374A9.786 9.786 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+                Order via WhatsApp
+              </a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -457,7 +493,7 @@
       </div>
       <nav class="footer__links" aria-label="Footer navigation">
         <a href="about.html">About Us</a>
-        <a href="#catalog">Products</a>
+        <a href="#featured-reviews">Featured Reviews</a>
         <a href="#quiz">Beauty Quiz</a>
         <a href="#testimonials">Client Stories</a>
         <a href="#partners">Partners</a>

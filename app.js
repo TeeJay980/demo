@@ -838,13 +838,13 @@ function observeAnimations() {
 
 function initAnimations() {
   const targets = document.querySelectorAll(
-    '.brand-strip__item, .testimonial-card, ' +
-    '.partners__benefit-card, .contact__info, .contact__newsletter, ' +
+    '.brand-strip__item, .featured-review-item, .testimonial-card, ' +
+    '.partners__benefit-card, .contact__info, .contact__visual, ' +
     '.staff-card, .pillar-item, .founder-card'
   );
   targets.forEach((el, i) => {
     el.classList.add('animate-on-scroll');
-    el.dataset.delay = (i % 4) + 1;
+    el.dataset.delay = (i % 3) + 1;
   });
   observeAnimations();
 }
