@@ -922,6 +922,26 @@ const CATALOG_ITEMS = [
     price: 35000,
     image: 'assets/images/cat_fragrances.png',
     waText: 'Hi, I would like to order from the Fragrances collection from Oriflame Central Store Abuja.'
+  },
+  {
+    id: 'cat-05',
+    name: 'ALL OR NOTHING',
+    preview: 'Live life with passion and b...',
+    desc: 'Live life with passion and boldness. All or Nothing Parfum is crafted with exclusive Vanilla Surabsolute and room-filling luxury fragrance technology for an unforgettable signature scent.',
+    category: 'Fragrance',
+    price: 48000,
+    image: 'assets/images/cat_all_or_nothing.jpg',
+    waText: 'Hi, I would like to order the All or Nothing Parfum from Oriflame Central Store Abuja.'
+  },
+  {
+    id: 'cat-06',
+    name: 'NovAge MEN',
+    preview: "Engineered for men's skin to...",
+    desc: "Engineered specifically for men's skin to fight signs of fatigue and ageing. Powered by bioactive Baobab anti-ageing technology and Coffea Bengalensis plant stem cell extract for energized skin.",
+    category: 'Skincare',
+    price: 54000,
+    image: 'assets/images/cat_novage_men.png',
+    waText: 'Hi, I would like to order the NovAge Men Set from Oriflame Central Store Abuja.'
   }
 ];
 
