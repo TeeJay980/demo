@@ -383,6 +383,8 @@ function updateCartUI() {
   cartCount.classList.toggle('is-visible', count > 0);
   cartTotal.textContent = fmt(total);
 
+  syncCatalogueSteppers();
+
   if (state.cart.length === 0) {
     cartItems.innerHTML = `
       <div class="cart-empty">
@@ -879,11 +881,105 @@ function initParallax() {
   updateParallax();
 }
 
+// ── CATALOGUE INTERACTIVITY & STEPPER LOGIC ─────────────────────────────
+const CATALOG_ITEMS = [
+  {
+    id: 'cat-01',
+    name: 'Optimals set',
+    category: 'Skincare',
+    price: 38500,
+    image: 'assets/images/cat_optimals.png'
+  },
+  {
+    id: 'cat-02',
+    name: 'Weightloss mistakes',
+    category: 'Wellness',
+    price: 42000,
+    image: 'assets/images/cat_weightloss.png'
+  },
+  {
+    id: 'cat-03',
+    name: 'Personal hygiene (oral, intimate & body)',
+    category: 'Personal Care',
+    price: 18500,
+    image: 'assets/images/cat_hygiene.png'
+  },
+  {
+    id: 'cat-04',
+    name: 'FRAGRANCES',
+    category: 'Fragrance',
+    price: 35000,
+    image: 'assets/images/cat_fragrances.png'
+  }
+];
+
+function syncCatalogueSteppers() {
+  document.querySelectorAll('.catalogue-card__cart-wrap').forEach(wrap => {
+    const id = wrap.dataset.itemId;
+    const addBtn = wrap.querySelector('.btn-add-cart');
+    const stepper = wrap.querySelector('.cart-stepper');
+    const qtySpan = wrap.querySelector('.cart-stepper__qty');
+    const itemInCart = state.cart.find(i => i.id === id);
+
+    if (itemInCart && itemInCart.qty > 0) {
+      if (addBtn) addBtn.style.display = 'none';
+      if (stepper) stepper.style.display = 'flex';
+      if (qtySpan) qtySpan.textContent = itemInCart.qty;
+    } else {
+      if (addBtn) addBtn.style.display = 'flex';
+      if (stepper) stepper.style.display = 'none';
+    }
+  });
+}
+
+function initCatalogue() {
+  document.querySelectorAll('.btn-add-cart').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = btn.dataset.id;
+      const product = CATALOG_ITEMS.find(p => p.id === id);
+      if (product) {
+        addToCart(product);
+      }
+    });
+  });
+
+  document.querySelectorAll('.cart-stepper__btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = btn.dataset.id;
+      const action = btn.dataset.action;
+      const product = CATALOG_ITEMS.find(p => p.id === id);
+      const idx = state.cart.findIndex(i => i.id === id);
+
+      if (action === 'inc') {
+        if (idx > -1) {
+          state.cart[idx].qty++;
+        } else if (product) {
+          state.cart.push({ ...product, qty: 1 });
+        }
+      } else if (action === 'dec') {
+        if (idx > -1) {
+          state.cart[idx].qty--;
+          if (state.cart[idx].qty <= 0) {
+            state.cart.splice(idx, 1);
+          }
+        }
+      }
+      saveCart();
+      updateCartUI();
+    });
+  });
+
+  syncCatalogueSteppers();
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────────
 (function init() {
   if (document.getElementById('product-grid')) {
     renderProducts();
   }
+  initCatalogue();
   updateCartUI();
   initAnimations();
   initParallax();
