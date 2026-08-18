@@ -185,21 +185,67 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ── MOBILE MENU ───────────────────────────────────────────────────────────
-const menuBtn = document.getElementById('menu-btn');
-const mainNav = document.getElementById('main-nav');
-menuBtn.addEventListener('click', () => {
-  const isOpen = mainNav.classList.toggle('is-open');
-  menuBtn.classList.toggle('is-open', isOpen);
-  menuBtn.setAttribute('aria-expanded', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-mainNav.querySelectorAll('.header__nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    mainNav.classList.remove('is-open');
-    menuBtn.classList.remove('is-open');
-    menuBtn.setAttribute('aria-expanded', false);
-    document.body.style.overflow = '';
+const menuBtn     = document.getElementById('menu-btn');
+const mainNav     = document.getElementById('main-nav');
+const navCloseBtn = document.getElementById('nav-close-btn');
+
+function openMobileMenu() {
+  if (!mainNav || !menuBtn) return;
+  mainNav.classList.add('is-open');
+  menuBtn.classList.add('is-open');
+  menuBtn.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+  if (!mainNav || !menuBtn) return;
+  mainNav.classList.remove('is-open');
+  menuBtn.classList.remove('is-open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+if (menuBtn) {
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mainNav.classList.contains('is-open') ? closeMobileMenu() : openMobileMenu();
   });
+}
+
+if (navCloseBtn) {
+  navCloseBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeMobileMenu();
+  });
+}
+
+if (mainNav) {
+  mainNav.querySelectorAll('.header__nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
+  // Close when tapping outside links on the backdrop
+  mainNav.addEventListener('click', (e) => {
+    if (e.target === mainNav) {
+      closeMobileMenu();
+    }
+  });
+}
+
+// Close with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mainNav && mainNav.classList.contains('is-open')) {
+    closeMobileMenu();
+  }
+});
+
+// Close when window resized to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768 && mainNav && mainNav.classList.contains('is-open')) {
+    closeMobileMenu();
+  }
 });
 
 // ── HERO SLIDER ───────────────────────────────────────────────────────────
