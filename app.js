@@ -851,6 +851,27 @@ function setMinDate() {
   dateInput.min = today.toISOString().split('T')[0];
 }
 
+// ── PARALLAX WITH DATA-SPEED ──────────────────────────────────────────────
+function initParallax() {
+  const parallaxEls = document.querySelectorAll('[data-speed]');
+  if (!parallaxEls.length) return;
+
+  function updateParallax() {
+    const windowH = window.innerHeight;
+    parallaxEls.forEach(el => {
+      const speed = parseFloat(el.getAttribute('data-speed')) || 1;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < windowH && rect.bottom > 0) {
+        const offset = ((rect.top + rect.height / 2) - windowH / 2) * (1 - speed) * 0.4;
+        el.style.transform = `translateY(${offset.toFixed(2)}px) scale(1.04)`;
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  updateParallax();
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────────
 (function init() {
   if (document.getElementById('product-grid')) {
@@ -858,5 +879,6 @@ function setMinDate() {
   }
   updateCartUI();
   initAnimations();
+  initParallax();
   setMinDate();
 })();
