@@ -1490,8 +1490,9 @@ ul { list-style: none; }
 /* ── 20. ANIMATIONS ───────────────────────────────────────────────────── */
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 .animate-on-scroll.is-visible {
   opacity: 1;
@@ -1504,10 +1505,10 @@ ul { list-style: none; }
 .product-card.animate-on-scroll.is-visible {
   transform: translateY(0);
 }
-.animate-on-scroll[data-delay="1"] { transition-delay: 0.08s; }
-.animate-on-scroll[data-delay="2"] { transition-delay: 0.18s; }
-.animate-on-scroll[data-delay="3"] { transition-delay: 0.28s; }
-.animate-on-scroll[data-delay="4"] { transition-delay: 0.38s; }
+.animate-on-scroll[data-delay="1"] { transition-delay: 0.1s; }
+.animate-on-scroll[data-delay="2"] { transition-delay: 0.25s; }
+.animate-on-scroll[data-delay="3"] { transition-delay: 0.4s; }
+.animate-on-scroll[data-delay="4"] { transition-delay: 0.55s; }
 
 /* ── 20b. ABOUT PAGE STYLES ─────────────────────────────────────────── */
 .header__nav-link.is-active-link {
@@ -1945,7 +1946,18 @@ ul { list-style: none; }
     color: rgba(255,255,255,0.85);
     letter-spacing: 0.15em;
   }
-  .header__menu-btn { display: flex; z-index: 1060; }
+  .header__menu-btn {
+    display: flex;
+    z-index: 1060;
+    margin-left: auto;
+  }
+  .header__actions {
+    margin-left: auto;
+    gap: 0;
+  }
+  .header__cart-btn {
+    display: none !important;
+  }
   .header__location { display: none; }
   .hero__scroll-hint { display: none; }
   .hero__controls {
