@@ -57,7 +57,7 @@
         <a href="about.html" class="header__nav-link">About Us</a>
         <a href="#catalog" class="header__nav-link">Catalog</a>
         <a href="#quiz" class="header__nav-link">Beauty Quiz</a>
-        <a href="#booking" class="header__nav-link">VIP Booking</a>
+        <a href="#testimonials" class="header__nav-link">Client Stories</a>
         <a href="#partners" class="header__nav-link">Become a Partner</a>
         <a href="#contact" class="header__nav-link">Contact</a>
       </nav>
@@ -120,7 +120,7 @@
         <p class="hero__sub">Luxury cosmetics. Expert consultations. Delivered across Abuja.</p>
         <div class="hero__ctas">
           <a href="#catalog" class="btn btn--primary">Explore Collection</a>
-          <a href="#booking" class="btn btn--ghost">Book VIP Consultation</a>
+          <a href="#contact" class="btn btn--ghost">Get in Touch</a>
         </div>
       </div>
 
@@ -284,71 +284,46 @@
       </div>
     </section>
 
-    <!-- ═══════ VIP BOOKING ═══════ -->
-    <section class="booking section" id="booking">
-      <div class="container booking__inner">
-        <div class="booking__text">
-          <p class="section-eyebrow">Exclusive Experience</p>
-          <h2 class="section-title">Book Your<br /><em>VIP Beauty</em><br /><span class="gold-text">Consultation</span></h2>
-          <p class="booking__para">Our certified beauty consultants are ready to create your personalised skincare and makeup regimen. Available across Abuja at your convenience.</p>
-          <ul class="booking__locations">
-            <li>📍 Maitama Studio — Plot 5 Dulcie Street</li>
-            <li>📍 Wuse II Lounge — Suite 12, Aminu Kano Crescent</li>
-            <li>📍 Gwarinpa Branch — 3rd Avenue, EFAB Estate</li>
-            <li>📍 CBD Office — Aso Drive, Central Business District</li>
-          </ul>
+    <!-- ═══════ TESTIMONIALS (CLIENT STORIES) ═══════ -->
+    <section class="testimonials section" id="testimonials">
+      <div class="container">
+        <p class="section-eyebrow text-center">Client Stories</p>
+        <h2 class="section-title text-center">What Our Clients<br /><em>Are Saying</em></h2>
+        <div class="testimonials__grid">
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">"The NovAge serum has completely transformed my skin. I noticed results within two weeks! The Abuja team was incredibly knowledgeable and so warm."</p>
+            <div class="testimonial-card__author">
+              <img src="assets/images/avatar_adaeze.svg" alt="Adaeze" class="testimonial-card__avatar testimonial-card__avatar--img" />
+              <div>
+                <strong>Adaeze O.</strong>
+                <span>Maitama, Abuja</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card testimonial-card--featured">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">"I booked the VIP foundation matching session and it was pure luxury. They found my perfect shade on the first try — something no store had ever managed. Giordani Gold is flawless!"</p>
+            <div class="testimonial-card__author">
+              <img src="assets/images/avatar_fatima.svg" alt="Fatima" class="testimonial-card__avatar testimonial-card__avatar--img" />
+              <div>
+                <strong>Fatima A.</strong>
+                <span>Wuse II, Abuja</span>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <p class="testimonial-card__text">"The Possess fragrance is my signature scent now. It lasted all day at my corporate event. Fast delivery to Gwarinpa too — same day! Highly recommend."</p>
+            <div class="testimonial-card__author">
+              <img src="assets/images/avatar_chiamaka.svg" alt="Chiamaka" class="testimonial-card__avatar testimonial-card__avatar--img" />
+              <div>
+                <strong>Chiamaka B.</strong>
+                <span>Gwarinpa, Abuja</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <form class="booking__form" id="booking-form" novalidate>
-          <div class="form-group">
-            <label for="booking-name" class="form-label">Full Name</label>
-            <input type="text" id="booking-name" name="name" class="form-input" placeholder="Your full name" required />
-          </div>
-          <div class="form-group">
-            <label for="booking-phone" class="form-label">Phone Number</label>
-            <input type="tel" id="booking-phone" name="phone" class="form-input" placeholder="+234 800 000 0000" required />
-          </div>
-          <div class="form-group">
-            <label for="booking-location" class="form-label">Preferred Location</label>
-            <select id="booking-location" name="location" class="form-input form-select" required>
-              <option value="">Select a location</option>
-              <option value="maitama">Maitama Studio</option>
-              <option value="wuse">Wuse II Lounge</option>
-              <option value="gwarinpa">Gwarinpa Branch</option>
-              <option value="cbd">CBD Office</option>
-              <option value="home">Home Visit (Abuja)</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="booking-date" class="form-label">Date</label>
-              <input type="date" id="booking-date" name="date" class="form-input" required />
-            </div>
-            <div class="form-group">
-              <label for="booking-time" class="form-label">Time</label>
-              <select id="booking-time" name="time" class="form-input form-select" required>
-                <option value="">Select time</option>
-                <option value="10:00">10:00 AM</option>
-                <option value="11:00">11:00 AM</option>
-                <option value="12:00">12:00 PM</option>
-                <option value="13:00">1:00 PM</option>
-                <option value="14:00">2:00 PM</option>
-                <option value="15:00">3:00 PM</option>
-                <option value="16:00">4:00 PM</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="booking-service" class="form-label">Service Type</label>
-            <select id="booking-service" name="service" class="form-input form-select" required>
-              <option value="">Select service</option>
-              <option value="skincare-consult">Skincare Consultation</option>
-              <option value="makeup-consult">Makeup & Foundation Matching</option>
-              <option value="fragrance-consult">Fragrance Discovery</option>
-              <option value="full-beauty">Full Beauty Regimen Session</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn--primary booking__submit">Confirm Booking</button>
-        </form>
       </div>
     </section>
 
@@ -413,49 +388,6 @@
         </form>
       </div>
     </div>
-
-    <!-- ═══════ TESTIMONIALS ═══════ -->
-    <section class="testimonials section" id="testimonials">
-      <div class="container">
-        <p class="section-eyebrow text-center">Client Stories</p>
-        <h2 class="section-title text-center">What Our Clients<br /><em>Are Saying</em></h2>
-        <div class="testimonials__grid">
-          <div class="testimonial-card">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <p class="testimonial-card__text">"The NovAge serum has completely transformed my skin. I noticed results within two weeks! The Abuja team was incredibly knowledgeable and so warm."</p>
-            <div class="testimonial-card__author">
-              <img src="assets/images/avatar_adaeze.svg" alt="Adaeze" class="testimonial-card__avatar testimonial-card__avatar--img" />
-              <div>
-                <strong>Adaeze O.</strong>
-                <span>Maitama, Abuja</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card testimonial-card--featured">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <p class="testimonial-card__text">"I booked the VIP foundation matching session and it was pure luxury. They found my perfect shade on the first try — something no store had ever managed. Giordani Gold is flawless!"</p>
-            <div class="testimonial-card__author">
-              <img src="assets/images/avatar_fatima.svg" alt="Fatima" class="testimonial-card__avatar testimonial-card__avatar--img" />
-              <div>
-                <strong>Fatima A.</strong>
-                <span>Wuse II, Abuja</span>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div class="testimonial-card__stars">★★★★★</div>
-            <p class="testimonial-card__text">"The Possess fragrance is my signature scent now. It lasted all day at my corporate event. Fast delivery to Gwarinpa too — same day! Highly recommend."</p>
-            <div class="testimonial-card__author">
-              <img src="assets/images/avatar_chiamaka.svg" alt="Chiamaka" class="testimonial-card__avatar testimonial-card__avatar--img" />
-              <div>
-                <strong>Chiamaka B.</strong>
-                <span>Gwarinpa, Abuja</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ═══════ CONTACT ═══════ -->
     <section class="contact section" id="contact">
@@ -527,7 +459,7 @@
         <a href="about.html">About Us</a>
         <a href="#catalog">Products</a>
         <a href="#quiz">Beauty Quiz</a>
-        <a href="#booking">VIP Booking</a>
+        <a href="#testimonials">Client Stories</a>
         <a href="#partners">Partners</a>
         <a href="#contact">Contact</a>
       </nav>
