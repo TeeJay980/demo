@@ -5,18 +5,18 @@
 /* ── 1. CSS CUSTOM PROPERTIES ───────────────────────────────────────── */
 :root {
   /* Color Palette */
-  --clr-gold:        #9CDBBE;
-  --clr-gold-light:  #C2EBD9;
-  --clr-gold-dark:   #5DAE8E;
-  --clr-bg:          #FAFBF9;
+  --clr-gold:        #C9A84C;
+  --clr-gold-light:  #DFC47B;
+  --clr-gold-dark:   #A08030;
+  --clr-bg:          #FDFBF7;
   --clr-surface:     #FFFFFF;
-  --clr-surface-2:   #F0F7F3;
-  --clr-obsidian:    #0D1512;
-  --clr-dark:        #15201C;
-  --clr-mid:         #33453E;
-  --clr-muted:       #5E736B;
-  --clr-border:      rgba(156, 219, 190, 0.25);
-  --clr-rose:        #E6F5EE;
+  --clr-surface-2:   #F7F3EB;
+  --clr-obsidian:    #0E0C0A;
+  --clr-dark:        #1C1814;
+  --clr-mid:         #423B33;
+  --clr-muted:       #7A7067;
+  --clr-border:      rgba(201, 168, 76, 0.22);
+  --clr-rose:        #F4ECE1;
 
   /* Typography */
   --ff-serif:  'Cormorant Garamond', Georgia, serif;
@@ -30,7 +30,7 @@
   --shadow-sm:   0 2px 12px rgba(0,0,0,0.06);
   --shadow-md:   0 8px 32px rgba(0,0,0,0.10);
   --shadow-lg:   0 20px 60px rgba(0,0,0,0.15);
-  --shadow-gold: 0 4px 24px rgba(156, 219, 190, 0.35);
+  --shadow-gold: 0 4px 24px rgba(201, 168, 76, 0.35);
 
   /* Transitions */
   --t-fast:    0.18s ease;
