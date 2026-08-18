@@ -1877,17 +1877,22 @@ ul { list-style: none; }
     color: rgba(255,255,255,0.85);
     letter-spacing: 0.15em;
   }
+  .header__actions {
+    margin-left: auto;
+    gap: 1.1rem;
+    display: flex;
+    align-items: center;
+  }
+  .header__cart-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
   .header__menu-btn {
     display: flex;
     z-index: 1060;
-    margin-left: auto;
-  }
-  .header__actions {
-    margin-left: auto;
-    gap: 0;
-  }
-  .header__cart-btn {
-    display: none !important;
+    margin-left: 0;
   }
   .header__location { display: none; }
   .hero__scroll-hint { display: none; }
