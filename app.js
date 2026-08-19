@@ -111,39 +111,39 @@ const PRODUCTS = [
 // ── QUIZ DATA ─────────────────────────────────────────────────────────────
 const QUIZ_STEPS = [
   {
-    question: 'What is your main skin concern?',
+    question: 'What is your primary body & wellness goal?',
     options: [
-      { label: 'Wrinkles & Fine Lines', value: 'antiage' },
-      { label: 'Uneven Skin Tone & Dark Spots', value: 'brightening' },
-      { label: 'Dryness & Dehydration', value: 'hydration' },
-      { label: 'Dullness & Lack of Glow', value: 'glow' },
+      { label: 'Deep Body Moisture & Skin Softness', value: 'hydration' },
+      { label: 'Weight Management & Balanced Nutrition', value: 'nutrition' },
+      { label: 'Intimate Care & Gentle Daily Hygiene', value: 'hygiene' },
+      { label: 'Firming & Anti-Ageing Body Care', value: 'antiage' },
     ],
   },
   {
-    question: 'How would you describe your skin type?',
+    question: 'What type of daily care routine do you prefer?',
     options: [
-      { label: 'Dry & Tight', value: 'dry' },
-      { label: 'Oily & Shiny', value: 'oily' },
-      { label: 'Combination (T-zone oily)', value: 'combo' },
-      { label: 'Sensitive & Reactive', value: 'sensitive' },
+      { label: 'Nourishing Body Scrubs & Creams', value: 'smoothness' },
+      { label: 'Daily Wellness Shake & Energy Boost', value: 'energy' },
+      { label: 'Soothing pH-Balanced Freshness', value: 'freshness' },
+      { label: 'Complete Body & Wellness System', value: 'complete' },
     ],
   },
   {
-    question: 'What best describes your daily lifestyle?',
+    question: 'What best describes your lifestyle focus?',
     options: [
-      { label: 'Corporate / Office Professional', value: 'professional' },
-      { label: 'Active & Outdoors', value: 'active' },
-      { label: 'Social & Beauty Enthusiast', value: 'social' },
-      { label: 'Minimal, Low-Maintenance', value: 'minimal' },
+      { label: 'Fitness, Health & Active Energy', value: 'active' },
+      { label: 'Self-Care & Relaxing Home Pampering', value: 'pampering' },
+      { label: 'Busy Corporate Schedule / On-the-Go', value: 'professional' },
+      { label: 'Gentle Care for Sensitive Skin & Body', value: 'gentle' },
     ],
   },
 ];
 
 const QUIZ_RESULTS = {
-  antiage:     { icon: '✨', title: 'NovAge Anti-Ageing Regimen', text: 'Your personalised routine focuses on collagen renewal and deep firming.', products: ['NovAge Ecollagen Serum', 'NovAge Ultimate Lift Set', 'Giordani Gold Lipstick'] },
-  brightening: { icon: '🌟', title: 'Bright Sublime Routine', text: 'Your ideal regimen targets pigmentation and delivers luminous, even-toned skin.', products: ['NovAge Bright Sublime Essence', 'Giordani Gold Master Creation Foundation', 'Tender Care Balm'] },
-  hydration:   { icon: '💧', title: 'Deep Hydration System', text: 'Your routine delivers intense moisture replenishment and a plumped, dewy finish.', products: ['NovAge Ecollagen Serum', 'Love Nature Body Cream', 'Tender Care Balm'] },
-  glow:        { icon: '💛', title: 'Radiance Glow Collection', text: 'Your regimen illuminates from within, combining skincare science and effortless makeup.', products: ['NovAge Bright Sublime Essence', 'Giordani Gold Foundation', 'THE ONE Tremendous Mascara'] },
+  hydration:  { icon: '🌿', title: 'Nourishing Body & Skincare Routine', text: 'Your personalized wellness routine focuses on intense body hydration, smooth exfoliation, and velvety soft skin.', products: ['Love Nature Honey & Almond Body Cream', 'Optimals Body Exfoliating Scrub', 'Tender Care Protecting Balm'] },
+  nutrition:  { icon: '🥗', title: 'Wellosophy Weight & Health Regimen', text: 'Your ideal wellness regimen supports your weight management goals with clean, balanced nutrition and high protein shakes.', products: ['Wellosophy Meal Replacement Shake', 'Wellosophy Wellness Pack', 'Personal Hygiene Essentials'] },
+  hygiene:    { icon: '🌸', title: 'Feminelle Intimate & Body Care', text: 'Your routine delivers gentle, pH-balanced freshness, irritation-free comfort, and daily intimate care.', products: ['Feminelle Soothing Intimate Wash', 'Love Nature Body Cream', 'Tender Care Balm'] },
+  antiage:    { icon: '✨', title: 'NovAge Body & Skincare System', text: 'Your regimen combines bioactive plant technology for firm, smooth, youthfully energized body skin.', products: ['NovAge MEN Set / NovAge Ultimate Lift Set', 'Optimals Body Scrub', 'Love Nature Body Cream'] },
 };
 
 // ── STATE ─────────────────────────────────────────────────────────────────
