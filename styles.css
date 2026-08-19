@@ -916,7 +916,7 @@ ul { list-style: none; }
   position: relative;
   z-index: 2;
   padding: 2.2rem;
-  background: linear-gradient(to top, rgba(14, 12, 10, 0.95) 0%, rgba(14, 12, 10, 0.65) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(14, 12, 10, 0.90) 0%, rgba(14, 12, 10, 0.25) 55%, transparent 100%);
   color: #fff;
 }
 .reviews-slideshow__badge {
@@ -2348,6 +2348,8 @@ ul { list-style: none; }
   .partners__calc-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .testimonials__grid { grid-template-columns: 1fr; }
   .testimonial-card--featured { transform: none; }
+  .featured-reviews__layout { grid-template-columns: 1fr; gap: 2rem; }
+  .featured-reviews__left-card { min-height: 440px; }
 }
 
 @media (max-width: 768px) {
@@ -2454,6 +2456,13 @@ ul { list-style: none; }
   .form-row { grid-template-columns: 1fr; }
   .catalog__toolbar { flex-direction: column; align-items: stretch; }
   .catalog__search-wrap { max-width: 100%; }
+  .featured-reviews__left-card { min-height: 420px; }
+  .reviews-slideshow__overlay {
+    padding: 1.6rem 1.25rem;
+    background: linear-gradient(to top, rgba(14, 12, 10, 0.90) 0%, rgba(14, 12, 10, 0.20) 55%, transparent 100%);
+  }
+  .reviews-slideshow__title { font-size: 1.45rem; }
+  .featured-reviews__right-grid { grid-template-columns: 1fr; gap: 1.2rem; }
 }
 
 @media (max-width: 480px) {
@@ -2471,6 +2480,7 @@ ul { list-style: none; }
   .booking__form { padding: 1.5rem; }
   .newsletter-card { padding: 1.8rem 1.2rem; }
   .about-hero__title { font-size: 2.3rem; }
+  .featured-reviews__left-card { min-height: 380px; }
 }
 
 /* ── FLOATING WHATSAPP BUTTON ────────────────────────────────────────── */
