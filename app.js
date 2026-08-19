@@ -892,7 +892,7 @@ const CATALOG_ITEMS = [
     desc: 'When your skin tone evens out naturally. Achieve a radiant, balanced complexion with Oriflame Optimals Swedish botanical science formulated with natural Swedish plant extracts.',
     category: 'Skincare',
     price: 38500,
-    image: 'assets/images/cat_optimals.png',
+    image: 'assets/images/cat_optimals.webp',
     waText: 'Hi, I would like to order the Optimals set from Oriflame Central Store Abuja.'
   },
   {
@@ -902,17 +902,17 @@ const CATALOG_ITEMS = [
     desc: "Weightloss doesn't have to be hard. The Oriflame Wellosophy Meal Replacement Shake is designed to help you stay satisfied while supporting your nutrition and weight management goals.",
     category: 'Wellness',
     price: 42000,
-    image: 'assets/images/cat_weightloss.png',
+    image: 'assets/images/cat_weightloss.webp',
     waText: 'Hi, I would like to order the Wellosophy Meal Replacement Shake from Oriflame Central Store Abuja.'
   },
   {
     id: 'cat-03',
-    name: 'Personal hygiene (oral, intimate & body)',
+    name: 'Personal Hygiene',
     preview: 'Personal Hygiene takes anot...',
     desc: 'Personal Hygiene takes another level of Swedish care. Gentle organic oral, intimate, and daily body care essentials crafted for whole-family comfort and long-lasting freshness.',
     category: 'Personal Care',
     price: 18500,
-    image: 'assets/images/cat_hygiene.png',
+    image: 'assets/images/cat_hygiene.webp',
     waText: 'Hi, I would like to order the Personal Hygiene products from Oriflame Central Store Abuja.'
   },
   {
@@ -922,7 +922,7 @@ const CATALOG_ITEMS = [
     desc: 'Celebrate Life and Smell fabulous with exclusive Swedish perfumes and luxury artisan fragrances crafted for elegance and unforgettable presence.',
     category: 'Fragrance',
     price: 35000,
-    image: 'assets/images/cat_fragrances.png',
+    image: 'assets/images/cat_fragrances.webp',
     waText: 'Hi, I would like to order from the Fragrances collection from Oriflame Central Store Abuja.'
   },
   {
