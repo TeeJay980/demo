@@ -1142,6 +1142,7 @@ function updateFloatingWaBtnVisibility() {
   if (!floatingWaBtn) return;
 
   const catalogueDrawer = document.getElementById('catalogue-drawer');
+  const hero = document.getElementById('hero') || document.querySelector('.about-hero');
   const catalog = document.getElementById('catalog');
 
   // 1. Hide if Catalogue drawer is open
@@ -1150,16 +1151,19 @@ function updateFloatingWaBtnVisibility() {
     return;
   }
 
-  // 2. Hide if user is at top Hero section (scrolled less than 150px)
-  if (window.scrollY < 150) {
-    floatingWaBtn.classList.add('is-hidden');
-    return;
+  // 2. Hide if user is anywhere inside the Hero section
+  if (hero) {
+    const heroRect = hero.getBoundingClientRect();
+    if (heroRect.bottom > 50) {
+      floatingWaBtn.classList.add('is-hidden');
+      return;
+    }
   }
 
-  // 3. Hide if user is inside the Product Catalogue section (#catalog)
+  // 3. Hide if user is anywhere inside the Product Catalogue section (#catalog)
   if (catalog) {
     const catalogRect = catalog.getBoundingClientRect();
-    if (catalogRect.top < window.innerHeight - 80 && catalogRect.bottom > 80) {
+    if (catalogRect.top < window.innerHeight - 30 && catalogRect.bottom > 30) {
       floatingWaBtn.classList.add('is-hidden');
       return;
     }
