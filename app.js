@@ -1103,12 +1103,40 @@ function initCatalogue() {
   syncCatalogueSteppers();
 }
 
+// ── REVIEWS AUTO SLIDESHOW ────────────────────────────────────────────────
+function initReviewsSlideshow() {
+  const container = document.getElementById('reviews-slideshow');
+  if (!container) return;
+  const slides = container.querySelectorAll('.reviews-slideshow__slide');
+  const dots = document.querySelectorAll('#reviews-slideshow-dots .reviews-slideshow__dot');
+  if (!slides.length) return;
+  let current = 0;
+
+  function goToSlide(idx) {
+    slides[current].classList.remove('is-active');
+    if (dots[current]) dots[current].classList.remove('is-active');
+    current = idx;
+    slides[current].classList.add('is-active');
+    if (dots[current]) dots[current].classList.add('is-active');
+  }
+
+  setInterval(() => {
+    const next = (current + 1) % slides.length;
+    goToSlide(next);
+  }, 4000);
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => goToSlide(idx));
+  });
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────────
 (function init() {
   if (document.getElementById('product-grid')) {
     renderProducts();
   }
   initCatalogue();
+  initReviewsSlideshow();
   updateCartUI();
   initAnimations();
   initParallax();
