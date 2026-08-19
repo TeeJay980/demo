@@ -1166,6 +1166,38 @@ function updateFloatingWaBtnVisibility() {
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
 window.addEventListener('resize', updateFloatingWaBtnVisibility, { passive: true });
 
+// ── TERRENCE DEVELOPER MODAL ──────────────────────────────────────────────
+function initTerrenceModal() {
+  const modal = document.getElementById('terrence-modal');
+  const openBtns = document.querySelectorAll('#terrence-modal-btn, .terrence-btn');
+  const closeBtn = document.getElementById('terrence-modal-close');
+
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openBtns.forEach(btn => btn.addEventListener('click', openModal));
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────────
 (function init() {
   if (document.getElementById('product-grid')) {
@@ -1173,6 +1205,7 @@ window.addEventListener('resize', updateFloatingWaBtnVisibility, { passive: true
   }
   initCatalogue();
   initReviewsSlideshow();
+  initTerrenceModal();
   updateCartUI();
   initAnimations();
   initParallax();
