@@ -2483,3 +2483,61 @@ ul { list-style: none; }
   .about-hero__title { font-size: 2.3rem; }
 }
 
+/* ── FLOATING WHATSAPP BUTTON ────────────────────────────────────────── */
+.floating-wa-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25D366;
+  color: #fff;
+  padding: 0.75rem 1.25rem 0.75rem 0.9rem;
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform var(--t-med), box-shadow var(--t-med), background var(--t-fast);
+  text-decoration: none;
+}
+.floating-wa-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(37, 211, 102, 0.55), 0 6px 16px rgba(0, 0, 0, 0.25);
+  background: #22BF5B;
+  color: #fff;
+}
+.floating-wa-btn__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  animation: waPulse 2s infinite;
+  pointer-events: none;
+}
+@keyframes waPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.floating-wa-btn__label {
+  font-family: var(--ff-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .floating-wa-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+  }
+  .floating-wa-btn__label {
+    display: none;
+  }
+  .floating-wa-btn__pulse {
+    border-radius: 50%;
+  }
+}
+
