@@ -379,36 +379,9 @@ ul { list-style: none; }
 .header__menu-btn.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .header__menu-btn.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--clr-gold); }
 
-/* ── 8. CART DRAWER ──────────────────────────────────────────────────── */
-.cart-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1100;
-  opacity: 0;
-  visibility: hidden;
-  transition: all var(--t-med);
-}
-.cart-overlay.is-open { opacity: 1; visibility: visible; }
-.cart-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: min(400px, 100vw);
-  background: var(--clr-surface);
-  z-index: 1200;
-  transform: translateX(100%);
-  transition: transform var(--t-slow), visibility var(--t-slow);
-  display: flex;
-  flex-direction: column;
-  box-shadow: none;
-  visibility: hidden;
-}
-.cart-drawer.is-open {
-  transform: translateX(0);
-  box-shadow: -10px 0 60px rgba(0,0,0,0.2);
-  visibility: visible;
+/* ── 8. CART DRAWER (REMOVED) ────────────────────────────────────────── */
+.cart-overlay, .cart-drawer, .header__cart-btn, .catalogue-card__cart-wrap, .cart-stepper {
+  display: none !important;
 }
 .cart-drawer__header {
   display: flex;

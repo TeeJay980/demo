@@ -507,7 +507,7 @@ function renderProducts() {
           </div>` : ''}
         <div class="product-card__footer">
           <div class="product-card__price">${fmt(p.price)}</div>
-          <button class="product-card__add" data-add="${p.id}" aria-label="Add ${p.name} to cart">Add to Cart</button>
+          <a href="https://wa.me/2348160756002?text=${encodeURIComponent('Hello Oriflame Abuja! ✦ I am interested in purchasing *' + p.name + '* (' + fmt(p.price) + '). Please confirm availability & delivery in Abuja.')}" target="_blank" rel="noopener noreferrer" class="product-card__add btn-wa-order" aria-label="Order ${p.name} on WhatsApp">Order on WhatsApp</a>
         </div>
       </div>
     </article>
