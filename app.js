@@ -977,6 +977,7 @@ function openCatalogue() {
   if (catalogueOverlay) catalogueOverlay.classList.add('is-open');
   document.body.style.overflow = 'hidden';
   closeMobileMenu();
+  updateFloatingWaBtnVisibility();
 }
 
 function closeCatalogue() {
@@ -985,6 +986,7 @@ function closeCatalogue() {
   if (catalogueOverlay) catalogueOverlay.classList.remove('is-open');
   document.body.style.overflow = '';
   setTimeout(showCatalogueList, 300);
+  setTimeout(updateFloatingWaBtnVisibility, 350);
 }
 
 function showCatalogueList() {
@@ -1125,6 +1127,46 @@ function initReviewsSlideshow() {
   });
 }
 
+// ── FLOATING WA BUTTON VISIBILITY CONTROL ─────────────────────────────
+function updateFloatingWaBtnVisibility() {
+  const floatingWaBtn = document.querySelector('.floating-wa-btn');
+  if (!floatingWaBtn) return;
+
+  const catalogueDrawer = document.getElementById('catalogue-drawer');
+  const hero = document.getElementById('hero') || document.querySelector('.about-hero');
+  const catalog = document.getElementById('catalog');
+
+  // 1. Hide if Catalogue drawer is open
+  if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
+    floatingWaBtn.classList.add('is-hidden');
+    return;
+  }
+
+  // 2. Hide if in Hero section (scrolled near top)
+  if (hero) {
+    const heroRect = hero.getBoundingClientRect();
+    if (heroRect.bottom > 120) {
+      floatingWaBtn.classList.add('is-hidden');
+      return;
+    }
+  }
+
+  // 3. Hide if inside Product Catalogue grid section
+  if (catalog) {
+    const catalogRect = catalog.getBoundingClientRect();
+    if (catalogRect.top < window.innerHeight - 100 && catalogRect.bottom > 100) {
+      floatingWaBtn.classList.add('is-hidden');
+      return;
+    }
+  }
+
+  // Otherwise, show the floating WhatsApp button
+  floatingWaBtn.classList.remove('is-hidden');
+}
+
+window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
+window.addEventListener('resize', updateFloatingWaBtnVisibility, { passive: true });
+
 // ── INIT ──────────────────────────────────────────────────────────────────
 (function init() {
   if (document.getElementById('product-grid')) {
@@ -1136,4 +1178,5 @@ function initReviewsSlideshow() {
   initAnimations();
   initParallax();
   setMinDate();
+  updateFloatingWaBtnVisibility();
 })();

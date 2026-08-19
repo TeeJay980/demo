@@ -2506,8 +2506,14 @@ ul { list-style: none; }
   padding: 0.75rem 1.25rem 0.75rem 0.9rem;
   border-radius: 50px;
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform var(--t-med), box-shadow var(--t-med), background var(--t-fast);
+  transition: opacity var(--t-med), visibility var(--t-med), transform var(--t-med), box-shadow var(--t-med), background var(--t-fast);
   text-decoration: none;
+}
+.floating-wa-btn.is-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(20px) scale(0.9) !important;
 }
 .floating-wa-btn:hover {
   transform: translateY(-4px) scale(1.03);
