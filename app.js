@@ -1146,14 +1146,12 @@ function updateFloatingWaBtnVisibility() {
 
   // 1. Hide if Catalogue drawer is open
   if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
-    floatingWaBtn.classList.remove('is-visible');
     floatingWaBtn.classList.add('is-hidden');
     return;
   }
 
-  // 2. Hide if user is currently on the Hero section (scrolled less than 60% of viewport height)
-  if (window.scrollY < window.innerHeight * 0.6) {
-    floatingWaBtn.classList.remove('is-visible');
+  // 2. Hide if user is at top Hero section (scrolled less than 150px)
+  if (window.scrollY < 150) {
     floatingWaBtn.classList.add('is-hidden');
     return;
   }
@@ -1162,7 +1160,6 @@ function updateFloatingWaBtnVisibility() {
   if (catalog) {
     const catalogRect = catalog.getBoundingClientRect();
     if (catalogRect.top < window.innerHeight - 80 && catalogRect.bottom > 80) {
-      floatingWaBtn.classList.remove('is-visible');
       floatingWaBtn.classList.add('is-hidden');
       return;
     }
@@ -1170,7 +1167,6 @@ function updateFloatingWaBtnVisibility() {
 
   // Otherwise, show the floating WhatsApp button
   floatingWaBtn.classList.remove('is-hidden');
-  floatingWaBtn.classList.add('is-visible');
 }
 
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });

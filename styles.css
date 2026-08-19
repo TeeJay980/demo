@@ -712,6 +712,8 @@ ul { list-style: none; }
   gap: 0.6rem;
   padding: 0.5rem 2.5rem;
   flex-shrink: 0;
+  opacity: 1 !important;
+  transform: none !important;
 }
 .brand-strip__icon { font-size: 1.1rem; }
 .brand-strip__label {
@@ -2471,16 +2473,8 @@ ul { list-style: none; }
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: opacity var(--t-med), visibility var(--t-med), transform var(--t-med), box-shadow var(--t-med), background var(--t-fast);
   text-decoration: none;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(20px) scale(0.9);
-}
-.floating-wa-btn.is-visible {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  transform: translateY(0) scale(1) !important;
+  opacity: 1;
+  visibility: visible;
 }
 .floating-wa-btn.is-hidden {
   opacity: 0 !important;
