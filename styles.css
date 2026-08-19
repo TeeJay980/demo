@@ -656,16 +656,6 @@ ul { list-style: none; }
   border-color: var(--clr-gold);
   color: #fff;
 }
-  line-height: 1;
-  padding: 0.3rem 0.5rem;
-  border: 1px solid rgba(255,255,255,0.15);
-  transition: all var(--t-fast);
-}
-.hero__arrow-btn:hover {
-  background: var(--clr-gold);
-  border-color: var(--clr-gold);
-  color: #fff;
-}
 .hero__scroll-hint {
   position: absolute;
   left: 3rem;
@@ -2537,29 +2527,5 @@ ul { list-style: none; }
   .floating-wa-btn__pulse {
     border-radius: 50%;
   }
-}
-
-/* ── BOTTOM EDGE BLUR MASK ────────────────────────────────────────────── */
-.bottom-blur-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: -20px;
-  right: -20px;
-  height: 6rem;
-  pointer-events: none;
-  z-index: 990;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.85) 45%, transparent 100%);
-  mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.85) 45%, transparent 100%);
-}
-.bottom-blur-inner {
-  position: absolute;
-  top: -40px;
-  bottom: -40px;
-  left: 0;
-  right: 0;
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  background: linear-gradient(to top, rgba(14, 12, 10, 0.85) 0%, rgba(14, 12, 10, 0.3) 55%, rgba(14, 12, 10, 0) 100%);
 }
 

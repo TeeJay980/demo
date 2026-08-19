@@ -819,6 +819,10 @@ if (newsletterForm) {
 
 // ── SCROLL ANIMATIONS ─────────────────────────────────────────────────────
 function observeAnimations() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.add('is-visible'));
+    return;
+  }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -826,10 +830,15 @@ function observeAnimations() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.02, rootMargin: '100px 0px 100px 0px' });
 
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('is-visible');
+    } else {
+      observer.observe(el);
+    }
   });
 }
 
@@ -1133,7 +1142,6 @@ function updateFloatingWaBtnVisibility() {
   if (!floatingWaBtn) return;
 
   const catalogueDrawer = document.getElementById('catalogue-drawer');
-  const hero = document.getElementById('hero') || document.querySelector('.about-hero');
   const catalog = document.getElementById('catalog');
 
   // 1. Hide if Catalogue drawer is open
@@ -1143,20 +1151,17 @@ function updateFloatingWaBtnVisibility() {
     return;
   }
 
-  // 2. Hide if inside Hero section
-  if (hero) {
-    const heroRect = hero.getBoundingClientRect();
-    if (heroRect.bottom > 80 && heroRect.top < window.innerHeight) {
-      floatingWaBtn.classList.remove('is-visible');
-      floatingWaBtn.classList.add('is-hidden');
-      return;
-    }
+  // 2. Hide if user is currently on the Hero section (scrolled less than 60% of viewport height)
+  if (window.scrollY < window.innerHeight * 0.6) {
+    floatingWaBtn.classList.remove('is-visible');
+    floatingWaBtn.classList.add('is-hidden');
+    return;
   }
 
-  // 3. Hide if inside Product Catalogue section
+  // 3. Hide if user is inside the Product Catalogue section (#catalog)
   if (catalog) {
     const catalogRect = catalog.getBoundingClientRect();
-    if (catalogRect.top < window.innerHeight - 50 && catalogRect.bottom > 50) {
+    if (catalogRect.top < window.innerHeight - 80 && catalogRect.bottom > 80) {
       floatingWaBtn.classList.remove('is-visible');
       floatingWaBtn.classList.add('is-hidden');
       return;
