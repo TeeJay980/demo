@@ -533,9 +533,9 @@ ul { list-style: none; }
   inset: 0;
   background: linear-gradient(
     120deg,
-    rgba(10,9,8,0.85) 0%,
-    rgba(10,9,8,0.5) 50%,
-    rgba(10,9,8,0.15) 100%
+    rgba(10,9,8,0.92) 0%,
+    rgba(10,9,8,0.72) 55%,
+    rgba(10,9,8,0.45) 100%
   );
 }
 .hero__content {
