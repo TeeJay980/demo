@@ -241,13 +241,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Close when window resized to desktop
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 768 && mainNav && mainNav.classList.contains('is-open')) {
-    closeMobileMenu();
-  }
-});
-
 // ── HERO SLIDER ───────────────────────────────────────────────────────────
 (function initHero() {
   const slides   = document.querySelectorAll('.hero__slide');
