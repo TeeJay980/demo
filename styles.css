@@ -1903,55 +1903,40 @@ ul { list-style: none; }
 .footer {
   background: var(--clr-obsidian);
   border-top: 1px solid rgba(201,168,76,0.15);
-  padding: 3.5rem 0;
+  padding: 2.2rem 0;
 }
 .footer__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.8rem;
+  gap: 1rem;
   text-align: center;
 }
-.footer__brand { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.footer__brand { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
 .footer__logo {
   font-family: var(--ff-serif);
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: var(--clr-gold);
   display: block;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
   line-height: 1;
 }
 .footer__brand-name {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-family: var(--ff-serif);
   font-weight: 600;
   letter-spacing: 0.06em;
   color: rgba(255,255,255,0.9);
 }
 .footer__brand-tagline {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.25);
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.3);
   font-style: italic;
 }
-.footer__links {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.footer__links a {
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  transition: color var(--t-fast);
-}
-.footer__links a:hover { color: var(--clr-gold); }
 .footer__legal {
   font-size: 0.66rem;
-  color: rgba(255,255,255,0.2);
-  line-height: 1.7;
+  color: rgba(255,255,255,0.22);
+  line-height: 1.6;
 }
 
 /* ── 20. ANIMATIONS ───────────────────────────────────────────────────── */
