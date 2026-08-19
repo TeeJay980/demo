@@ -2522,10 +2522,20 @@ ul { list-style: none; }
 }
 
 /* ── TERRENCE DEVELOPER CREDIT & MODAL ────────────────────────────────── */
-.footer__terrence-credit {
-  margin-top: 0.4rem;
-  display: inline-block;
-  color: var(--clr-muted);
+.footer__legal-wrap {
+  text-align: right;
+}
+@media (max-width: 768px) {
+  .footer__legal-wrap {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+.footer__credit {
+  margin-top: 0.6rem;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.02em;
 }
 .terrence-btn {
   background: none;
@@ -2533,14 +2543,16 @@ ul { list-style: none; }
   color: var(--clr-gold);
   font-family: inherit;
   font-size: inherit;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  padding: 0;
+  padding: 0 0.2rem;
   text-decoration: underline;
-  transition: color var(--t-fast);
+  text-underline-offset: 3px;
+  transition: color var(--t-fast), transform var(--t-fast);
 }
 .terrence-btn:hover {
-  color: var(--clr-gold-light);
+  color: #fff;
+  transform: scale(1.05);
 }
 
 .terrence-modal-card {
