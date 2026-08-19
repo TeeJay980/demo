@@ -1143,34 +1143,27 @@ function updateFloatingWaBtnVisibility() {
 
   const catalogueDrawer = document.getElementById('catalogue-drawer');
   const hero = document.getElementById('hero') || document.querySelector('.about-hero');
-  const catalog = document.getElementById('catalog');
 
   // 1. Hide if Catalogue drawer is open
   if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
+    floatingWaBtn.classList.remove('is-visible');
     floatingWaBtn.classList.add('is-hidden');
     return;
   }
 
-  // 2. Hide if user is anywhere inside the Hero section
+  // 2. Hide if user is anywhere on the Hero section
   if (hero) {
     const heroRect = hero.getBoundingClientRect();
-    if (heroRect.bottom > 50) {
+    if (heroRect.bottom > 80) {
+      floatingWaBtn.classList.remove('is-visible');
       floatingWaBtn.classList.add('is-hidden');
       return;
     }
   }
 
-  // 3. Hide if user is anywhere inside the Product Catalogue section (#catalog)
-  if (catalog) {
-    const catalogRect = catalog.getBoundingClientRect();
-    if (catalogRect.top < window.innerHeight - 30 && catalogRect.bottom > 30) {
-      floatingWaBtn.classList.add('is-hidden');
-      return;
-    }
-  }
-
-  // Otherwise, show the floating WhatsApp button
+  // Otherwise, show the floating WhatsApp button!
   floatingWaBtn.classList.remove('is-hidden');
+  floatingWaBtn.classList.add('is-visible');
 }
 
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
