@@ -1043,14 +1043,22 @@ if (catalogueDetailBottomBackBtn) catalogueDetailBottomBackBtn.addEventListener(
 if (catalogueOverlay) catalogueOverlay.addEventListener('click', closeCatalogue);
 
 // Open Catalogue whenever Catalogue nav link is clicked
-document.querySelectorAll('a[href="#catalog"], a[href="index.html#catalog"]').forEach(link => {
+document.querySelectorAll('a[href="#catalog"], a[href="index.html#catalog"], a[href="#catalogue"]').forEach(link => {
   link.addEventListener('click', (e) => {
+    if (window.location.pathname.includes('about.html')) {
+      return; // allow navigation to index.html#catalog
+    }
     e.preventDefault();
     openCatalogue();
   });
 });
 
 function initCatalogue() {
+  // Check URL params/hash to auto-open catalogue drawer
+  if (window.location.search.includes('open=catalogue') || window.location.hash === '#catalog') {
+    setTimeout(openCatalogue, 300);
+  }
+
   // Clicking an item or picture in the catalogue list opens the full detail view
   document.querySelectorAll('.catalog-list-item').forEach(item => {
     item.addEventListener('click', () => {
@@ -1144,24 +1152,23 @@ function updateFloatingWaBtnVisibility() {
   const catalogueDrawer = document.getElementById('catalogue-drawer');
   const hero = document.getElementById('hero') || document.querySelector('.about-hero');
 
-  // 1. Check if Catalogue drawer is open
-  const isCatalogueOpen = catalogueDrawer && catalogueDrawer.classList.contains('is-open');
-
-  // 2. Check if user is currently on the Hero section (hero bottom occupies > 25% of viewport)
-  let isHeroVisible = false;
-  if (hero) {
-    const heroRect = hero.getBoundingClientRect();
-    isHeroVisible = heroRect.bottom > (window.innerHeight * 0.25);
-  }
-
-  // Hide if either Catalogue drawer is open OR user is viewing Hero section
-  const shouldHide = isCatalogueOpen || isHeroVisible;
-
-  if (shouldHide) {
+  // 1. Hide if Catalogue drawer is open
+  if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
     floatingWaBtn.classList.add('is-hidden');
-  } else {
-    floatingWaBtn.classList.remove('is-hidden');
+    return;
   }
+
+  // 2. Hide if user is currently viewing the Hero section
+  if (hero) {
+    const heroHeight = hero.offsetHeight || window.innerHeight;
+    if (window.scrollY < heroHeight - 100) {
+      floatingWaBtn.classList.add('is-hidden');
+      return;
+    }
+  }
+
+  // 3. In every other section, SHOW the WhatsApp button!
+  floatingWaBtn.classList.remove('is-hidden');
 }
 
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
