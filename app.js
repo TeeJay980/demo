@@ -1144,23 +1144,24 @@ function updateFloatingWaBtnVisibility() {
   const catalogueDrawer = document.getElementById('catalogue-drawer');
   const hero = document.getElementById('hero') || document.querySelector('.about-hero');
 
-  // 1. Hide if Catalogue drawer is open
-  if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
-    floatingWaBtn.classList.add('is-hidden');
-    return;
-  }
+  // 1. Check if Catalogue drawer is open
+  const isCatalogueOpen = catalogueDrawer && catalogueDrawer.classList.contains('is-open');
 
-  // 2. Hide if user is currently viewing the Hero section
+  // 2. Check if user is currently on the Hero section (hero bottom occupies > 25% of viewport)
+  let isHeroVisible = false;
   if (hero) {
-    const heroHeight = hero.offsetHeight || window.innerHeight;
-    if (window.scrollY < heroHeight - 100) {
-      floatingWaBtn.classList.add('is-hidden');
-      return;
-    }
+    const heroRect = hero.getBoundingClientRect();
+    isHeroVisible = heroRect.bottom > (window.innerHeight * 0.25);
   }
 
-  // 3. In every other section, SHOW the WhatsApp button!
-  floatingWaBtn.classList.remove('is-hidden');
+  // Hide if either Catalogue drawer is open OR user is viewing Hero section
+  const shouldHide = isCatalogueOpen || isHeroVisible;
+
+  if (shouldHide) {
+    floatingWaBtn.classList.add('is-hidden');
+  } else {
+    floatingWaBtn.classList.remove('is-hidden');
+  }
 }
 
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
