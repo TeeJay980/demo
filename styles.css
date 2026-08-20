@@ -2471,14 +2471,20 @@ ul { list-style: none; }
   padding: 0.75rem 1.25rem 0.75rem 0.9rem;
   border-radius: 50px;
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: opacity var(--t-med), visibility var(--t-med), transform var(--t-med), box-shadow var(--t-med), background var(--t-fast);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow var(--t-med),
+              background var(--t-fast);
   text-decoration: none;
+  transform: translateY(0) scale(1);
+  will-change: opacity, transform;
 }
 .floating-wa-btn.is-hidden {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
-  transform: translateY(20px) scale(0.9) !important;
+  transform: translateY(32px) scale(0.82) !important;
 }
 .floating-wa-btn:hover {
   transform: translateY(-4px) scale(1.03);
