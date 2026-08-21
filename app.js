@@ -1119,11 +1119,15 @@ function updateFloatingWaBtnVisibility() {
   const catalogueDrawer = document.getElementById('catalogue-drawer');
   const hero = document.getElementById('hero') || document.querySelector('.about-hero');
 
+  const blurBar = document.querySelector('.bottom-blur-bar');
+
   // 1. Hide if Catalogue drawer is open
   if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
     floatingWaBtn.classList.add('is-hidden');
+    if (blurBar) blurBar.classList.add('is-hidden');
     return;
   }
+  if (blurBar) blurBar.classList.remove('is-hidden');
 
   // 2. Hide if user is currently viewing the Hero section
   if (hero) {
