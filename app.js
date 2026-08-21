@@ -1158,21 +1158,10 @@ function updateFloatingWaBtnVisibility() {
     return;
   }
 
-  // Rule 2: Hide while hero section is visible on screen
+  // Rule 2: Hide while ANY part of the hero section is still on screen
   if (hero) {
     const heroBottom = hero.getBoundingClientRect().bottom;
     if (heroBottom > 0) {
-      btn.classList.remove('is-visible');
-      return;
-    }
-  }
-
-  // Rule 3: Hide while the catalogue (#catalog) section is visible on screen
-  const catalogSection = document.getElementById('catalog');
-  if (catalogSection) {
-    const rect = catalogSection.getBoundingClientRect();
-    // Section is visible if its top is above the bottom of the viewport AND its bottom is below the top
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
       btn.classList.remove('is-visible');
       return;
     }
