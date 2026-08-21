@@ -2652,8 +2652,21 @@ ul { list-style: none; }
   padding: 0.75rem 1.25rem 0.75rem 0.9rem;
   border-radius: 50px;
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: opacity var(--t-med), visibility var(--t-med), transform var(--t-med), box-shadow var(--t-med), background var(--t-fast);
   text-decoration: none;
+  /* Hidden by default — slides up with smooth animation when .is-visible is added */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(24px) scale(0.9);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              background 0.2s ease;
+}
+.floating-wa-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
 }
 .floating-wa-btn.is-hidden {
   opacity: 0 !important;

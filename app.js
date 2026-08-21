@@ -1146,29 +1146,40 @@ function initReviewsSlideshow() {
 
 // ── FLOATING WA BUTTON VISIBILITY CONTROL ─────────────────────────────
 function updateFloatingWaBtnVisibility() {
-  const floatingWaBtn = document.querySelector('.floating-wa-btn');
-  if (!floatingWaBtn) return;
+  const btn = document.querySelector('.floating-wa-btn');
+  if (!btn) return;
 
   const catalogueDrawer = document.getElementById('catalogue-drawer');
-  const hero = document.getElementById('hero') || document.querySelector('.about-hero');
+  const hero = document.getElementById('hero');
 
-  // 1. Hide if Catalogue drawer is open
+  // Rule 1: Always hide if catalogue drawer is open
   if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
-    floatingWaBtn.classList.add('is-hidden');
+    btn.classList.remove('is-visible');
     return;
   }
 
-  // 2. Hide if user is currently viewing the Hero section
+  // Rule 2: Hide while hero section is visible on screen
   if (hero) {
-    const heroHeight = hero.offsetHeight || window.innerHeight;
-    if (window.scrollY < heroHeight - 100) {
-      floatingWaBtn.classList.add('is-hidden');
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    if (heroBottom > 0) {
+      btn.classList.remove('is-visible');
       return;
     }
   }
 
-  // 3. In every other section, SHOW the WhatsApp button!
-  floatingWaBtn.classList.remove('is-hidden');
+  // Rule 3: Hide while the catalogue (#catalog) section is visible on screen
+  const catalogSection = document.getElementById('catalog');
+  if (catalogSection) {
+    const rect = catalogSection.getBoundingClientRect();
+    // Section is visible if its top is above the bottom of the viewport AND its bottom is below the top
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      btn.classList.remove('is-visible');
+      return;
+    }
+  }
+
+  // All clear — show the button with smooth slide-up animation
+  btn.classList.add('is-visible');
 }
 
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
