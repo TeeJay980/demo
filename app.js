@@ -1145,30 +1145,40 @@ function initReviewsSlideshow() {
 }
 
 // ── FLOATING WA BUTTON VISIBILITY CONTROL ─────────────────────────────
+// Show ONLY from "Our Heritage" (#story) section onwards.
+// Hidden on: Hero, Brand Strip, and whenever the Catalogue drawer is open.
 function updateFloatingWaBtnVisibility() {
   const btn = document.querySelector('.floating-wa-btn');
   if (!btn) return;
 
-  const catalogueDrawer = document.getElementById('catalogue-drawer');
-  const hero = document.getElementById('hero');
-
   // Rule 1: Always hide if catalogue drawer is open
+  const catalogueDrawer = document.getElementById('catalogue-drawer');
   if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
     btn.classList.remove('is-visible');
     return;
   }
 
-  // Rule 2: Hide while ANY part of the hero section is still on screen
-  if (hero) {
-    const heroBottom = hero.getBoundingClientRect().bottom;
-    if (heroBottom > 0) {
+  // Rule 2: Show only once the #story section (Our Heritage) has entered the viewport
+  const story = document.getElementById('story');
+  if (story) {
+    const storyTop = story.getBoundingClientRect().top;
+    if (storyTop < window.innerHeight) {
+      // #story is visible — show the button
+      btn.classList.add('is-visible');
+    } else {
+      // Still on Hero or Brand Strip — hide it
       btn.classList.remove('is-visible');
-      return;
     }
+    return;
   }
 
-  // All clear — show the button with smooth slide-up animation
-  btn.classList.add('is-visible');
+  // Fallback if #story not found: show if scrolled past hero
+  const hero = document.getElementById('hero');
+  if (hero && hero.getBoundingClientRect().bottom > 0) {
+    btn.classList.remove('is-visible');
+  } else {
+    btn.classList.add('is-visible');
+  }
 }
 
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
