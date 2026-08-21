@@ -1145,8 +1145,8 @@ function initReviewsSlideshow() {
 }
 
 // ── FLOATING WA BUTTON VISIBILITY CONTROL ─────────────────────────────
-// Show ONLY from "Our Heritage" (#story) section onwards.
-// Hidden on: Hero, Brand Strip, and whenever the Catalogue drawer is open.
+// Hidden: Hero section, Brand Strip, Catalogue drawer open.
+// Visible: Our Heritage, Testimonials, Quiz, Contact, Partners, Footer.
 function updateFloatingWaBtnVisibility() {
   const btn = document.querySelector('.floating-wa-btn');
   if (!btn) return;
@@ -1158,26 +1158,31 @@ function updateFloatingWaBtnVisibility() {
     return;
   }
 
-  // Rule 2: Show only once the #story section (Our Heritage) has entered the viewport
+  // Rule 2: Use scrollY vs the top of #story to decide.
+  // Button shows only after the user has scrolled the page enough
+  // that the #story section (Our Heritage) would be coming into view.
   const story = document.getElementById('story');
   if (story) {
-    const storyTop = story.getBoundingClientRect().top;
-    if (storyTop < window.innerHeight) {
-      // #story is visible — show the button
+    // storyOffset = distance from very top of document to top of #story
+    const storyOffset = story.offsetTop;
+    // Show when the bottom of the viewport has reached or passed the top of #story
+    const viewportBottom = window.scrollY + window.innerHeight;
+    if (viewportBottom >= storyOffset) {
       btn.classList.add('is-visible');
     } else {
-      // Still on Hero or Brand Strip — hide it
       btn.classList.remove('is-visible');
     }
     return;
   }
 
-  // Fallback if #story not found: show if scrolled past hero
+  // Fallback: show if scrolled past the hero
   const hero = document.getElementById('hero');
-  if (hero && hero.getBoundingClientRect().bottom > 0) {
-    btn.classList.remove('is-visible');
-  } else {
-    btn.classList.add('is-visible');
+  if (hero) {
+    if (window.scrollY >= hero.offsetTop + hero.offsetHeight) {
+      btn.classList.add('is-visible');
+    } else {
+      btn.classList.remove('is-visible');
+    }
   }
 }
 
