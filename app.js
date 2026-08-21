@@ -154,7 +154,7 @@ const state = {
   sort: 'default',
   quizStep: 0,
   quizAnswers: [],
-  wishlist: new Set(),
+  wishlist: new Set(JSON.parse(localStorage.getItem('oriflame_wishlist') || '[]')),
 };
 
 // ── HELPERS ───────────────────────────────────────────────────────────────
@@ -169,6 +169,10 @@ function showToast(msg) {
 
 function saveCart() {
   localStorage.setItem('oriflame_cart', JSON.stringify(state.cart));
+}
+
+function saveWishlist() {
+  localStorage.setItem('oriflame_wishlist', JSON.stringify([...state.wishlist]));
 }
 
 // ── PRELOADER ─────────────────────────────────────────────────────────────
@@ -187,7 +191,7 @@ window.addEventListener('scroll', () => {
 // ── MOBILE MENU ───────────────────────────────────────────────────────────
 const menuBtn     = document.getElementById('menu-btn');
 const mainNav     = document.getElementById('main-nav');
-const navCloseBtn = document.getElementById('nav-close-btn');
+
 
 function openMobileMenu() {
   if (!mainNav || !menuBtn) return;
@@ -209,13 +213,6 @@ if (menuBtn) {
   menuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     mainNav.classList.contains('is-open') ? closeMobileMenu() : openMobileMenu();
-  });
-}
-
-if (navCloseBtn) {
-  navCloseBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    closeMobileMenu();
   });
 }
 
@@ -354,27 +351,31 @@ const cartTotal   = document.getElementById('cart-total');
 const cartItems   = document.getElementById('cart-items');
 
 function openCart() {
+  if (!cartDrawer || !cartOverlay) return;
   cartDrawer.classList.add('is-open');
   cartOverlay.classList.add('is-open');
   document.body.style.overflow = 'hidden';
 }
 function closeCart() {
+  if (!cartDrawer || !cartOverlay) return;
   cartDrawer.classList.remove('is-open');
   cartOverlay.classList.remove('is-open');
   document.body.style.overflow = '';
 }
 
-cartBtn.addEventListener('click', openCart);
-cartClose.addEventListener('click', closeCart);
-cartOverlay.addEventListener('click', closeCart);
+if (cartBtn)     cartBtn.addEventListener('click', openCart);
+if (cartClose)   cartClose.addEventListener('click', closeCart);
+if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
 
 function updateCartUI() {
   const total = state.cart.reduce((s, i) => s + i.price * i.qty, 0);
   const count = state.cart.reduce((s, i) => s + i.qty, 0);
 
-  cartCount.textContent = count;
-  cartCount.classList.toggle('is-visible', count > 0);
-  cartTotal.textContent = fmt(total);
+  if (cartCount) {
+    cartCount.textContent = count;
+    cartCount.classList.toggle('is-visible', count > 0);
+  }
+  if (cartTotal) cartTotal.textContent = fmt(total);
 
   syncCatalogueSteppers();
 
@@ -441,7 +442,8 @@ function addToCart(product) {
 }
 
 // WhatsApp Checkout
-document.getElementById('whatsapp-checkout-btn').addEventListener('click', () => {
+const waCheckoutBtn = document.getElementById('whatsapp-checkout-btn');
+if (waCheckoutBtn) waCheckoutBtn.addEventListener('click', () => {
   if (state.cart.length === 0) {
     showToast('Your cart is empty!');
     return;
@@ -513,14 +515,6 @@ function renderProducts() {
     </article>
   `).join('');
 
-  // Add to cart
-  productGrid.querySelectorAll('[data-add]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const product = PRODUCTS.find(p => p.id === btn.dataset.add);
-      if (product) addToCart(product);
-    });
-  });
-
   // Wishlist
   productGrid.querySelectorAll('[data-wishlist]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -531,12 +525,14 @@ function renderProducts() {
         btn.classList.remove('is-active');
         btn.setAttribute('aria-pressed', 'false');
         showToast('Removed from wishlist');
+        saveWishlist();
       } else {
         state.wishlist.add(id);
         btn.innerHTML = '♥';
         btn.classList.add('is-active');
         btn.setAttribute('aria-pressed', 'true');
         showToast('✦ Added to wishlist');
+        saveWishlist();
       }
     });
   });
@@ -634,8 +630,34 @@ function renderQuizStep() {
 function showQuizResult() {
   if (!quizWidget || !quizResult || !quizProgress) return;
   quizProgress.style.width = '100%';
-  const primaryAnswer = state.quizAnswers[0] || 'hydration';
-  const result = QUIZ_RESULTS[primaryAnswer] || QUIZ_RESULTS['hydration'];
+
+  // Weighted scoring: answer[0] = 3pts, answer[1] = 2pts, answer[2] = 1pt
+  // Each answer value maps to a QUIZ_RESULTS key; tally scores across all answers
+  const ANSWER_WEIGHT_MAP = {
+    // Q1 options → result key
+    hydration:    'hydration',
+    nutrition:    'nutrition',
+    hygiene:      'hygiene',
+    antiage:      'antiage',
+    // Q2 options → result key
+    smoothness:   'hydration',
+    energy:       'nutrition',
+    freshness:    'hygiene',
+    complete:     'antiage',
+    // Q3 options → result key
+    active:       'nutrition',
+    pampering:    'hydration',
+    professional: 'antiage',
+    gentle:       'hygiene',
+  };
+  const weights = [3, 2, 1];
+  const scores = {};
+  state.quizAnswers.forEach((answer, i) => {
+    const key = ANSWER_WEIGHT_MAP[answer];
+    if (key) scores[key] = (scores[key] || 0) + (weights[i] || 1);
+  });
+  const bestKey = Object.keys(scores).reduce((a, b) => scores[a] >= scores[b] ? a : b, state.quizAnswers[0] || 'hydration');
+  const result = QUIZ_RESULTS[bestKey] || QUIZ_RESULTS['hydration'];
 
   const quizMessage = `Hello Oriflame Abuja! 🌿\n\nI completed the Body & Wellness Quiz on your website and my result is:\n\n✨ *${result.title}*\n${result.text}\n\n*Recommended Products:*\n${result.products.map(p => `• ${p}`).join('\n')}\n\nI'd like to get started with these recommendations. Please assist me!`;
 
@@ -693,62 +715,6 @@ if (quizBackBtn) {
       renderQuizStep();
     }
   });
-}
-
-// ── BOOKING FORM ──────────────────────────────────────────────────────────
-const bookingForm = document.getElementById('booking-form');
-if (bookingForm) {
-  bookingForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name     = form['name'].value.trim();
-    const phone    = form['phone'].value.trim();
-    const location = form['location'].value;
-    const date     = form['date'].value;
-    const time     = form['time'].value;
-    const service  = form['service'].value;
-
-    if (!name || !phone || !location || !date || !time || !service) {
-      showToast('Please complete all booking fields.');
-      return;
-    }
-
-    const timeLabel = form['time'].options[form['time'].selectedIndex].text;
-    const serviceLabel = form['service'].options[form['service'].selectedIndex].text;
-    const locationLabel = form['location'].options[form['location'].selectedIndex].text;
-    const msg = encodeURIComponent(
-      `Hello Oriflame Abuja! 💄\n\nI'd like to book a beauty consultation:\n\n• Name: ${name}\n• Phone: ${phone}\n• Service: ${serviceLabel}\n• Location: ${locationLabel}\n• Date: ${date}\n• Time: ${timeLabel}\n\nPlease confirm my appointment. Thank you!`
-    );
-
-    window.open(`https://wa.me/2348160756002?text=${msg}`, '_blank');
-    showToast('✦ Booking request sent via WhatsApp!');
-    form.reset();
-  });
-}
-
-// ── PARTNER CALCULATOR ────────────────────────────────────────────────────
-const salesSlider  = document.getElementById('calc-sales');
-const teamSlider   = document.getElementById('calc-team');
-const salesVal     = document.getElementById('calc-sales-val');
-const teamVal      = document.getElementById('calc-team-val');
-const calcResult   = document.getElementById('calc-result');
-
-function calcEarnings() {
-  if (!salesSlider || !teamSlider || !calcResult) return;
-  const sales   = parseInt(salesSlider.value, 10);
-  const team    = parseInt(teamSlider.value, 10);
-  const comm    = sales * 0.28;
-  const teamBon = team * sales * 0.04;
-  const total   = comm + teamBon;
-  calcResult.textContent = fmt(Math.round(total));
-  if (salesVal) salesVal.textContent = sales.toLocaleString('en-NG');
-  if (teamVal)  teamVal.textContent  = team;
-}
-
-if (salesSlider && teamSlider) {
-  salesSlider.addEventListener('input', calcEarnings);
-  teamSlider.addEventListener('input', calcEarnings);
-  calcEarnings();
 }
 
 // Partner modal
@@ -1043,22 +1009,14 @@ if (catalogueDetailBottomBackBtn) catalogueDetailBottomBackBtn.addEventListener(
 if (catalogueOverlay) catalogueOverlay.addEventListener('click', closeCatalogue);
 
 // Open Catalogue whenever Catalogue nav link is clicked
-document.querySelectorAll('a[href="#catalog"], a[href="index.html#catalog"], a[href="#catalogue"]').forEach(link => {
+document.querySelectorAll('a[href="#catalog"], a[href="index.html#catalog"]').forEach(link => {
   link.addEventListener('click', (e) => {
-    if (window.location.pathname.includes('about.html')) {
-      return; // allow navigation to index.html#catalog
-    }
     e.preventDefault();
     openCatalogue();
   });
 });
 
 function initCatalogue() {
-  // Check URL params/hash to auto-open catalogue drawer
-  if (window.location.search.includes('open=catalogue') || window.location.hash === '#catalog') {
-    setTimeout(openCatalogue, 300);
-  }
-
   // Clicking an item or picture in the catalogue list opens the full detail view
   document.querySelectorAll('.catalog-list-item').forEach(item => {
     item.addEventListener('click', () => {
@@ -1125,6 +1083,7 @@ function initReviewsSlideshow() {
   const dots = document.querySelectorAll('#reviews-slideshow-dots .reviews-slideshow__dot');
   if (!slides.length) return;
   let current = 0;
+  let reviewTimer;
 
   function goToSlide(idx) {
     slides[current].classList.remove('is-active');
@@ -1134,56 +1093,49 @@ function initReviewsSlideshow() {
     if (dots[current]) dots[current].classList.add('is-active');
   }
 
-  setInterval(() => {
-    const next = (current + 1) % slides.length;
-    goToSlide(next);
-  }, 4000);
+  function startAuto() {
+    clearInterval(reviewTimer);
+    reviewTimer = setInterval(() => {
+      const next = (current + 1) % slides.length;
+      goToSlide(next);
+    }, 4000);
+  }
 
   dots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => goToSlide(idx));
+    dot.addEventListener('click', () => {
+      goToSlide(idx);
+      startAuto(); // reset timer after manual nav
+    });
   });
+
+  startAuto();
 }
 
 // ── FLOATING WA BUTTON VISIBILITY CONTROL ─────────────────────────────
-// Hidden: Hero section, Brand Strip, Catalogue drawer open.
-// Visible: Our Heritage, Testimonials, Quiz, Contact, Partners, Footer.
 function updateFloatingWaBtnVisibility() {
-  const btn = document.querySelector('.floating-wa-btn');
-  if (!btn) return;
+  const floatingWaBtn = document.querySelector('.floating-wa-btn');
+  if (!floatingWaBtn) return;
 
-  // Rule 1: Always hide if catalogue drawer is open
   const catalogueDrawer = document.getElementById('catalogue-drawer');
+  const hero = document.getElementById('hero') || document.querySelector('.about-hero');
+
+  // 1. Hide if Catalogue drawer is open
   if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
-    btn.classList.remove('is-visible');
+    floatingWaBtn.classList.add('is-hidden');
     return;
   }
 
-  // Rule 2: Use scrollY vs the top of #story to decide.
-  // Button shows only after the user has scrolled the page enough
-  // that the #story section (Our Heritage) would be coming into view.
-  const story = document.getElementById('story');
-  if (story) {
-    // storyOffset = distance from very top of document to top of #story
-    const storyOffset = story.offsetTop;
-    // Show when the bottom of the viewport has reached or passed the top of #story
-    const viewportBottom = window.scrollY + window.innerHeight;
-    if (viewportBottom >= storyOffset) {
-      btn.classList.add('is-visible');
-    } else {
-      btn.classList.remove('is-visible');
-    }
-    return;
-  }
-
-  // Fallback: show if scrolled past the hero
-  const hero = document.getElementById('hero');
+  // 2. Hide if user is currently viewing the Hero section
   if (hero) {
-    if (window.scrollY >= hero.offsetTop + hero.offsetHeight) {
-      btn.classList.add('is-visible');
-    } else {
-      btn.classList.remove('is-visible');
+    const heroHeight = hero.offsetHeight || window.innerHeight;
+    if (window.scrollY < heroHeight - 100) {
+      floatingWaBtn.classList.add('is-hidden');
+      return;
     }
   }
+
+  // 3. In every other section, SHOW the WhatsApp button!
+  floatingWaBtn.classList.remove('is-hidden');
 }
 
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
