@@ -2527,13 +2527,29 @@ ul { list-style: none; }
   bottom: 0;
   left: 0;
   right: 0;
-  height: 88px;
+  height: 100px;
   z-index: 900;
   pointer-events: none;
-  overflow: hidden;
 
-  /* Slide-in animation on page load */
-  animation: blurBarIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 2s both;
+  /* Frosted glass blur applied directly to the fixed layer */
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+  /* Translucent frosted background tint */
+  background: linear-gradient(
+    to top,
+    rgba(14, 12, 10, 0.88) 0%,
+    rgba(14, 12, 10, 0.55) 60%,
+    rgba(14, 12, 10, 0.00) 100%
+  );
+
+  /* Soft mask to eliminate hard boundaries smoothly at the top edge */
+  -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
+  mask-image: linear-gradient(to top, black 70%, transparent 100%);
+
+  /* Gold accent line along top */
+  border-top: 1px solid rgba(201, 168, 76, 0.35);
+
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -2544,24 +2560,8 @@ ul { list-style: none; }
 
 .bottom-blur-bar {
   position: absolute;
-  /* Extend 20px outside the wrapper bounds to eliminate backdrop-filter edge bleeding */
-  inset: 0 -20px -20px -20px;
+  inset: 0;
   pointer-events: none;
-
-  /* Frosted glass blur */
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-
-  /* Transparent-to-dark gradient so it fades naturally into the bar */
-  background: linear-gradient(
-    to top,
-    rgba(12, 10, 8, 0.72) 0%,
-    rgba(12, 10, 8, 0.38) 55%,
-    rgba(12, 10, 8, 0.00) 100%
-  );
-
-  /* Gold shimmer line along the top edge */
-  border-top: 1px solid rgba(201, 168, 76, 0.28);
 }
 
 /* Animated gold shimmer streak along the top edge */
@@ -2581,11 +2581,6 @@ ul { list-style: none; }
     transparent
   );
   animation: shimmerSlide 4s ease-in-out infinite;
-}
-
-@keyframes blurBarIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes shimmerSlide {
