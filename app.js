@@ -1119,7 +1119,7 @@ function updateFloatingWaBtnVisibility() {
   const catalogueDrawer = document.getElementById('catalogue-drawer');
   const hero = document.getElementById('hero') || document.querySelector('.about-hero');
 
-  const blurBar = document.querySelector('.bottom-blur-bar');
+  const blurBar = document.querySelector('.bottom-blur-wrapper');
 
   // 1. Hide if Catalogue drawer is open
   if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {

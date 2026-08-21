@@ -2522,13 +2522,30 @@ ul { list-style: none; }
 }
 
 /* ── BOTTOM BLUR BAR ──────────────────────────────────────────────────── */
-.bottom-blur-bar {
+.bottom-blur-wrapper {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   height: 88px;
   z-index: 900;
+  pointer-events: none;
+  overflow: hidden;
+
+  /* Slide-in animation on page load */
+  animation: blurBarIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 2s both;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bottom-blur-wrapper.is-hidden {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.bottom-blur-bar {
+  position: absolute;
+  /* Extend 20px outside the wrapper bounds to eliminate backdrop-filter edge bleeding */
+  inset: 0 -20px -20px -20px;
   pointer-events: none;
 
   /* Frosted glass blur */
@@ -2545,11 +2562,6 @@ ul { list-style: none; }
 
   /* Gold shimmer line along the top edge */
   border-top: 1px solid rgba(201, 168, 76, 0.28);
-
-  /* Slide-in animation on page load */
-  animation: blurBarIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 2s both;
-
-  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* Animated gold shimmer streak along the top edge */
@@ -2569,11 +2581,6 @@ ul { list-style: none; }
     transparent
   );
   animation: shimmerSlide 4s ease-in-out infinite;
-}
-
-.bottom-blur-bar.is-hidden {
-  opacity: 0;
-  transform: translateY(100%);
 }
 
 @keyframes blurBarIn {
