@@ -1119,24 +1119,60 @@ function initReviewsSlideshow() {
   startAuto();
 }
 
-// ── FLOATING WA BUTTON VISIBILITY CONTROL ─────────────────────────────
+// ── FLOATING WA BUTTON & BLUR BAR VISIBILITY CONTROLLER ─────────────────────
 function updateFloatingWaBtnVisibility() {
   const floatingWaBtn = document.querySelector('.floating-wa-btn');
-  if (!floatingWaBtn) return;
-
-  const catalogueDrawer = document.getElementById('catalogue-drawer');
   const blurBar = document.querySelector('.bottom-blur-wrapper');
+  const catalogueDrawer = document.getElementById('catalogue-drawer');
 
-  // 1. Hide if Catalogue drawer is open
+  // 1. Hide BOTH WhatsApp button and Blur bar if Product Catalogue drawer is open
   if (catalogueDrawer && catalogueDrawer.classList.contains('is-open')) {
-    floatingWaBtn.classList.add('is-hidden');
+    if (floatingWaBtn) floatingWaBtn.classList.add('is-hidden');
     if (blurBar) blurBar.classList.add('is-hidden');
     return;
   }
-  if (blurBar) blurBar.classList.remove('is-hidden');
 
-  // 2. Keep WhatsApp button visible on mobile and desktop!
-  floatingWaBtn.classList.remove('is-hidden');
+  const scrollY = window.scrollY || window.pageYOffset;
+  const viewportH = window.innerHeight;
+  const fullDocH = Math.max(
+    document.body.scrollHeight, document.documentElement.scrollHeight,
+    document.body.offsetHeight, document.documentElement.offsetHeight
+  );
+  const footer = document.querySelector('.footer');
+  const footerH = footer ? footer.offsetHeight : 180;
+
+  // Calculate height threshold for the first two sections
+  const sec1 = document.getElementById('hero') || document.querySelector('.about-hero');
+  const sec2 = document.querySelector('.brand-strip') || document.querySelector('.about-business');
+  let firstTwoSectionsHeight = viewportH * 1.1;
+
+  if (sec1) {
+    firstTwoSectionsHeight = sec1.offsetHeight;
+    if (sec2) {
+      firstTwoSectionsHeight += sec2.offsetHeight;
+    }
+  }
+
+  // A) WHATSAPP BUTTON LOGIC (Mobile & Desktop):
+  // Hide when in the first two sections; show smoothly everywhere else!
+  if (floatingWaBtn) {
+    if (scrollY < firstTwoSectionsHeight - 60) {
+      floatingWaBtn.classList.add('is-hidden');
+    } else {
+      floatingWaBtn.classList.remove('is-hidden');
+    }
+  }
+
+  // B) BOTTOM BLUR BAR LOGIC (Mobile & Desktop):
+  // Hide when user reaches the footer; show when scrolling back up!
+  if (blurBar) {
+    const isAtFooter = (scrollY + viewportH >= fullDocH - footerH + 30);
+    if (isAtFooter) {
+      blurBar.classList.add('is-hidden');
+    } else {
+      blurBar.classList.remove('is-hidden');
+    }
+  }
 }
 
 window.addEventListener('scroll', updateFloatingWaBtnVisibility, { passive: true });
