@@ -45,10 +45,18 @@
     <!-- ── VIEW 1: CATALOGUE LIST VIEW ── -->
     <div id="catalogue-list-view" class="catalogue-view">
       <div class="catalogue-drawer__header">
+        <button id="catalogue-back-to-menu-btn" class="catalogue-drawer__back-btn catalogue-drawer__back-btn--menu" aria-label="Back to navigation menu">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Menu</span>
+        </button>
         <div class="catalogue-drawer__title-wrap">
           <span class="catalogue-drawer__eyebrow">Abuja Store</span>
           <h2 class="catalogue-drawer__title">Product Catalogue</h2>
         </div>
+        <button id="catalogue-close-btn" class="catalogue-drawer__close" aria-label="Close catalogue">&#x2715;</button>
       </div>
 
       <div class="catalogue-drawer__body">

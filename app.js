@@ -1001,6 +1001,14 @@ function showCatalogueDetail(productId) {
   syncCatalogueSteppers();
 }
 
+const catalogueBackToMenuBtn = document.getElementById('catalogue-back-to-menu-btn');
+if (catalogueBackToMenuBtn) {
+  catalogueBackToMenuBtn.addEventListener('click', () => {
+    closeCatalogue();
+    openMobileMenu();
+  });
+}
+
 if (catalogueCloseBtn) catalogueCloseBtn.addEventListener('click', closeCatalogue);
 if (catalogueDetailCloseBtn) catalogueDetailCloseBtn.addEventListener('click', closeCatalogue);
 if (catalogueBottomCloseBtn) catalogueBottomCloseBtn.addEventListener('click', closeCatalogue);
@@ -1117,8 +1125,6 @@ function updateFloatingWaBtnVisibility() {
   if (!floatingWaBtn) return;
 
   const catalogueDrawer = document.getElementById('catalogue-drawer');
-  const hero = document.getElementById('hero') || document.querySelector('.about-hero');
-
   const blurBar = document.querySelector('.bottom-blur-wrapper');
 
   // 1. Hide if Catalogue drawer is open
@@ -1129,16 +1135,7 @@ function updateFloatingWaBtnVisibility() {
   }
   if (blurBar) blurBar.classList.remove('is-hidden');
 
-  // 2. Hide if user is currently viewing the Hero section
-  if (hero) {
-    const heroHeight = hero.offsetHeight || window.innerHeight;
-    if (window.scrollY < heroHeight - 100) {
-      floatingWaBtn.classList.add('is-hidden');
-      return;
-    }
-  }
-
-  // 3. In every other section, SHOW the WhatsApp button!
+  // 2. Keep WhatsApp button visible on mobile and desktop!
   floatingWaBtn.classList.remove('is-hidden');
 }
 

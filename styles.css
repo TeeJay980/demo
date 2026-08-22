@@ -1042,17 +1042,17 @@ ul { list-style: none; }
 }
 
 .catalogue-drawer__header {
-  padding: 1.8rem 2rem;
+  padding: 1.2rem 1.5rem;
   border-bottom: 1px solid rgba(201, 168, 76, 0.15);
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   background: #0E0C0A;
 }
 .catalogue-drawer__title-wrap {
   text-align: center;
-  width: 100%;
+  flex: 1;
 }
 .catalogue-drawer__eyebrow {
   display: block;
@@ -2508,47 +2508,48 @@ ul { list-style: none; }
 }
 @media (max-width: 768px) {
   .floating-wa-btn {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    padding: 0.75rem;
-    border-radius: 50%;
+    bottom: 1.1rem;
+    right: 1.1rem;
+    padding: 0.65rem 1.1rem 0.65rem 0.85rem;
+    border-radius: 50px;
   }
   .floating-wa-btn__label {
-    display: none;
+    display: inline-block;
+    font-size: 0.76rem;
   }
   .floating-wa-btn__pulse {
-    border-radius: 50%;
+    border-radius: 50px;
   }
 }
 
-/* ── BOTTOM BLUR BAR ──────────────────────────────────────────────────── */
+/* ── BOTTOM BLUR BAR (SUBTLE & SLEEK) ─────────────────────────────────── */
 .bottom-blur-wrapper {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 72px;
   z-index: 900;
   pointer-events: none;
 
-  /* Frosted glass blur applied directly to the fixed layer */
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  /* Subtle frosted glass backdrop blur */
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
 
-  /* Translucent frosted background tint */
+  /* Subtle transparent-to-dark gradient */
   background: linear-gradient(
     to top,
-    rgba(14, 12, 10, 0.88) 0%,
-    rgba(14, 12, 10, 0.55) 60%,
+    rgba(14, 12, 10, 0.65) 0%,
+    rgba(14, 12, 10, 0.25) 60%,
     rgba(14, 12, 10, 0.00) 100%
   );
 
   /* Soft mask to eliminate hard boundaries smoothly at the top edge */
-  -webkit-mask-image: linear-gradient(to top, black 70%, transparent 100%);
-  mask-image: linear-gradient(to top, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
+  mask-image: linear-gradient(to top, black 50%, transparent 100%);
 
-  /* Gold accent line along top */
-  border-top: 1px solid rgba(201, 168, 76, 0.35);
+  /* Subtle gold accent line along top */
+  border-top: 1px solid rgba(201, 168, 76, 0.22);
 
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -2575,15 +2576,15 @@ ul { list-style: none; }
   background: linear-gradient(
     to right,
     transparent,
-    rgba(201, 168, 76, 0.55) 30%,
-    rgba(223, 196, 123, 0.85) 50%,
-    rgba(201, 168, 76, 0.55) 70%,
+    rgba(201, 168, 76, 0.45) 30%,
+    rgba(223, 196, 123, 0.75) 50%,
+    rgba(201, 168, 76, 0.45) 70%,
     transparent
   );
   animation: shimmerSlide 4s ease-in-out infinite;
 }
 
 @keyframes shimmerSlide {
-  0%, 100% { left: 10%; right: 40%; opacity: 0.6; }
-  50%       { left: 40%; right: 10%; opacity: 1; }
+  0%, 100% { left: 10%; right: 40%; opacity: 0.5; }
+  50%       { left: 40%; right: 10%; opacity: 0.9; }
 }
