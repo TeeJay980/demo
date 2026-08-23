@@ -2527,69 +2527,43 @@ ul { list-style: none; }
   }
 }
 
-/* ── BOTTOM BLUR BAR (SUBTLE & SLEEK) ─────────────────────────────────── */
+/* ── BOTTOM FADE-BLUR OVERLAY (MATCHING REFERENCE IMAGE) ─────────────── */
 .bottom-blur-wrapper {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 72px;
+  height: 140px;
   z-index: 900;
   pointer-events: none;
 
-  /* Subtle frosted glass backdrop blur */
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  /* Heavy Gaussian backdrop blur matching reference image */
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
 
-  /* Subtle transparent-to-dark gradient */
+  /* Multi-stop smooth fade gradient */
   background: linear-gradient(
     to top,
-    rgba(14, 12, 10, 0.65) 0%,
-    rgba(14, 12, 10, 0.25) 60%,
+    rgba(14, 12, 10, 0.95) 0%,
+    rgba(14, 12, 10, 0.75) 30%,
+    rgba(14, 12, 10, 0.35) 65%,
     rgba(14, 12, 10, 0.00) 100%
   );
 
-  /* Soft mask to eliminate hard boundaries smoothly at the top edge */
-  -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
-  mask-image: linear-gradient(to top, black 50%, transparent 100%);
+  /* Seamless gradient mask for feather-soft dissolution at the top edge */
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
+  mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
 
-  /* Subtle gold accent line along top */
-  border-top: 1px solid rgba(201, 168, 76, 0.22);
-
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bottom-blur-wrapper.is-hidden {
-  opacity: 0;
-  transform: translateY(100%);
+  opacity: 0 !important;
+  transform: translateY(100%) !important;
 }
 
 .bottom-blur-bar {
   position: absolute;
   inset: 0;
   pointer-events: none;
-}
-
-/* Animated gold shimmer streak along the top edge */
-.bottom-blur-bar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(201, 168, 76, 0.45) 30%,
-    rgba(223, 196, 123, 0.75) 50%,
-    rgba(201, 168, 76, 0.45) 70%,
-    transparent
-  );
-  animation: shimmerSlide 4s ease-in-out infinite;
-}
-
-@keyframes shimmerSlide {
-  0%, 100% { left: 10%; right: 40%; opacity: 0.5; }
-  50%       { left: 40%; right: 10%; opacity: 0.9; }
 }
