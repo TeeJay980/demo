@@ -2527,30 +2527,30 @@ ul { list-style: none; }
   }
 }
 
-/* ── BOTTOM FADE-BLUR OVERLAY (MATCHING REFERENCE IMAGE) ─────────────── */
+/* ── BOTTOM FADE-BLUR OVERLAY (MATCHING REFERENCE IMAGE & BRAND SYSTEM) ── */
 .bottom-blur-wrapper {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 140px;
+  height: 125px;
   z-index: 900;
   pointer-events: none;
 
-  /* Heavy Gaussian backdrop blur matching reference image */
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  /* Frosted glass backdrop blur */
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
 
-  /* Multi-stop smooth fade gradient */
+  /* Multi-stop smooth fade blending into the website's luxury cream (#FDFBF7) & gold palette */
   background: linear-gradient(
     to top,
-    rgba(14, 12, 10, 0.95) 0%,
-    rgba(14, 12, 10, 0.75) 30%,
-    rgba(14, 12, 10, 0.35) 65%,
-    rgba(14, 12, 10, 0.00) 100%
+    rgba(253, 251, 247, 0.92) 0%,
+    rgba(247, 243, 235, 0.75) 40%,
+    rgba(201, 168, 76, 0.10) 70%,
+    rgba(253, 251, 247, 0.00) 100%
   );
 
-  /* Seamless gradient mask for feather-soft dissolution at the top edge */
+  /* Seamless gradient mask for feather-soft dissolution at top edge */
   -webkit-mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
   mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
 
