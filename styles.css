@@ -2527,32 +2527,31 @@ ul { list-style: none; }
   }
 }
 
-/* ── BOTTOM FADE-BLUR OVERLAY (MATCHING REFERENCE IMAGE & BRAND SYSTEM) ── */
+/* ── BOTTOM FADE-BLUR OVERLAY (ULTRA-SUBTLE & TRANSPARENT FADE) ──────── */
 .bottom-blur-wrapper {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 125px;
+  height: 90px;
   z-index: 900;
   pointer-events: none;
 
-  /* Frosted glass backdrop blur */
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  /* Pure backdrop blur for frosted optical filter */
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
 
-  /* Multi-stop smooth fade blending into the website's luxury cream (#FDFBF7) & gold palette */
+  /* Extremely faint transparent gradient overlay (almost invisible color tint) */
   background: linear-gradient(
     to top,
-    rgba(253, 251, 247, 0.92) 0%,
-    rgba(247, 243, 235, 0.75) 40%,
-    rgba(201, 168, 76, 0.10) 70%,
+    rgba(253, 251, 247, 0.20) 0%,
+    rgba(253, 251, 247, 0.06) 50%,
     rgba(253, 251, 247, 0.00) 100%
   );
 
-  /* Seamless gradient mask for feather-soft dissolution at top edge */
-  -webkit-mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
-  mask-image: linear-gradient(to top, black 0%, black 35%, transparent 100%);
+  /* Seamless gradient mask so the blur smoothly dissolves into the page */
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 25%, transparent 100%);
+  mask-image: linear-gradient(to top, black 0%, black 25%, transparent 100%);
 
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
