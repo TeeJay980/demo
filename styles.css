@@ -521,7 +521,13 @@ ul { list-style: none; }
 .hero__content {
   position: relative;
   z-index: 5;
-  max-width: 680px;
+  max-width: 780px;
+}
+@media (min-width: 1025px) {
+  .hero__content {
+    padding-left: 0;
+    margin-left: 0;
+  }
 }
 .hero__collection-pill {
   display: inline-flex;
