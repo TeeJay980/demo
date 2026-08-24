@@ -106,7 +106,7 @@ ul { list-style: none; }
   font-family: var(--ff-sans);
   font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: normal;
+  letter-spacing: -0.025em;
   text-transform: none;
   transition: all var(--t-med);
   white-space: nowrap;
@@ -1219,7 +1219,7 @@ ul { list-style: none; }
   font-family: var(--ff-sans);
   font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.025em;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1309,7 +1309,7 @@ ul { list-style: none; }
   padding: 0.85rem 1rem;
   font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: normal;
+  letter-spacing: -0.025em;
   text-transform: none;
   display: flex;
   align-items: center;
@@ -1341,7 +1341,7 @@ ul { list-style: none; }
   padding: 0.85rem 1rem;
   font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: normal;
+  letter-spacing: -0.025em;
   text-transform: none;
   display: flex;
   align-items: center;
@@ -1403,7 +1403,7 @@ ul { list-style: none; }
   padding: 0.8rem 1rem;
   font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: normal;
+  letter-spacing: -0.025em;
   text-transform: none;
   display: flex;
   align-items: center;
