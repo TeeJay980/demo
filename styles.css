@@ -19,8 +19,8 @@
   --clr-rose:        #F4ECE1;
 
   /* Typography */
-  --ff-serif:  'Cormorant Garamond', Georgia, serif;
-  --ff-sans:   'Plus Jakarta Sans', system-ui, sans-serif;
+  --ff-serif:  'Fraunces', Georgia, serif;
+  --ff-sans:   'DM Sans', system-ui, sans-serif;
 
   /* Spacing */
   --section-py:  7rem;
@@ -54,6 +54,7 @@ body {
   background: var(--clr-bg);
   color: var(--clr-dark);
   line-height: 1.7;
+  letter-spacing: -0.018em;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   width: 100%;
@@ -88,6 +89,7 @@ ul { list-style: none; }
   font-size: clamp(2.6rem, 5vw, 4.2rem);
   font-weight: 300;
   line-height: 1.08;
+  letter-spacing: -0.03em;
   color: var(--clr-dark);
 }
 .section-title em { font-style: italic; font-weight: 300; }
