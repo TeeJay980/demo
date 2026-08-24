@@ -182,11 +182,26 @@ window.addEventListener('load', () => {
   }, 1800);
 });
 
-// ── HEADER SCROLL ─────────────────────────────────────────────────────────
+// ── HEADER SCROLL (ONLY VISIBLE ON HERO SECTION) ───────────────────────────
 const header = document.getElementById('site-header');
-window.addEventListener('scroll', () => {
+
+function updateHeaderVisibility() {
+  if (!header) return;
+  const hero = document.getElementById('hero') || document.querySelector('.about-hero');
+  const heroHeight = hero ? (hero.offsetHeight - 60) : window.innerHeight;
+  const isMobileMenuOpen = typeof mainNav !== 'undefined' && mainNav && mainNav.classList.contains('is-open');
+
+  if (!isMobileMenuOpen && window.scrollY > heroHeight) {
+    header.classList.add('is-past-hero');
+  } else {
+    header.classList.remove('is-past-hero');
+  }
+
   header.classList.toggle('is-scrolled', window.scrollY > 60);
-}, { passive: true });
+}
+
+window.addEventListener('scroll', updateHeaderVisibility, { passive: true });
+window.addEventListener('resize', updateHeaderVisibility, { passive: true });
 
 // ── MOBILE MENU ───────────────────────────────────────────────────────────
 const menuBtn     = document.getElementById('menu-btn');
@@ -1189,5 +1204,6 @@ window.addEventListener('resize', updateFloatingWaBtnVisibility, { passive: true
   initAnimations();
   initParallax();
   setMinDate();
+  updateHeaderVisibility();
   updateFloatingWaBtnVisibility();
 })();

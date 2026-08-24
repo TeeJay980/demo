@@ -247,7 +247,12 @@ ul { list-style: none; }
   right: 0;
   z-index: 1000;
   padding: 1.4rem 0;
-  transition: background var(--t-med), padding var(--t-med), box-shadow var(--t-med);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, background var(--t-med), padding var(--t-med), box-shadow var(--t-med);
+}
+.header.is-past-hero {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 .header.is-scrolled {
   background: rgba(13, 21, 18, 0.96);
