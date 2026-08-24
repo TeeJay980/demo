@@ -939,19 +939,18 @@ ul { list-style: none; }
 }
 .review-card {
   background: var(--clr-surface);
-  border: 1px solid var(--clr-border);
+  border: none;
   border-radius: 12px;
   padding: 1.4rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
 }
 .review-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(201, 168, 76, 0.45);
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
 }
 .review-card__header {
   display: flex;
@@ -975,7 +974,7 @@ ul { list-style: none; }
 .review-card__avatar--img {
   background: none;
   object-fit: cover;
-  border: 1.5px solid var(--clr-gold);
+  border: none;
 }
 .review-card__name {
   font-family: var(--ff-sans);
