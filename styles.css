@@ -2581,3 +2581,105 @@ ul { list-style: none; }
   inset: 0;
   pointer-events: none;
 }
+
+/* ── FOOTER ─────────────────────────────────────────────────────────── */
+.footer {
+  background: var(--clr-obsidian, #0E0C0A);
+  color: rgba(255, 255, 255, 0.65);
+  padding: 4.5rem 0 3.5rem;
+  border-top: 1px solid var(--clr-border, rgba(201, 168, 76, 0.22));
+  position: relative;
+  z-index: 10;
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer__logo {
+  font-family: var(--ff-serif);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--clr-gold, #C9A84C);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--clr-gold, #C9A84C);
+  background: rgba(201, 168, 76, 0.08);
+  margin-bottom: 0.3rem;
+}
+
+.footer__brand-name {
+  font-family: var(--ff-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.footer__brand-tagline {
+  font-family: var(--ff-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--clr-gold-light, #DFC47B);
+  letter-spacing: 0.02em;
+}
+
+.footer__legal {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.42);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.footer__credit {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
+  width: min(100%, 540px);
+  letter-spacing: 0.02em;
+}
+
+.footer__credit-link {
+  color: var(--clr-gold, #C9A84C);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(201, 168, 76, 0.45);
+  padding: 0.2rem 0.4rem;
+  display: inline-block;
+  border-radius: 4px;
+  transition: color var(--t-fast), text-decoration-color var(--t-fast), transform var(--t-fast), background var(--t-fast);
+}
+
+.footer__credit-link:hover,
+.footer__credit-link:focus-visible {
+  color: #FFFFFF;
+  text-decoration-color: var(--clr-gold);
+  background: rgba(201, 168, 76, 0.16);
+  transform: translateY(-1px);
+}
+
+.footer__credit-link:active {
+  transform: translateY(0);
+}
+
