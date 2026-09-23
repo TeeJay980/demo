@@ -253,6 +253,18 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// ── LOGO SMOOTH SCROLL (AVOID FULL REFRESH ON HOMEPAGE) ───────────────────
+document.querySelectorAll('.header__logo').forEach(logo => {
+  logo.addEventListener('click', (e) => {
+    const isAboutPage = window.location.pathname.endsWith('about.html');
+    if (!isAboutPage) {
+      e.preventDefault();
+      closeMobileMenu();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+});
+
 // ── HERO SLIDER ───────────────────────────────────────────────────────────
 (function initHero() {
   const slides   = document.querySelectorAll('.hero__slide');
