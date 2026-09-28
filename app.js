@@ -744,57 +744,6 @@ if (quizBackBtn) {
   });
 }
 
-// Partner modal
-const partnerSignupBtn   = document.getElementById('partner-signup-btn');
-const partnerModalOverlay = document.getElementById('partner-modal-overlay');
-const partnerModalClose  = document.getElementById('partner-modal-close');
-
-if (partnerSignupBtn && partnerModalOverlay) {
-  partnerSignupBtn.addEventListener('click', () => {
-    partnerModalOverlay.classList.add('is-open');
-    partnerModalOverlay.removeAttribute('aria-hidden');
-    document.body.style.overflow = 'hidden';
-  });
-}
-
-if (partnerModalClose && partnerModalOverlay) {
-  partnerModalClose.addEventListener('click', closePartnerModal);
-  partnerModalOverlay.addEventListener('click', (e) => {
-    if (e.target === partnerModalOverlay) closePartnerModal();
-  });
-}
-
-function closePartnerModal() {
-  if (!partnerModalOverlay) return;
-  partnerModalOverlay.classList.remove('is-open');
-  partnerModalOverlay.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
-
-const partnerForm = document.getElementById('partner-form');
-if (partnerForm) {
-  partnerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name  = form['p-name'].value.trim();
-    const phone = form['p-phone'].value.trim();
-    const area  = form['p-area'].value.trim();
-
-    if (!name || !phone || !area) {
-      showToast('Please fill in all partner fields.');
-      return;
-    }
-
-    const msg = encodeURIComponent(
-      `Hello Oriflame Abuja! ✦\n\nI'm interested in becoming a Beauty Partner:\n\n• Name: ${name}\n• Phone: ${phone}\n• Area: ${area}\n\nPlease contact me with more information. Thank you!`
-    );
-    window.open(`https://wa.me/2348160756002?text=${msg}`, '_blank');
-    showToast('✦ Application sent! We\'ll contact you within 24hrs');
-    form.reset();
-    closePartnerModal();
-  });
-}
-
 // ── NEWSLETTER ────────────────────────────────────────────────────────────
 const newsletterForm = document.getElementById('newsletter-form');
 if (newsletterForm) {
